@@ -59,7 +59,6 @@ header, main {
 }
 
 main {
-    align-items: first baseline;
     margin: 32px 0 64px;
 }
 
@@ -103,6 +102,12 @@ nav > a {
 
 main > * {
     grid-column: text;
+}
+
+aside {
+    grid-column: gutter;
+    font-size: 13px;
+    color: #7a8a9f;
 }
 
 a {
@@ -166,6 +171,7 @@ h2 {
             </nav>
         </header>
         <main>
+
             <h1>URLs</h1>
             <p>To fetch a file in Dat you need to know its URL. Here is an example:</p>
             <svg width="1052" height="64" style="background-color: #eee; padding: 10px">
@@ -180,9 +186,20 @@ h2 {
                 <li><strong>Public key.</strong> The most important part of the URL is the 64-character hexadecimal string. It is an ed25519 public key unique to this Dat, used by the author to create and update the data in it. The public key enables you to discover other peers who have the data and is also used to verify that the data was not corrupted or tampered with as it passed through the network.</li>
                 <li><strong>Suffix.</strong> Identifies specific data within this Dat. For most Dats which contain a directory of files the suffix is a slash-separated file path. Dats can also contain data in structures that don’t use the concept of files or directories, in which case the suffix would use some other format as understood by the applications that handle that sort of data.</li>
             </ul>
+
             <h1>Discovery</h1>
-            <h2>Discovery key derivation</h2>
-            <pre><code>discovery_key = Blake2b_256(key: public_key, data: "hypercore")</code></pre>
+            <p>Dat clients use several different methods for discovering peers who they can download data from.</p>
+            <p>Clients use discovery keys to advertise which Dats they are interested in. Discovery keys are derived from a Dat’s public key, however the public key is not exposed directly over the network as this would allow eavesdroppers to easily learn which data other clients were requesting. With discovery keys eavesdroppers can only confirm guesses about what Dats clients are accessing (for example by checking against a list of popular Dats) but not learn about what is inside a Dat they don’t know the URL of.</p>
+            <p>Calculate the discovery key by using the BLAKE2b hashing function, keyed with the Dat’s public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
+            <pre><code>discovery_key = BLAKE2b_256(key: public_key, data: "hypercore")</code></pre>
+            <aside style="position:relative;top:3px">Dat uses the BLAKE2b variant that accepts both a key and data to be hashed, returning 256 bits (32 bytes) of data.</aside>
+            <p>For example, for the public key:</p>
+            <pre><code>778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</code></pre>
+            <p>the corresponding discovery key is:</p>
+            <pre><code>25a78aa81615847eba00995df29dd41d7ee30f3b01f892209f79b75a57d989e1</code></pre>
+
+            <h2>Local network discovery</h2>
+
         </main>
     </body>
 </html>
