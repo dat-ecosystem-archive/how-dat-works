@@ -221,7 +221,7 @@ h3 {
             <p>Here is an example of the bytes a client would broadcast to ask for peers:</p>
             <img class="pagewidth extramargin" src="png/mdns_request.png" width="1072" height="800"/>
             <p>Multicast DNS uses UDP port 5353. In most cases the operating system will fill out all the fields in the ethernet, IP and UDP headers on your behalf; these are just shown for context.</p>
-            <p>Essentially the computer is asking “Does anybody have any TXT records for the domain name <em>25a78aa81615847eba00995df29dd41d7ee30f3b.dat.local</em>?” Which is not a real domain name, but other Dat clients on the network will see the request and know that the client who sent it is looking for peers.</p>
+            <p>Essentially the computer is asking “Does anybody have any TXT records for the domain name <em>25a78aa81615847eba00995df29dd41d7ee30f3b.dat.local</em>?” Other Dat clients on the network will recognize requests following this pattern and know that the client who sent it is looking for peers.</p>
         </main>
     </body>
 </html>
