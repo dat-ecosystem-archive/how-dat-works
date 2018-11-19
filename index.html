@@ -185,7 +185,7 @@ h3 {
             <h1 style="margin-top: 0">URLs</h1>
             <p>To fetch a file in Dat you need to know its URL. Here is an example:</p>
             <svg width="1052" height="64" style="background-color: #eee; padding: 10px">
-                <text class="code" x="0" y="18"><tspan>dat://</tspan><tspan fill="#2aca4b">778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</tspan><tspan>/dat_intro.gif</tspan></text>
+                <text class="code" x="0" y="18"><tspan>dat://</tspan><tspan fill="#007fff">778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</tspan><tspan>/dat_intro.gif</tspan></text>
                 <path stroke="#93a0b6" strokewidth="1" fill="none" d="M0.5,24 v4.5 h60 v-4.5 m0,4.5 h640 v-4.5 m0,4.5 h140 v-4.5"/>
                 <text y="44" text-anchor="middle"><tspan x="30">protocol</tspan><tspan x="30" dy="1.2em">identifier</tspan></text>
                 <text x="380" y="44" text-anchor="middle">hex(ed25519 public key)</text>
@@ -219,9 +219,14 @@ h3 {
             </ul>
             <p>Local network discovery uses multicast DNS, which is like a regular DNS query except instead of sending your query to a nameserver you broadcast it to your local network and hope someone else on your network sees it and responds.</p>
             <p>Here is an example of the bytes a client would broadcast to ask for peers:</p>
-            <img class="pagewidth extramargin" src="png/mdns_request.png" width="1072" height="800"/>
+            <img class="pagewidth extramargin" src="png/mdns_request.png" width="1072" height="640"/>
             <p>Multicast DNS uses UDP port 5353. In most cases the operating system will fill out all the fields in the ethernet, IP and UDP headers on your behalf; these are just shown for context.</p>
             <p>Essentially the computer is asking “Does anybody have any TXT records for the domain name <em>25a78aa81615847eba00995df29dd41d7ee30f3b.dat.local</em>?” Other Dat clients on the network will recognize requests following this pattern and know that the client who sent it is looking for peers.</p>
+            <p>Here is an example response from a peer reporting that they are also interested in this Dat:</p>
+            <img class="pagewidth extramargin" src="png/mdns_response.png" width="1072" height="1180"/>
+            <p>Responses share a similar structure to requests, but most importantly they contain a DNS answer with two TXT records.</p>
+            <p>The <em>token</em> record is a random value makes it easier for clients to avoid connecting to themselves. If a client sees a response with the same token as a response they just sent out, they will know it came from them and can ignore it.</p>
+            <p>The <em>peers</em> record contains a list of IP addresses and ports of peers interested in this Dat.</p>
         </main>
     </body>
 </html>
