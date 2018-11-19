@@ -110,6 +110,10 @@ aside {
     color: #5f728c;;
 }
 
+aside code {
+    font-size: 13px;
+}
+
 a {
     text-decoration: none;
     color: #007fff;
@@ -224,9 +228,17 @@ h3 {
             <p>Essentially the computer is asking “Does anybody have any TXT records for the domain name <em>25a78aa81615847eba00995df29dd41d7ee30f3b.dat.local</em>?” Other Dat clients on the network will recognize requests following this pattern and know that the client who sent it is looking for peers.</p>
             <p>Here is an example response from a peer reporting that they are also interested in this Dat:</p>
             <img class="pagewidth extramargin" src="png/mdns_response.png" width="1072" height="1180"/>
-            <p>Responses share a similar structure to requests, but most importantly they contain a DNS answer with two TXT records.</p>
-            <p>The <em>token</em> record is a random value makes it easier for clients to avoid connecting to themselves. If a client sees a response with the same token as a response they just sent out, they will know it came from them and can ignore it.</p>
-            <p>The <em>peers</em> record contains a list of IP addresses and ports of peers interested in this Dat.</p>
+            <p>Responses contain two TXT records:</p>
+            <ul>
+                <li>The <strong>token</strong> record is a random value makes it easier for clients to avoid connecting to themselves. If a client sees a response with the same token as a response they just sent out, they will know it came from them and ignore it.</li>
+                <li>The <strong>peers</strong> record is a base64-encoded list of IP addresses and ports of peers interested in this Dat:</li>
+            </ul>
+            <img class="extramargin" src="png/mdns_peers_record.png" width="704" height="290"/>
+            <aside>
+                <p>Base64 encoding in Dat uses the variant with minus and underscore. Padding equals characters are required.</p>
+                <p>Only IPv4 addresses are supported by this discovery mechanism.</p>    
+            </aside>
+            <p>The special IP address 0.0.0.0 means “use the address this mDNS response was sent from”.</p>
         </main>
     </body>
 </html>
