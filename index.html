@@ -199,7 +199,205 @@ h2 {
             <pre><code>25a78aa81615847eba00995df29dd41d7ee30f3b01f892209f79b75a57d989e1</code></pre>
 
             <h2>Local network discovery</h2>
-
+            <svg class="pagewidth" width="1072" height="800">
+                <g transform="translate(0 20)">
+                    <text x="0" y="22" style="font-weight: bold">Ethernet header</text>
+                    <g transform="translate(120 0)">
+                        <text x="120" y="-10" text-anchor="middle">destination MAC (broadcast)</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="80" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="120" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="160" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="200" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">1</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="100" y="25" class="code" text-anchor="middle">94</text>
+                        <text x="140" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="180" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="220" y="25" class="code" text-anchor="middle">251</text>
+                    </g>
+                    <g transform="translate(370 0)">
+                        <text x="120" y="-10" text-anchor="middle">source MAC</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="80" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="120" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="160" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="200" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">38</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">49</text>
+                        <text x="100" y="25" class="code" text-anchor="middle">230</text>
+                        <text x="140" y="25" class="code" text-anchor="middle">41</text>
+                        <text x="180" y="25" class="code" text-anchor="middle">252</text>
+                        <text x="220" y="25" class="code" text-anchor="middle">175</text>
+                    </g>
+                    <g transform="translate(620 0)">
+                        <text x="40" y="-10" text-anchor="middle">IPv4</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">8</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">0</text>
+                    </g>
+                </g>
+                <g transform="translate(0 120)">
+                    <text x="0" y="22" style="font-weight: bold">IP header</text>
+                    <g transform="translate(120 0)">
+                        <text x="20" y="-10" text-anchor="middle">v4</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">69</text>
+                    </g>
+                    <g transform="translate(170 0)">
+                        <text x="20" y="-10" text-anchor="middle">priority</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">0</text>
+                    </g>
+                    <g transform="translate(220 0)">
+                        <text x="40" y="-10" text-anchor="middle">length</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">96</text>
+                    </g>
+                    <g transform="translate(310 0)">
+                        <text x="40" y="-10" text-anchor="middle">fragment ID</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">18</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">1</text>
+                    </g>
+                    <g transform="translate(400 0)">
+                        <text y="-10" text-anchor="middle"><tspan x="40" dy="-16">flags</tspan><tspan x="40" dy="16">(don’t fragment)</tspan></text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">64</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">0</text>
+                    </g>
+                    <g transform="translate(490 0)">
+                        <text y="-10" text-anchor="middle"><tspan x="20" dy="-16">hops</tspan><tspan x="20" dy="16">left</tspan></text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">255</text>
+                    </g>
+                    <g transform="translate(540 0)">
+                        <text x="20" y="-10" text-anchor="middle">UDP</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">17</text>
+                    </g>
+                    <g transform="translate(590 0)">
+                        <text x="40" y="-10" text-anchor="middle">checksum</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">157</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">18</text>
+                    </g>
+                    <g transform="translate(680 0)">
+                        <text x="80" y="-10" text-anchor="middle">source IP</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="80" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="120" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">192</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">168</text>
+                        <text x="100" y="25" class="code" text-anchor="middle">1</text>
+                        <text x="140" y="25" class="code" text-anchor="middle">10</text>
+                    </g>
+                    <g transform="translate(850 0)">
+                        <text x="80" y="-10" text-anchor="middle">destination IP (broadcast)</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="80" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="120" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">244</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="100" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="140" y="25" class="code" text-anchor="middle">251</text>
+                    </g>
+                </g>
+                <g transform="translate(0 220)">
+                    <text x="0" y="22" style="font-weight: bold">UDP header</text>
+                    <g transform="translate(120 0)">
+                        <text y="-10" text-anchor="middle"><tspan x="40" dy="-16">source port</tspan><tspan x="40" dy="16">(5353)</tspan></text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">20</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">233</text>
+                    </g>
+                    <g transform="translate(210 0)">
+                        <text y="-10" text-anchor="middle"><tspan x="40" dy="-16">destination port</tspan><tspan x="40" dy="16">(5353)</tspan></text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">20</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">233</text>
+                    </g>
+                    <g transform="translate(300 0)">
+                        <text x="40" y="-10" text-anchor="middle">length</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">76</text>
+                    </g>
+                    <g transform="translate(390 0)">
+                        <text x="40" y="-10" text-anchor="middle">checksum</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">2</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">136</text>
+                    </g>
+                </g>
+                <g transform="translate(0 320)">
+                    <text x="0" y="22" style="font-weight: bold">DNS header</text>
+                    <g transform="translate(120 0)">
+                        <text x="40" y="-10" text-anchor="middle">transaction ID</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">0</text>
+                    </g>
+                    <g transform="translate(210 0)">
+                        <text x="40" y="-10" text-anchor="middle">flags</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">0</text>
+                    </g>
+                    <g transform="translate(300 0)">
+                        <text x="40" y="-10" text-anchor="middle">questions</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">1</text>
+                    </g>
+                    <g transform="translate(390 0)">
+                        <text x="40" y="-10" text-anchor="middle">answers</text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">0</text>
+                    </g>
+                    <g transform="translate(480 0)">
+                        <text y="-10" text-anchor="middle"><tspan x="40" dy="-16">authority</tspan><tspan x="40" dy="16">records</tspan></text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">0</text>
+                    </g>
+                    <g transform="translate(570 0)">
+                        <text y="-10" text-anchor="middle"><tspan x="40" dy="-16">additional</tspan><tspan x="40" dy="16">records</tspan></text>
+                        <rect x="0" width="39" height="39" fill="#d2d8e1"/>
+                        <rect x="40" width="39" height="39" fill="#d2d8e1"/>
+                        <text x="20" y="25" class="code" text-anchor="middle">0</text>
+                        <text x="60" y="25" class="code" text-anchor="middle">0</text>
+                    </g>
+                </g>
+                <g transform="translate(0 420)">
+                    <text x="0" y="22" style="font-weight: bold">DNS Question 1</text>
+                    <g transform="translate(120 0)">
+                        <text x="20" y="-10" text-anchor="middle">length</text>
+                        <rect x="0" width="39" height="39" fill="#007fff"/>
+                        <text x="20" y="25" class="code" text-anchor="middle" style="fill:#fff">40</text>
+                    </g>
+                </g>
+            </svg>
         </main>
     </body>
 </html>
