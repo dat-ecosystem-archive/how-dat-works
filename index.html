@@ -133,8 +133,12 @@ svg text {
     font-size: 13px;
 }
 
-h1, h2, h3, p, pre, ul, ol, main > svg {
+h1, h2, h3, p, pre, ul, ol, main > svg, main > img {
     margin: 0 0 16px;
+}
+
+.extramargin {
+    margin: 36px 0 36px;
 }
 
 h1, h2, h3 {
@@ -197,8 +201,9 @@ h3 {
             <p>Dat clients use several different methods for discovering peers who they can download data from. Each discovery method has strengths and weaknesses, but combined they form a reasonably robust way of finding peers.</p>
 
             <h2>Discovery keys</h2>
-            <p>Clients use discovery keys to advertise which Dats they are interested in. Discovery keys are derived from a Dat’s public key, however the public key is not exposed directly over the network as this would allow eavesdroppers to easily learn which data other clients were requesting. With discovery keys eavesdroppers can only confirm guesses about what Dats clients are accessing (for example by checking against a list of popular Dats) but not learn about what is inside a Dat they don’t know the URL of.</p>
-            <p>Calculate the discovery key by using the BLAKE2b hashing function, keyed with the Dat’s public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
+            <p>Discovery keys are used for finding other peers who are interested in the same Dat as you.</p>
+            <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dats by observing network traffic as they will only see the discovery keys. However eavesdroppers can confirm that clients are talking about a specific Dat if they know its public key already.</p>
+            <p>Calculate a Dat’s discovery key by using the BLAKE2b hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
             <pre><code>discovery_key = BLAKE2b_256(key: public_key, data: "hypercore")</code></pre>
             <aside style="position:relative;top:3px">Dat uses the BLAKE2b variant that accepts both a key and input to be hashed, returning 256 bits (32 bytes) of output.</aside>
             <p>For example, this public key:</p>
@@ -213,8 +218,9 @@ h3 {
                 <li><strong>Weaknesses.</strong> Limited reach.</li>
             </ul>
             <p>Local network discovery uses multicast DNS, which is like a regular DNS query except instead of sending your query to a nameserver you broadcast it to your local network and hope someone else on your network sees it and responds.</p>
-            <p>Here is an example of the bytes a client would broadcast to ask if there were any peers interested in a particular Dat:</p>
-            <img class="pagewidth" src="png/mdns_request.png" width="1072" height="800"/>
+            <p>Here is an example of the bytes a client would broadcast to ask for peers:</p>
+            <img class="pagewidth extramargin" src="png/mdns_request.png" width="1072" height="800"/>
+            <p>Essentially the computer is asking “Does anybody have any TXT records for the domain name <em>25a78aa81615847eba00995df29dd41d7ee30f3b.dat.local</em>?” Which is not a real domain name, but other Dat clients on the network will see the request and know that the client who sent it is looking for peers.</p>
         </main>
     </body>
 </html>
