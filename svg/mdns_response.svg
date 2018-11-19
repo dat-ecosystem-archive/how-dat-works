@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -116,7 +116,7 @@
          sodipodi:role="line"
          id="tspan63"
          x="140"
-         y="-615">255</tspan></text>
+         y="-615">1</tspan></text>
     <rect
        y="-640"
        x="160"
@@ -133,7 +133,7 @@
          y="-615"
          x="180"
          id="tspan916"
-         sodipodi:role="line">255</tspan></text>
+         sodipodi:role="line">0</tspan></text>
     <rect
        style="color:#000000;overflow:visible;opacity:1;vector-effect:none;fill:#d2d8e1;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke"
        id="rect984"
@@ -150,7 +150,7 @@
          sodipodi:role="line"
          id="tspan986"
          x="220"
-         y="-615">255</tspan></text>
+         y="-615">94</tspan></text>
     <rect
        y="-640"
        x="240"
@@ -167,7 +167,7 @@
          y="-615"
          x="260"
          id="tspan996"
-         sodipodi:role="line">255</tspan></text>
+         sodipodi:role="line">0</tspan></text>
     <rect
        style="color:#000000;overflow:visible;opacity:1;vector-effect:none;fill:#d2d8e1;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke"
        id="rect1004"
@@ -184,7 +184,7 @@
          sodipodi:role="line"
          id="tspan1006"
          x="300"
-         y="-615">255</tspan></text>
+         y="-615">0</tspan></text>
     <rect
        y="-640"
        x="320"
@@ -201,7 +201,7 @@
          y="-615"
          x="340"
          id="tspan1016"
-         sodipodi:role="line">255</tspan></text>
+         sodipodi:role="line">251</tspan></text>
     <rect
        y="-640"
        x="370"
@@ -626,7 +626,7 @@
          y="-515"
          x="870"
          id="tspan1266"
-         sodipodi:role="line">255</tspan></text>
+         sodipodi:role="line">224</tspan></text>
     <rect
        style="color:#000000;overflow:visible;opacity:1;vector-effect:none;fill:#d2d8e1;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke"
        id="rect1274"
@@ -643,7 +643,7 @@
          sodipodi:role="line"
          id="tspan1276"
          x="910"
-         y="-515">255</tspan></text>
+         y="-515">0</tspan></text>
     <rect
        style="color:#000000;overflow:visible;opacity:1;vector-effect:none;fill:#d2d8e1;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke"
        id="rect1284"
@@ -660,7 +660,7 @@
          sodipodi:role="line"
          id="tspan1286"
          x="950"
-         y="-515">255</tspan></text>
+         y="-515">0</tspan></text>
     <rect
        y="-540"
        x="970"
@@ -677,7 +677,7 @@
          y="-515"
          x="990"
          id="tspan1296"
-         sodipodi:role="line">255</tspan></text>
+         sodipodi:role="line">251</tspan></text>
     <rect
        y="-440"
        x="120"
@@ -2403,7 +2403,7 @@
          sodipodi:role="line"
          id="tspan2282"
          x="280.47513"
-         y="-1331.6128"></tspan></text>
+         y="-1331.6128" /></text>
     <rect
        y="20"
        x="120"
