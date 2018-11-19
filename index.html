@@ -107,7 +107,7 @@ main > * {
 aside {
     grid-column: gutter;
     font-size: 13px;
-    color: #7a8a9f;
+    color: #5f728c;;
 }
 
 a {
@@ -143,10 +143,16 @@ h1, h2, h3 {
 
 h1 {
     font-size: 40px;
+    margin: 45px 0 16px;
 }
 
 h2 {
     font-size: 24px;
+    margin: 30px 0 16px;
+}
+
+h3 {
+    font-size: 16px;
 }
 
         </style>
@@ -172,11 +178,11 @@ h2 {
         </header>
         <main>
 
-            <h1>URLs</h1>
+            <h1 style="margin-top: 0">URLs</h1>
             <p>To fetch a file in Dat you need to know its URL. Here is an example:</p>
             <svg width="1052" height="64" style="background-color: #eee; padding: 10px">
                 <text class="code" x="0" y="18"><tspan>dat://</tspan><tspan fill="#007fff">778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</tspan><tspan>/dat_intro.gif</tspan></text>
-                <path style="stroke:#93a0b6" strokewidth="1" fill="none" d="M0.5,24 v4.5 h60 v-4.5 m0,4.5 h640 v-4.5 m0,4.5 h140 v-4.5"/>
+                <path stroke="#93a0b6" strokewidth="1" fill="none" d="M0.5,24 v4.5 h60 v-4.5 m0,4.5 h640 v-4.5 m0,4.5 h140 v-4.5"/>
                 <text y="44" text-anchor="middle"><tspan x="30">protocol</tspan><tspan x="30" dy="1.2em">identifier</tspan></text>
                 <text x="380" y="44" text-anchor="middle">hex(ed25519 public key)</text>
                 <text y="44" text-anchor="middle"><tspan x="770">optional suffix</tspan><tspan x="770" dy="1.2em">path to data within Dat</tspan></text>
@@ -188,17 +194,26 @@ h2 {
             </ul>
 
             <h1>Discovery</h1>
-            <p>Dat clients use several different methods for discovering peers who they can download data from.</p>
+            <p>Dat clients use several different methods for discovering peers who they can download data from. Each discovery method has strengths and weaknesses, but combined they form a reasonably robust way of finding peers.</p>
+
+            <h2>Discovery keys</h2>
             <p>Clients use discovery keys to advertise which Dats they are interested in. Discovery keys are derived from a Dat’s public key, however the public key is not exposed directly over the network as this would allow eavesdroppers to easily learn which data other clients were requesting. With discovery keys eavesdroppers can only confirm guesses about what Dats clients are accessing (for example by checking against a list of popular Dats) but not learn about what is inside a Dat they don’t know the URL of.</p>
             <p>Calculate the discovery key by using the BLAKE2b hashing function, keyed with the Dat’s public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
             <pre><code>discovery_key = BLAKE2b_256(key: public_key, data: "hypercore")</code></pre>
             <aside style="position:relative;top:3px">Dat uses the BLAKE2b variant that accepts both a key and input to be hashed, returning 256 bits (32 bytes) of output.</aside>
-            <p>For example, for the public key:</p>
+            <p>For example, this public key:</p>
             <pre><code>778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</code></pre>
-            <p>the corresponding discovery key is:</p>
+            <p>hashes to this discovery key:</p>
             <pre><code>25a78aa81615847eba00995df29dd41d7ee30f3b01f892209f79b75a57d989e1</code></pre>
 
             <h2>Local network discovery</h2>
+            <p>Peers broadcast which Dats they are interested in via their local network.</p>
+            <ul>
+                <li><strong>Strengths.</strong> Fast, finds physically nearby peers, doesn’t need special infrastructure, works offline.</li>
+                <li><strong>Weaknesses.</strong> Limited reach.</li>
+            </ul>
+            <p>Local network discovery uses multicast DNS, which is like a regular DNS query except instead of sending your query to a nameserver you broadcast it to your local network and hope someone else on your network sees it and responds.</p>
+            <p>Here is an example of the bytes a client would broadcast to ask if there were any peers interested in a particular Dat:</p>
             <img class="pagewidth" src="png/mdns_request.png" width="1072" height="800"/>
         </main>
     </body>
