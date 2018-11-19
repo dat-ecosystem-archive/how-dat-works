@@ -197,7 +197,7 @@ h3 {
             </svg>
             <ul>
                 <li><strong>Protocol identifier.</strong> Makes Dat URLs easily recognizable. Dat-capable applications can register with the operating system to handle <code>dat://</code> links, like Beaker does. In Dat-specific applications the protocol identifier can be left off.</li>
-                <li><strong>Public key.</strong> The most important part of the URL is the 64-character hexadecimal string. It is an ed25519 public key unique to this Dat, used by the author to create and update the data in it. The public key enables you to discover other peers who have the data and is also used to verify that the data was not corrupted or tampered with as it passed through the network.</li>
+                <li><strong>Public key.</strong> An ed25519 public key unique to this Dat, used by the author to create and update data within it. The public key enables you to discover other peers who have the data and is also verify that the data was not corrupted or tampered with as it passed through the network.</li>
                 <li><strong>Suffix.</strong> Identifies specific data within this Dat. For most Dats which contain a directory of files the suffix is a slash-separated file path. Dats can also contain data in structures that don’t use the concept of files or directories, in which case the suffix would use some other format as understood by the applications that handle that sort of data.</li>
             </ul>
 
@@ -206,7 +206,7 @@ h3 {
 
             <h2>Discovery keys</h2>
             <p>Discovery keys are used for finding other peers who are interested in the same Dat as you.</p>
-            <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dats by observing network traffic as they will only see the discovery keys. However eavesdroppers can confirm that clients are talking about a specific Dat if they know its public key already.</p>
+            <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dats by observing network traffic. However eavesdroppers can confirm that clients are talking about a specific Dat if they know its public key already.</p>
             <p>Calculate a Dat’s discovery key by using the BLAKE2b hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
             <pre><code>discovery_key = BLAKE2b_256(key: public_key, data: "hypercore")</code></pre>
             <aside style="position:relative;top:3px">Dat uses the BLAKE2b variant that accepts both a key and input to be hashed, returning 256 bits (32 bytes) of output.</aside>
@@ -238,7 +238,7 @@ h3 {
                 <p>Base64 encoding in Dat uses the variant with minus and underscore. Padding equals characters are required.</p>
                 <p>Only IPv4 addresses are supported by this discovery mechanism.</p>    
             </aside>
-            <p>The special IP address 0.0.0.0 means “use the address this mDNS response was sent from”.</p>
+            <p>The special IP address 0.0.0.0 means “use the address this mDNS response came from”.</p>
         </main>
     </body>
 </html>
