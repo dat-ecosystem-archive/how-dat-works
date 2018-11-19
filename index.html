@@ -147,7 +147,7 @@ h1, h2, h3, p, pre, ul, ol, main > svg, main > img {
 }
 
 .extramargin {
-    margin: 36px 0 36px;
+    margin: 20px 0 36px;
 }
 
 h1, h2, h3 {
@@ -243,7 +243,7 @@ h3 {
                 <p>Base64 encoding in Dat uses the variant with minus and underscore. Padding equals characters are required.</p>
                 <p>Only IPv4 addresses are supported by this discovery mechanism.</p>    
             </aside>
-            <p>The special IP address 0.0.0.0 means “use the address this mDNS response came from”.</p>
+            <p>The special IP address 0.0.0.0 means “use the address this mDNS response came from”. When discovering peers on the local network all mDNS responses will contain only one peer and it will use the 0.0.0.0 address.</p>
         </main>
     </body>
 </html>
