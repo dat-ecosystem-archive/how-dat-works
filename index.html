@@ -255,6 +255,13 @@ h3 {
                 <p>Only IPv4 addresses are supported by this discovery mechanism.</p>    
             </aside>
             <p>The special IP address 0.0.0.0 means “use the address this mDNS response came from”. When discovering peers on the local network all mDNS responses will contain only one peer and it will use the 0.0.0.0 address.</p>
+
+            <h2>Centralized DNS discovery</h2>
+            <p>Peers ask a server on the internet for other peers using a DNS-like protocol.</p>
+            <ul>
+                <li><strong>Strengths.</strong> Fast, simple, global reach.</li>
+                <li><strong>Weaknesses.</strong> Must be online, single point of failure, one sever sees everyone’s metadata.</li>
+            </ul>
         </main>
     </body>
 </html>
