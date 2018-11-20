@@ -138,6 +138,17 @@ pre {
     padding: 10px;
 }
 
+code {
+    background-color: #eee;
+    padding: 0 2px;
+    border-radius: 2px;
+}
+
+pre code {
+    background: none;
+    padding: 0;
+}
+
 svg text {
     font-size: 13px;
 }
@@ -240,7 +251,7 @@ h3 {
             </ul>
             <img class="extramargin" src="png/mdns_peers_record.png" width="704" height="290"/>
             <aside>
-                <p>Base64 encoding in Dat uses the variant with minus and underscore. Padding equals characters are required.</p>
+                <p>Base64 encoding in Dat uses the variant with plus <code>+</code> and slash <code>/</code> characters. Padding equals <code>=</code> characters are required.</p>
                 <p>Only IPv4 addresses are supported by this discovery mechanism.</p>    
             </aside>
             <p>The special IP address 0.0.0.0 means “use the address this mDNS response came from”. When discovering peers on the local network all mDNS responses will contain only one peer and it will use the 0.0.0.0 address.</p>
