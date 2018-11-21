@@ -262,8 +262,17 @@ h3 {
                 <li><strong>Strengths.</strong> Fast, simple, global reach.</li>
                 <li><strong>Weaknesses.</strong> Must be online, single point of failure, one server sees everyone’s metadata.</li>
             </ul>
+            <p>In this DNS request the requester is asking for a list of peers for a particular discovery key. They are also asking the DNS server to add them to the list of peers for this discovery key:
             <img class="pagewidth extramargin" src="png/centralized_dns_request.png" width="1072" height="1000"/>
+            <p>Attached onto the request as an additional record are these TXT records:</p>
+            <ul>
+                <li>The <strong>token</strong> record is a random value that will be echoed back by the server. Unlike with local network discovery, the client will pay attention to responses bearing this token rather than ignore them.</li>
+                <li>The <strong>subscribe</strong> and <strong>announce</strong> records indicate that the requester would like to be added to the server’s list of peers interested in this discovery key. The server will use the IP address that the DNS request was received from and the port number contained in the announce record. When future peers query the server it may return this new peer in its response.</li>
+            </ul>
+            <p>Here is the response sent back by the server:</p>
             <img class="pagewidth extramargin" src="png/centralized_dns_response.png" width="1072" height="1000"/>
+            <p>In this case the server sent back a list of five peers. DNS TXT records are limited to 255 characters so the server is limited to sending back 31 peers at a time. If the server knows more than this it will have to choose which to send, for example the most recent, longest lived or by picking at random.</p>
+            <img src="png/mdns_peers_record_multi.png" width="704" height="520"/>
         </main>
     </body>
 </html>
