@@ -239,11 +239,11 @@ h3 {
             </ul>
             <p>Local network discovery uses multicast DNS, which is like a regular DNS query except instead of sending your query to a nameserver you broadcast it to your local network and hope someone else on your network sees it and responds.</p>
             <p>Here is an example of the bytes a client would broadcast to ask for peers:</p>
-            <img class="pagewidth extramargin" src="png/mdns_request.png" width="1072" height="640"/>
-            <p>Multicast DNS uses UDP port 5353. In most cases the operating system will fill out all the fields in the ethernet, IP and UDP headers on your behalf; these are just shown for context.</p>
+            <img class="pagewidth extramargin" src="png/mdns_request.png" width="1072" height="420"/>
+            <p>Multicast DNS packets are sent to the special broadcast MAC and IP addresses shown above. Both the source and destination ports are 5353.</p>
             <p>Essentially the computer is asking “Does anybody have any TXT records for the domain name <em>25a78aa81615847eba00995df29dd41d7ee30f3b.dat.local</em>?” Other Dat clients on the network will recognize requests following this pattern and know that the client who sent it is looking for peers.</p>
             <p>Here is an example response from a peer reporting that they are also interested in this Dat:</p>
-            <img class="pagewidth extramargin" src="png/mdns_response.png" width="1072" height="1180"/>
+            <img class="pagewidth extramargin" src="png/mdns_response.png" width="1072" height="920"/>
             <p>Responses contain two TXT records:</p>
             <ul>
                 <li>The <strong>token</strong> record is a random value that makes it easier for clients to avoid connecting to themselves. If a client sees a response with the same token as a response they just sent out, they will know it came from them and ignore it.</li>
@@ -262,8 +262,8 @@ h3 {
                 <li><strong>Strengths.</strong> Fast, simple, global reach.</li>
                 <li><strong>Weaknesses.</strong> Must be online, single point of failure, one server sees everyone’s metadata.</li>
             </ul>
-            <img class="pagewidth extramargin" src="png/centralized_dns_request.png" width="1072" height="1300"/>
-            <img class="pagewidth extramargin" src="png/centralized_dns_response.png" width="1072" height="1300"/>
+            <img class="pagewidth extramargin" src="png/centralized_dns_request.png" width="1072" height="1000"/>
+            <img class="pagewidth extramargin" src="png/centralized_dns_response.png" width="1072" height="1000"/>
         </main>
     </body>
 </html>
