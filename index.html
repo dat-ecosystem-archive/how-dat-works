@@ -34,6 +34,7 @@ html {
     font-size: 16px;
     line-height: 1.5;
     color: #293648;
+    background-color: #fff;
 }
 
 text {
@@ -257,12 +258,13 @@ h3 {
             <p>The special IP address 0.0.0.0 means “use the address this mDNS response came from”. When discovering peers on the local network all mDNS responses will contain only one peer and will use the 0.0.0.0 address.</p>
 
             <h2>Centralized DNS discovery</h2>
-            <p>Peers ask a server on the internet for other peers using a DNS-like protocol.</p>
+            <p>Peers ask a server on the internet for other peers using a DNS-based protocol.</p>
             <ul>
                 <li><strong>Strengths.</strong> Fast, simple, global reach.</li>
-                <li><strong>Weaknesses.</strong> Must be online, single point of failure, one server sees everyone’s metadata.</li>
+                <li><strong>Weaknesses.</strong> Must be online, centralized point of failure, one server sees everyone’s metadata.</li>
             </ul>
-            <p>In this DNS request the requester is asking for a list of peers for a particular discovery key. They are also asking the DNS server to add them to the list of peers for this discovery key:
+            <p>Currently the server running this is <strong>discovery1.datprotocol.com</strong>. If that goes offline then <strong>discovery2.datprotocol.com</strong> can be used as a fallback.</p>
+            <p>In this request the requester is asking for a list of peers for a particular discovery key. They are also asking the server to add them to the list of peers for this discovery key:</p>
             <img class="pagewidth extramargin" src="png/centralized_dns_request.png" width="1072" height="1000"/>
             <p>Attached onto the request as an additional record are these TXT records:</p>
             <ul>
