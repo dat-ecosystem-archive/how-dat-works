@@ -162,6 +162,10 @@ h1, h2, h3, p, pre, ul, ol, main > svg, main > img {
     margin: 20px 0 36px;
 }
 
+ul ul {
+    margin: 0;
+}
+
 h1, h2, h3 {
     line-height: 1.25;
 }
@@ -282,6 +286,27 @@ h3 {
                 <li>Hyperswarm distributed hash table</li>
                 <li>Hyperswarm mDNS</li>
             </ul>
+
+            <h1>Wire protocol</h1>
+
+            <p>Once a peer has discovered another peer’s IP address and port number it will open a TCP connection to the other peer. Each half of the conversation has this structure which repeats until the end of the connection:</p>
+            <img class="pagewidth" src="png/wire_protocol_structure.png" width="1072" height="80"/>
+            <ul>
+                <li><strong>Length.</strong> Number of bytes until the start of the next length field.</li>
+                <li><strong>Channel and type.</strong> A single number that encodes two sub-fields as <code><em>channel</em> &lt;&lt; 4 | <em>type</em></code>.</li>
+                <ul>
+                    <li><strong>Channel.</strong> Peers can talk about multiple Dats using the same TCP connection. The channel number is 0 for the first Dat talked about, 1 for the next Dat and so on. Currently the maximum allowed channel number is 127.</li>
+                    <li><strong>Type.</strong> Number from 0 to 15 that says what the purpose of the message is. Some example message types are: 1 = handshake, 3 = have, 5 = want, 9 = data and 15 = extension.</li>
+                </ul>
+                <li><strong>Body.</strong> Contents of the message.</li>
+            </ul>
+            <p>The first two fields are encoded as variable-length integers and therefore do not have a fixed size. You must read each field starting from the beginning to determine how long the field is and where the next field starts.</p>
+
+            <h2>Varints</h2>
+            <p>The advantage of varints is that they only require a few bytes to represent small numbers, while still being able to represent large numbers by using more bytes. The disadvantage of varints is that they take more work to encode and decode compared to regular integers.</p>
+            <p>In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</p>
+            <p>Here’s how to decode a varint:</p>
+            <img class="pagewidth extramargin" src="png/varint.png" width="1072" height="610"/>
         </main>
     </body>
 </html>
