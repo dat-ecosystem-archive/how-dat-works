@@ -166,6 +166,10 @@ ul, ol {
     padding-left: 40px;
 }
 
+ul > img {
+    margin: 16px 0;
+}
+
 h1, h2, h3 {
     line-height: 1.25;
 }
@@ -317,7 +321,7 @@ th, td {
             <ul>
                 <li><strong>Length.</strong> Number of bytes until the start of the next length field.</li>
                 <li><strong>Channel and type.</strong> A single number (up to 11 bits long) that encodes two sub-fields as:</li>
-                <img src="png/channel_type_field.png" width="275" height="110" style="margin: 16px 0"/>
+                <img src="png/channel_type_field.png" width="275" height="225"/>
                 <ul>
                     <li><strong>Channel.</strong> Peers can talk about multiple Dats using the same TCP connection. The channel number is 0 for the first Dat talked about, 1 for the next Dat and so on.</li>
                     <li><strong>Type.</strong> Number that says what the purpose of the message is.</li>
@@ -398,6 +402,21 @@ th, td {
             <p>In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</p>
             <p>Here’s how to decode a varint:</p>
             <img class="pagewidth extramargin" src="png/varint.png" width="1072" height="610"/>
+
+            <h2>Message structure</h2>
+            <p>Within each message body is a series of field tags and values:</p>
+            <img class="pagewidth extramargin" src="png/wire_protocol_field_value_structure.png" width="1072" height="255"/>
+            <p>The field tag is a varint. The most significant bits indicate which field within the message this is, for example: 1 = <em>discovery key</em>, 2 = <em>nonce</em>. This is needed because messages can have missing or repeated fields. The 3 least significant is the type of field.</p>
+            <img src="png/field_type_field.png" width="704" height="265"/>
+            <p>There are two types of field used by Dat:</p>
+            <ul>
+                <li><strong>Unsigned integer.</strong> The field tag followed by a varint value.</li>
+                <img src="png/field_structure_unsigned_integer.png" width="160" height="105"/>
+                <li><strong>Bytes.</strong> The field tag followed by a varint to say how many bytes the field contains, followed by the bytes themselves.</li>
+                <img src="png/field_structure_bytes.png" width="440" height="130"/>
+            </ul>
+            <p>If you are familiar with the <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a> data serialization format you might recognize that the above message structure adheres to it. Dat only uses a small subset of the features available with Protocol Buffers, however if you are writing an implementation you may be interested in the <a href="https://github.com/mafintosh/hypercore-protocol/blob/master/schema.proto">.proto file</a> that describes the wire protocol.</p>
+
         </main>
     </body>
 </html>
