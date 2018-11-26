@@ -162,8 +162,8 @@ h1, h2, h3, p, pre, ul, ol, main > svg, main > img {
     margin: 20px 0 36px;
 }
 
-ul ul {
-    margin: 0;
+ul, ol {
+    padding-left: 40px;
 }
 
 h1, h2, h3 {
@@ -182,6 +182,29 @@ h2 {
 
 h3 {
     font-size: 16px;
+}
+
+table {
+    background-color: #eee;
+    border-collapse: collapse;
+}
+
+thead tr {
+    background-color: #293648;
+    color: #fff;
+}
+
+tbody tr {
+    border-bottom: 1px solid #fff;
+}
+
+th {
+    text-align: left;
+}
+
+th, td {
+    padding: 1px 8px;
+    vertical-align: top;
 }
 
         </style>
@@ -293,16 +316,84 @@ h3 {
             <img class="pagewidth" src="png/wire_protocol_structure.png" width="1072" height="110"/>
             <ul>
                 <li><strong>Length.</strong> Number of bytes until the start of the next length field.</li>
-                <li><strong>Channel and type.</strong> A single number that encodes two sub-fields as <code><em>channel</em> &lt;&lt; 4 | <em>type</em></code>.</li>
+                <li><strong>Channel and type.</strong> A single number (up to 11 bits long) that encodes two sub-fields as:</li>
+                <img src="png/channel_type_field.png" width="275" height="110" style="margin: 16px 0"/>
                 <ul>
-                    <li><strong>Channel.</strong> Peers can talk about multiple Dats using the same TCP connection. The channel number is 0 for the first Dat talked about, 1 for the next Dat and so on. Currently the maximum allowed channel number is 127.</li>
-                    <li><strong>Type.</strong> Number from 0 to 15 that says what the purpose of the message is. Some example message types are: 1 = handshake, 3 = have, 5 = want, 9 = data and 15 = extension.</li>
+                    <li><strong>Channel.</strong> Peers can talk about multiple Dats using the same TCP connection. The channel number is 0 for the first Dat talked about, 1 for the next Dat and so on.</li>
+                    <li><strong>Type.</strong> Number that says what the purpose of the message is.</li>
+                    <table style="font-size: 13px; margin: 16px 0;">
+                        <thead>
+                            <tr><th>Type</th><th>Name</th><th>Purpose</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>0</td>
+                                <td><strong>Feed</strong></td>
+                                <td>I want to talk to you about this particular Dat</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td><strong>Handshake</strong></td>
+                                <td>I want to negotiate how we will communicate on this TCP connection</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><strong>Info</strong></td>
+                                <td>I am either starting or stopping uploading or downloading</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><strong>Have</strong></td>
+                                <td>Here is an overview of the data I have</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><strong>Unhave</strong></td>
+                                <td>I no longer have some data</td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td><strong>Want</strong></td>
+                                <td>This is what data I want</td>
+                            </tr>
+                            <tr>
+                                <td>6</td>
+                                <td><strong>Unwant</strong></td>
+                                <td>I no longer want this data</td>
+                            </tr>
+                            <tr>
+                                <td>7</td>
+                                <td><strong>Request</strong></td>
+                                <td>Please send me this data now</td>
+                            </tr>
+                            <tr>
+                                <td>8</td>
+                                <td><strong>Cancel</strong></td>
+                                <td>Actually, don’t send me that data</td>
+                            </tr>
+                            <tr>
+                                <td>9</td>
+                                <td><strong>Data</strong></td>
+                                <td>Here is the data you requested</td>
+                            </tr>
+                            <tr>
+                                <td>10–14</td>
+                                <td></td>
+                                <td><em>(Unused)</em></td>
+                            </tr>
+                            <tr>
+                                <td>15</td>
+                                <td><strong>Extension</strong></td>
+                                <td>Some other message that is not part of the core protocol</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </ul>
                 <li><strong>Body.</strong> Contents of the message.</li>
             </ul>
-            <p>The first two fields are encoded as variable-length integers and therefore do not have a fixed size. You must read each field starting from the beginning to determine how long the field is and where the next field starts.</p>
 
             <h2>Varints</h2>
+            <p>The first two fields are encoded as variable-length integers and therefore do not have a fixed size. You must read each field starting from the beginning to determine how long the field is and where the next field starts.</p>
             <p>The advantage of varints is that they only require a few bytes to represent small numbers, while still being able to represent large numbers by using more bytes. The disadvantage of varints is that they take more work to encode and decode compared to regular integers.</p>
             <p>In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</p>
             <p>Here’s how to decode a varint:</p>
