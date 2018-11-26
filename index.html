@@ -406,7 +406,7 @@ th, td {
             <h2>Message structure</h2>
             <p>Within each message body is a series of field tags and values:</p>
             <img class="pagewidth extramargin" src="png/wire_protocol_field_value_structure.png" width="1072" height="255"/>
-            <p>The field tag is a varint. The most significant bits indicate which field within the message this is, for example: 1 = <em>discovery key</em>, 2 = <em>nonce</em>. This is needed because messages can have missing or repeated fields. The 3 least significant is the type of field.</p>
+            <p>The field tag is a varint. The most significant bits indicate which field within the message this is, for example: 1 = <em>discovery key</em>, 2 = <em>nonce</em>. This is needed because messages can have missing or repeated fields. The 3 least significant bits are the type of field.</p>
             <img src="png/field_type_field.png" width="704" height="265"/>
             <p>There are two types of field used by Dat:</p>
             <ul>
