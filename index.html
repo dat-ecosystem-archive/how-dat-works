@@ -399,7 +399,7 @@ th, td {
             <h2>Varints</h2>
             <p>The first two fields are encoded as variable-length integers and therefore do not have a fixed size. You must read each field starting from the beginning to determine how long the field is and where the next field starts.</p>
             <p>The advantage of varints is that they only require a few bytes to represent small numbers, while still being able to represent large numbers by using more bytes. The disadvantage of varints is that they take more work to encode and decode compared to regular integers.</p>
-            <p>In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</p>
+            <aside style="position: relative; top: 4px;">In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</aside>
             <p>Here’s how to decode a varint:</p>
             <img class="pagewidth extramargin" src="png/varint.png" width="1072" height="610"/>
 
@@ -408,14 +408,15 @@ th, td {
             <img class="pagewidth extramargin" src="png/wire_protocol_field_value_structure.png" width="1072" height="255"/>
             <p>The field tag is a varint. The most significant bits indicate which field within the message this is, for example: 1 = <em>discovery key</em>, 2 = <em>nonce</em>. This is needed because messages can have missing or repeated fields. The 3 least significant bits are the type of field.</p>
             <img src="png/field_type_field.png" width="704" height="265"/>
-            <p>There are two types of field used by Dat:</p>
+            <p>The two types of field are:</p>
             <ul>
-                <li><strong>Unsigned integer.</strong> The field tag followed by a varint value.</li>
-                <img src="png/field_structure_unsigned_integer.png" width="160" height="105"/>
-                <li><strong>Bytes.</strong> The field tag followed by a varint to say how many bytes the field contains, followed by the bytes themselves.</li>
-                <img src="png/field_structure_bytes.png" width="440" height="130"/>
+                <li><strong>Varint.</strong> The field tag followed by a varint value. Used for simple numeric values and booleans.</li>
+                <img src="png/field_structure_varint.png" width="160" height="105"/>
+                <li><strong>Length-prefixed.</strong> The field tag followed by a varint to say how many bytes the field contains, followed by the bytes themselves. Used for strings, bytes and embedded messages.</li>
+                <img src="png/field_structure_length_prefixed.png" width="440" height="130"/>
             </ul>
-            <p>If you are familiar with the <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a> data serialization format you might recognize that the above message structure adheres to it. Dat only uses a small subset of the features available with Protocol Buffers, however if you are writing an implementation you may be interested in the <a href="https://github.com/mafintosh/hypercore-protocol/blob/master/schema.proto">.proto file</a> that describes the wire protocol.</p>
+            <aside style="position: relative; top: 4px;">If you are familiar with the <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a> data serialization format you might recognize that this message structure adheres to it. Dat only uses a small subset of the features available with Protocol Buffers, however if you are writing an implementation you may be interested in the <a href="https://github.com/mafintosh/hypercore-protocol/blob/master/schema.proto">.proto file</a> that describes the wire protocol.</aside>
+            <p>Over time new fields could be added to messages in the wire protocol. Field tags enable this to happen in a backwards-compatable way. If your implementation sees a field number that it doesn’t know about it can use the field type to find out how long the unknown field is and skip over it.</p>
 
         </main>
     </body>

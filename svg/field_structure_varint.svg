@@ -13,7 +13,7 @@
    version="1.1"
    id="svg6"
    inkscape:version="0.92.2 2405546, 2018-03-11"
-   sodipodi:docname="field_structure_unsigned_integer.svg"
+   sodipodi:docname="field_structure_varint.svg"
    style="enable-background:new">
   <metadata
      id="metadata8">
@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -187,7 +187,7 @@
          y="425"
          x="99.79911"
          sodipodi:role="line"
-         id="tspan12073">integer value</tspan></text>
+         id="tspan12073">unsigned integer</tspan></text>
     <text
        xml:space="preserve"
        style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:19.5px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;display:inline;overflow:visible;visibility:visible;fill:#5f728c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"

@@ -22,7 +22,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -347,7 +347,7 @@
          id="tspan11109"
          sodipodi:role="line"
          x="405"
-         y="470">= unsigned integer</tspan></text>
+         y="470">= varint</tspan></text>
     <text
        id="text11115"
        y="495"
@@ -357,7 +357,7 @@
          y="495"
          x="405"
          sodipodi:role="line"
-         id="tspan11113">= bytes</tspan></text>
+         id="tspan11113">= length-prefixed</tspan></text>
     <rect
        style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#293648;fill-opacity:1;stroke:none;stroke-width:0.99999982;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:new"
        id="rect12059"
