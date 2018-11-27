@@ -436,7 +436,7 @@ th, td {
             </aside>
 
             <h2>Feed message</h2>
-            <p>After opening the TCP connection the first thing sent is always a <em>feed</em> message.</p>
+            <p>After opening the TCP connection the first message is always a <em>feed</em> message.</p>
             <p><em>Feed</em> messages have two fields:</p>
             <div class="pagewidth msgfields">
                 <table>
@@ -468,6 +468,10 @@ th, td {
             <img class="pagewidth extramargin" src="png/feed_message.png" width="1072" height="460"/>
             <p>Or, as the bytes actually sent over the wire:</p>
             <img class="pagewidth extramargin" src="png/feed_message_bytes.png" width="1072" height="460"/>
+
+            <h2>Encryption</h2>
+            <p>Each side of the TCP connection is encrypted starting from the second message and continuing until the end of the connection.</p>
+            <p>This prevents a network eavesdropper finding out what data a Dat contains unless they already know its public key. The encryption scheme is not authenticated, meaning a man-in-the-middle can flip bits to disrupt the connection. This is acceptable because the integrity of data in a Dat is verified using a separate mechanism and an attacker who is in a position to flip bits on your network already has lots of other options to disrupt your connection.</p>
         </main>
     </body>
 </html>
