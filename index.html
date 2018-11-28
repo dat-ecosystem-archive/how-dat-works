@@ -256,7 +256,7 @@ aside.basealign {
                 <text class="code" x="0" y="18"><tspan>dat://</tspan><tspan fill="#007fff">778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</tspan><tspan>/dat_intro.gif</tspan></text>
                 <path stroke="#93a0b6" strokewidth="1" fill="none" d="M0.5,24 v4.5 h60 v-4.5 m0,4.5 h640 v-4.5 m0,4.5 h140 v-4.5"/>
                 <text y="44" text-anchor="middle"><tspan x="30">protocol</tspan><tspan x="30" dy="1.2em">identifier</tspan></text>
-                <text x="380" y="44" text-anchor="middle">hex(ed25519 public key)</text>
+                <text y="44" text-anchor="middle"><tspan x="380">ed25519 public key</tspan><tspan x="380" dy="1.2em">(hexadecimal)</tspan></text>
                 <text y="44" text-anchor="middle"><tspan x="770">optional suffix</tspan><tspan x="770" dy="1.2em">path to data within Dat</tspan></text>
             </svg>
             <ul>
@@ -271,7 +271,7 @@ aside.basealign {
             <h2>Discovery keys</h2>
             <p>Discovery keys are used for finding other peers who are interested in the same Dat as you.</p>
             <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dats by observing network traffic. However eavesdroppers can confirm that clients are talking about a specific Dat if they know its public key already.</p>
-            <p>Calculate a Dat’s discovery key using the BLAKE2b hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
+            <p>Calculate a Dat’s discovery key using the <strong>BLAKE2b</strong> hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
             <aside class="basealign">Dat uses the BLAKE2b variant that accepts both a key and input to be hashed, returning 256 bits (32 bytes) of output.</aside>
             <img class="pagewidth extramargin" src="png/blake2b.png" width="1072" height="400"/>
             <p>In you want to test this out yourself, here is the public key in hexadecimal:</p>
