@@ -250,7 +250,7 @@ aside.basealign {
         </header>
         <main>
 
-            <h1 style="margin-top: 0">URLs</h1>
+            <h1 id="urls" style="margin-top: 0">URLs</h1>
             <p>To fetch a file in Dat you need to know its URL. Here is an example:</p>
             <svg width="1052" height="64" style="background-color: #eee; padding: 10px">
                 <text class="code" x="0" y="18"><tspan>dat://</tspan><tspan fill="#007fff">778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</tspan><tspan>/dat_intro.gif</tspan></text>
@@ -265,10 +265,10 @@ aside.basealign {
                 <li><strong>Suffix.</strong> Identifies specific data within this Dat. For most Dats which contain a directory of files the suffix is a slash-separated file path. Dats can also contain data in structures that don’t use the concept of files or directories, in which case the suffix would use some other format as understood by the applications that handle that sort of data.</li>
             </ul>
 
-            <h1>Discovery</h1>
+            <h1 id="discovery">Discovery</h1>
             <p>Dat clients use several different methods for discovering peers who they can download data from. Each discovery method has strengths and weaknesses, but combined they form a reasonably robust way of finding peers.</p>
 
-            <h2>Discovery keys</h2>
+            <h2 id="discovery-keys">Discovery keys</h2>
             <p>Discovery keys are used for finding other peers who are interested in the same Dat as you.</p>
             <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dats by observing network traffic. However eavesdroppers can confirm that clients are talking about a specific Dat if they know its public key already.</p>
             <p>Calculate a Dat’s discovery key using the <strong>BLAKE2b</strong> hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
@@ -279,7 +279,7 @@ aside.basealign {
             <p>and here is the discovery key it hashes to in hexadecimal:</p>
             <pre><code>25a78aa81615847eba00995df29dd41d7ee30f3b01f892209f79b75a57d989e1</code></pre>
 
-            <h2>Local network discovery</h2>
+            <h2 id="local-network-discovery">Local network discovery</h2>
             <p>Peers broadcast which Dats they are interested in via their local network.</p>
             <ul>
                 <li><strong>Strengths.</strong> Fast, finds physically nearby peers, doesn’t need special infrastructure, works offline.</li>
@@ -304,7 +304,7 @@ aside.basealign {
             </aside>
             <p>The special IP address 0.0.0.0 means “use the address this mDNS response came from”. When discovering peers on the local network all mDNS responses will contain only one peer and will use the 0.0.0.0 address.</p>
 
-            <h2>Centralized DNS discovery</h2>
+            <h2 id="centralized-dns-discovery">Centralized DNS discovery</h2>
             <p>Peers ask a server on the internet for other peers using a DNS-based protocol.</p>
             <ul>
                 <li><strong>Strengths.</strong> Fast, simple, global reach.</li>
@@ -330,7 +330,7 @@ aside.basealign {
                 <li>Hyperswarm mDNS</li>
             </ul>
 
-            <h1>Wire protocol</h1>
+            <h1 id="wire-protocol">Wire protocol</h1>
 
             <p>Once a peer has discovered another peer’s IP address and port number it will open a TCP connection to the other peer. Each half of the conversation has this structure which repeats until the end of the connection:</p>
             <img class="pagewidth" src="png/wire_protocol_structure.png" width="1072" height="110"/>
@@ -416,14 +416,14 @@ aside.basealign {
                 <li><strong>Body.</strong> Contents of the message.</li>
             </ul>
 
-            <h2>Varints</h2>
+            <h2 id="varints">Varints</h2>
             <p>The first two fields are encoded as variable-length integers and therefore do not have a fixed size. You must read each field starting from the beginning to determine how long the field is and where the next field starts.</p>
             <p>The advantage of varints is that they only require a few bytes to represent small numbers, while still being able to represent large numbers by using more bytes. The disadvantage of varints is that they take more work to encode and decode compared to regular integers.</p>
             <aside class="basealign">In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</aside>
             <p>Here’s how to decode a varint:</p>
             <img class="pagewidth extramargin" src="png/varint.png" width="1072" height="610"/>
 
-            <h2>Message structure</h2>
+            <h2 id="message-structure">Message structure</h2>
             <p>Within each message body is a series of field tags and values:</p>
             <img class="pagewidth extramargin" src="png/wire_protocol_field_value_structure.png" width="1072" height="255"/>
             <p>The field tag is a varint. The most significant bits indicate which field within the message this is, for example: 1 = <em>discovery key</em>, 2 = <em>nonce</em>. This is needed because messages can have missing or repeated fields. The 3 least significant bits are the type of field.</p>
@@ -440,7 +440,7 @@ aside.basealign {
                 <p>Over time new fields could be added to messages in the wire protocol. Field tags enable this to happen in a backwards-compatable way. If your implementation sees a field number that it doesn’t know about it can use the field type to find out how long the unknown field is and skip over it.</p>
             </aside>
 
-            <h2>Feed message</h2>
+            <h2 id="feed-message">Feed message</h2>
             <p>After opening the TCP connection the first message is always a <em>feed</em> message.</p>
             <p><em>Feed</em> messages have two fields:</p>
             <div class="pagewidth msgfields">
@@ -474,7 +474,7 @@ aside.basealign {
             <p>Or, as the bytes actually sent over the wire:</p>
             <img class="pagewidth extramargin" src="png/feed_message_bytes.png" width="1072" height="460"/>
 
-            <h2>Encryption</h2>
+            <h2 id="encryption">Encryption</h2>
             <div>
                 <p>Each side of the TCP connection is encrypted starting from the second message and continuing until the end of the connection. This prevents network eavesdroppers from finding out what data a Dat contains unless they already know its public key.</p>
                 <p><strong>XSalsa20</strong> is the encryption cipher used. Given a 32-byte key and a 24-byte nonce, XSalsa20 produces a never-ending stream of pseudorandom bytes called the keystream.</p>
@@ -485,6 +485,9 @@ aside.basealign {
             <img class="pagewidth extramargin" src="png/encryption_send.png" width="1072" height="460"/>
             <p>The <strong>receiver</strong> reads the nonce from the sender’s first message and uses this with their knowledge of the Dat’s public key to set up an identical XSalsa20 keystream. Then they XOR the keystream with the bytes received to decrypt the stream.</p>
             <img class="pagewidth extramargin" src="png/encryption_receive.png" width="1072" height="460"/>
+
+            <h2 id="handshake-message">Handshake message</h2>
+
         </main>
     </body>
 </html>
