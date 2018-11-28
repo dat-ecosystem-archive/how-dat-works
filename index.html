@@ -222,6 +222,11 @@ th, td {
 .msgfields th:nth-child(2) { width: 112px }
 .msgfields th:nth-child(3) { width: 120px }
 
+aside.basealign {
+    position: relative;
+    top: 4px;
+}
+
         </style>
     </head>
     <body>
@@ -268,7 +273,7 @@ th, td {
             <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dats by observing network traffic. However eavesdroppers can confirm that clients are talking about a specific Dat if they know its public key already.</p>
             <p>Calculate a Dat’s discovery key by using the BLAKE2b hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
             <pre><code>discovery_key = BLAKE2b_256(key: public_key, data: "hypercore")</code></pre>
-            <aside style="position:relative;top:3px">Dat uses the BLAKE2b variant that accepts both a key and input to be hashed, returning 256 bits (32 bytes) of output.</aside>
+            <aside class="basealign">Dat uses the BLAKE2b variant that accepts both a key and input to be hashed, returning 256 bits (32 bytes) of output.</aside>
             <p>For example, this public key:</p>
             <pre><code>778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</code></pre>
             <p>hashes to this discovery key:</p>
@@ -414,7 +419,7 @@ th, td {
             <h2>Varints</h2>
             <p>The first two fields are encoded as variable-length integers and therefore do not have a fixed size. You must read each field starting from the beginning to determine how long the field is and where the next field starts.</p>
             <p>The advantage of varints is that they only require a few bytes to represent small numbers, while still being able to represent large numbers by using more bytes. The disadvantage of varints is that they take more work to encode and decode compared to regular integers.</p>
-            <aside style="position: relative; top: 4px;">In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</aside>
+            <aside class="basealign">In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</aside>
             <p>Here’s how to decode a varint:</p>
             <img class="pagewidth extramargin" src="png/varint.png" width="1072" height="610"/>
 
@@ -430,7 +435,7 @@ th, td {
                 <li><strong>Length-prefixed.</strong> The field tag followed by a varint to say how many bytes the field contains, followed by the bytes themselves. Used for strings, bytes and embedded messages.</li>
                 <img src="png/field_structure_length_prefixed.png" width="440" height="130"/>
             </ul>
-            <aside style="position: relative; top: 4px;">
+            <aside class="basealign">
                 <p>If you are familiar with the <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a> data serialization format you might recognize that this message structure adheres to it. Dat only uses a small subset of the features available with Protocol Buffers, however if you are writing an implementation you may be interested in the <a href="https://github.com/mafintosh/hypercore-protocol/blob/master/schema.proto">.proto file</a> that describes the wire protocol.</p>
                 <p>Over time new fields could be added to messages in the wire protocol. Field tags enable this to happen in a backwards-compatable way. If your implementation sees a field number that it doesn’t know about it can use the field type to find out how long the unknown field is and skip over it.</p>
             </aside>
@@ -470,8 +475,14 @@ th, td {
             <img class="pagewidth extramargin" src="png/feed_message_bytes.png" width="1072" height="460"/>
 
             <h2>Encryption</h2>
-            <p>Each side of the TCP connection is encrypted starting from the second message and continuing until the end of the connection.</p>
-            <p>This prevents a network eavesdropper finding out what data a Dat contains unless they already know its public key. The encryption scheme is not authenticated, meaning a man-in-the-middle can flip bits to disrupt the connection. This is acceptable because the integrity of data in a Dat is verified using a separate mechanism and an attacker who is in a position to flip bits on your network already has lots of other options to disrupt your connection.</p>
+            <div>
+                <p>Each side of the TCP connection is encrypted starting from the second message and continuing until the end of the connection. This prevents network eavesdroppers from finding out what data a Dat contains unless they already know its public key.</p>
+                <p><strong>XSalsa20</strong> is the encryption cipher used. Given a 32-byte key and a 24-byte nonce, XSalsa20 produces a never-ending stream of pseudorandom bytes called the keystream.</p>
+            </div>
+            <aside class="basealign">The encryption scheme is not authenticated, meaning a man-in-the-middle can flip bits to disrupt the connection. This is acceptable because the integrity of data in a Dat is verified using a separate mechanism. If there is an attacker who is in a position to modify bytes on the network they have lots of other options for disrupting connections, for example by simply dropping packets.</aside>
+            <img class="pagewidth extramargin" src="png/encryption.png" width="1072" height="250"/>
+            <p>The sender picks a random 24-byte value for the nonce and includes it in their first <em>feed</em> message. The Dat’s 32-byte public key is used as the XSalsa20 key. From the second message onwards, all bytes they send are XORed with the keystream.</p>
+            <p>The receiver reads the nonce from the sender’s first message and uses this with their knowledge of the Dat’s public key to set up an identical XSalsa20 keystream. Then they XOR the keystream with the bytes received to decrypt the stream.</p>
         </main>
     </body>
 </html>
