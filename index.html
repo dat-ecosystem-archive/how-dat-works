@@ -431,7 +431,7 @@ aside.basealign {
             <p>The two types of field are:</p>
             <ul>
                 <li><strong>Varint.</strong> The field tag followed by a varint value. Used for simple numeric values and booleans.</li>
-                <img src="png/field_structure_varint.png" width="160" height="105"/>
+                <img src="png/field_structure_varint.png" width="160" height="100"/>
                 <li><strong>Length-prefixed.</strong> The field tag followed by a varint to say how many bytes the field contains, followed by the bytes themselves. Used for strings, bytes and embedded messages.</li>
                 <img src="png/field_structure_length_prefixed.png" width="440" height="130"/>
             </ul>
@@ -481,8 +481,10 @@ aside.basealign {
             </div>
             <aside class="basealign">The encryption scheme is not authenticated, meaning a man-in-the-middle can flip bits to disrupt the connection. This is acceptable because the integrity of data in a Dat is verified using a separate mechanism. If there is an attacker who is in a position to modify bytes on the network they have lots of other options for disrupting connections, for example by simply dropping packets.</aside>
             <img class="pagewidth extramargin" src="png/encryption.png" width="1072" height="250"/>
-            <p>The sender picks a random 24-byte value for the nonce and includes it in their first <em>feed</em> message. The Dat’s 32-byte public key is used as the XSalsa20 key. From the second message onwards, all bytes they send are XORed with the keystream.</p>
-            <p>The receiver reads the nonce from the sender’s first message and uses this with their knowledge of the Dat’s public key to set up an identical XSalsa20 keystream. Then they XOR the keystream with the bytes received to decrypt the stream.</p>
+            <p>The <strong>sender</strong> generates a random 24-byte value for the nonce and includes it in their first message (which is always a <em>feed</em> message). The Dat’s 32-byte public key is used as the XSalsa20 key. From the second message onwards all bytes they send are XORed with the keystream.</p>
+            <img class="pagewidth extramargin" src="png/encryption_send.png" width="1072" height="460"/>
+            <p>The <strong>receiver</strong> reads the nonce from the sender’s first message and uses this with their knowledge of the Dat’s public key to set up an identical XSalsa20 keystream. Then they XOR the keystream with the bytes received to decrypt the stream.</p>
+            <img class="pagewidth extramargin" src="png/encryption_receive.png" width="1072" height="460"/>
         </main>
     </body>
 </html>
