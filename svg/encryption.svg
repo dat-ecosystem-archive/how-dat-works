@@ -206,7 +206,7 @@
          sodipodi:role="line"
          id="tspan1130"
          x="250"
-         y="-123.25"></tspan></text>
+         y="-123.25" /></text>
     <path
        sodipodi:nodetypes="cccc"
        inkscape:connector-curvature="0"
@@ -314,35 +314,35 @@
        style="color:#000000;overflow:visible;opacity:1;vector-effect:none;fill:#93a0b6;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke"
        id="path2683"
        sodipodi:type="arc"
-       sodipodi:cx="440"
+       sodipodi:cx="440.5"
        sodipodi:cy="360"
        sodipodi:rx="5"
        sodipodi:ry="5"
        sodipodi:start="0"
        sodipodi:end="3.1415927"
        sodipodi:open="true"
-       d="m 445,360 a 5,5 0 0 1 -2.5,4.33013 5,5 0 0 1 -5,0 5,5 0 0 1 -2.5,-4.33013" />
+       d="m 445.5,360 a 5,5 0 0 1 -2.5,4.33013 5,5 0 0 1 -5,0 5,5 0 0 1 -2.5,-4.33013" />
     <path
-       d="m 505,360 a 5,5 0 0 1 -2.5,4.33013 5,5 0 0 1 -5,0 5,5 0 0 1 -2.5,-4.33013"
+       d="m 504.5,360 a 5,5 0 0 1 -2.5,4.33013 5,5 0 0 1 -5,0 5,5 0 0 1 -2.5,-4.33013"
        sodipodi:open="true"
        sodipodi:end="3.1415927"
        sodipodi:start="0"
        sodipodi:ry="5"
        sodipodi:rx="5"
        sodipodi:cy="360"
-       sodipodi:cx="500"
+       sodipodi:cx="499.5"
        sodipodi:type="arc"
        id="path2689"
        style="color:#000000;overflow:visible;opacity:1;vector-effect:none;fill:#93a0b6;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke" />
     <path
-       d="m 475,-420 a 5,5 0 0 1 -2.5,4.33013 5,5 0 0 1 -5,0 5,5 0 0 1 -2.5,-4.33013"
+       d="m 475.5,-420 a 5,5 0 0 1 -2.5,4.33013 5,5 0 0 1 -5,0 5,5 0 0 1 -2.5,-4.33013"
        sodipodi:open="true"
        sodipodi:end="3.1415927"
        sodipodi:start="0"
        sodipodi:ry="5"
        sodipodi:rx="5"
        sodipodi:cy="-420"
-       sodipodi:cx="470"
+       sodipodi:cx="470.5"
        sodipodi:type="arc"
        id="path2691"
        style="color:#000000;overflow:visible;opacity:1;vector-effect:none;fill:#93a0b6;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke"
