@@ -51,12 +51,12 @@ body {
     margin: 0;
 }
 
-header, main {
+header, main, .front-matter {
     display: grid;
     grid-template-columns:
         [screen-start] 0px
-        [page-start text-start] 60px 60px 60px 60px 60px 60px 60px 60px
-        [text-end gutter-start] 60px 60px 60px 60px 
+        [page-start text-start] repeat(8, 60px)
+        [text-end gutter-start] repeat(4, 60px)
         [gutter-end page-end] 1fr [screen-end];
     grid-column-gap: 32px;
 }
@@ -66,7 +66,7 @@ header, main {
 }
 
 main {
-    margin: 32px 0 64px;
+    margin: 0 0 64px;
 }
 
 header {
@@ -76,7 +76,7 @@ header {
     align-items: stretch;
 }
 
-.title {
+.sitename {
     grid-column: text;
     display: grid;
     grid-auto-flow: column;
@@ -84,7 +84,7 @@ header {
     align-items: center;
 }
 
-.title svg {
+.sitename svg {
     margin-right: 8px;
 }
 
@@ -131,7 +131,7 @@ a {
     color: #007fff;
 }
 
-a:hover, a:focus {
+a:hover, a:focus, .toc a:hover, .toc a:focus {
     color: #0066cc;
 }
 
@@ -217,6 +217,50 @@ th, td {
     vertical-align: top;
 }
 
+.front-matter {
+    grid-column: screen;
+    background-color: #eee;
+    padding: 30px 0;
+}
+
+.title {
+    font-size: 55px;
+    font-weight: normal;
+    margin: 20px 0 30px;
+    grid-column: page;
+}
+
+.toc {
+    grid-column: page;
+    display: grid;
+    grid-template-columns: repeat(12, 60px);
+    grid-column-gap: 32px;
+}
+
+.toc {
+    margin: 24px 0 16px;
+}
+
+.toc .col {
+    grid-column: span 3;
+}
+
+.toc .section, .toc .col > .s1 {
+    margin-bottom: 10px;
+}
+
+.toc .s1 {
+    font-weight: bold;
+}
+
+.toc .s2 {
+    padding-left: 24px;
+}
+
+.toc a {
+    color: inherit;
+}
+
 .msgfields table { width: 100% }
 .msgfields th:nth-child(1) { width: 30px }
 .msgfields th:nth-child(2) { width: 112px }
@@ -231,7 +275,7 @@ aside.basealign {
     </head>
     <body>
         <header>
-            <div class="title">
+            <div class="sitename">
                 <svg width="32" height="64">
                     <g style="fill: #2aca4b">
                         <path d="m 26,26 -4,3 v 7 l 4,3 4,-3 v -7 z"/>
@@ -249,8 +293,40 @@ aside.basealign {
             </nav>
         </header>
         <main>
+            <div class="front-matter">
+                <h1 class="title">Dat Protocol Guide</h1>
+                <div class="toc">
+                    <div class="col">
+                        <div><a class="s1" href="#introduction">Introduction</a></div>
+                        <div><a class="s1" href="#urls">URLs</a></div>
+                        <div class="section">
+                            <div><a class="s1" href="#discovery">Discovery</a></div>
+                            <div class="s2">
+                                <div><a href="#discovery-keys">Discovery keys</a></div>
+                                <div><a href="#local-network-discovery">Local network discovery</a></div>
+                                <div><a href="#centralized-dns-discovery">Centralized DNS discovery</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="section">
+                            <div><a class="s1" href="#wire-protocol">Wire protocol</a></div>
+                            <div class="s2">
+                                <div><a href="#varints">Varints</a></div>
+                                <div><a href="#message-structure">Message structure</a></div>
+                                <div><a href="#feed-message">Feed message</a></div>
+                                <div><a href="#encryption">Encryption</a></div>
+                                <div><a href="#handshake-message">Handshake message</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div><a class="s1" href="#replication">Replication</a></div>
+                    </div>
+                </div>
+            </div>
 
-            <h1 id="urls" style="margin-top: 0">URLs</h1>
+            <h1 id="urls">URLs</h1>
             <p>To fetch a file in Dat you need to know its URL. Here is an example:</p>
             <svg width="1052" height="64" style="background-color: #eee; padding: 10px">
                 <text class="code" x="0" y="18"><tspan>dat://</tspan><tspan fill="#007fff">778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</tspan><tspan>/dat_intro.gif</tspan></text>
@@ -533,6 +609,7 @@ aside.basealign {
                 </table>
             </div>
 
+            <h1 id="replication">Replication</h1>
         </main>
     </body>
 </html>
