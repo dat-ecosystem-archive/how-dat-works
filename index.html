@@ -220,29 +220,25 @@ th, td {
 .front-matter {
     grid-column: screen;
     background-color: #eee;
-    padding: 30px 0;
+    padding: 50px 0;
 }
 
 .title {
     font-size: 55px;
     font-weight: normal;
-    margin: 20px 0 30px;
+    margin: 20px 0 60px;
     grid-column: page;
 }
 
 .toc {
-    grid-column: page;
+    grid-column: text;
     display: grid;
-    grid-template-columns: repeat(12, 60px);
+    grid-template-columns: repeat(8, 60px);
     grid-column-gap: 32px;
 }
 
-.toc {
-    margin: 24px 0 16px;
-}
-
 .toc .col {
-    grid-column: span 3;
+    grid-column: span 4;
 }
 
 .toc .section, .toc .col > .s1 {
@@ -259,6 +255,25 @@ th, td {
 
 .toc a {
     color: inherit;
+}
+
+.todo {
+    grid-column: gutter;
+}
+
+.todo h2 {
+    margin: 0 0 4px;
+    font-size: 16px;
+}
+
+.todo ul {
+    padding: 0;
+    list-style: none;
+}
+
+.todo input {
+    margin-right: 8px;
+    vertical-align: -2px;
 }
 
 .msgfields table { width: 100% }
@@ -319,10 +334,19 @@ aside.basealign {
                                 <div><a href="#handshake-message">Handshake message</a></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
                         <div><a class="s1" href="#replication">Replication</a></div>
                     </div>
+                </div>
+                <div class="todo">
+                    <h2>To do’s and known errors</h2>
+                    <ul>
+                        <li><input type="checkbox"/>Introduction</li>
+                        <li><input type="checkbox"/>DNS discovery proof-of-IP</li>
+                        <li><input type="checkbox"/>BitTorrent DHT discovery</li>
+                        <li><input type="checkbox"/>Hyperswarm mDNS discovery</li>
+                        <li><input type="checkbox"/>Hyperswarm DHT discovery and hole-punch</li>
+                        <li><input type="checkbox"/>Better explain privacy limitations</li>
+                    </li>
                 </div>
             </div>
 
@@ -398,13 +422,6 @@ aside.basealign {
             <img class="pagewidth extramargin" src="png/centralized_dns_response.png" width="1072" height="1000"/>
             <p>In this case the server sent back a list of five peers. DNS TXT records are limited to 255 characters so the server is limited to sending back 31 peers at a time. If the server knows more than this it will have to choose which to send, for example the most recent, longest lived or by picking at random.</p>
             <img src="png/mdns_peers_record_multi.png" width="704" height="520"/>
-
-            <h2>Other discovery methods not documented yet</h2>
-            <ul>
-                <li>BitTorrent distributed hash table</li>
-                <li>Hyperswarm distributed hash table</li>
-                <li>Hyperswarm mDNS</li>
-            </ul>
 
             <h1 id="wire-protocol">Wire protocol</h1>
 
