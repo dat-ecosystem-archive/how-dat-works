@@ -221,13 +221,29 @@ th, td {
     grid-column: screen;
     background-color: #eee;
     padding: 50px 0;
+    margin: 0 0 60px;
 }
 
 .title {
     font-size: 55px;
     font-weight: normal;
-    margin: 20px 0 60px;
+    margin: 20px 0 10px;
     grid-column: page;
+}
+
+.wip {
+    grid-column: page;
+    margin: 0 0 60px;
+}
+
+.wip span {
+    color: #fff;
+    background-color: #2aca4b;
+    font-weight: bold;
+    padding: 4px 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    word-spacing: 5px;
 }
 
 .toc {
@@ -259,6 +275,10 @@ th, td {
 
 .todo {
     grid-column: gutter;
+    align-self: start;
+    color: #fff;
+    background-color: #2aca4b;
+    padding: 10px 12px;
 }
 
 .todo h2 {
@@ -267,8 +287,9 @@ th, td {
 }
 
 .todo ul {
-    padding: 0;
-    list-style: none;
+    padding-left: 16px;
+    margin-bottom: 0;
+    list-style: square;
 }
 
 .todo input {
@@ -310,6 +331,7 @@ aside.basealign {
         <main>
             <div class="front-matter">
                 <h1 class="title">Dat Protocol Guide</h1>
+                <div class="wip"><span>Work in progress</span></div>
                 <div class="toc">
                     <div class="col">
                         <div><a class="s1" href="#introduction">Introduction</a></div>
@@ -340,15 +362,18 @@ aside.basealign {
                 <div class="todo">
                     <h2>To do’s and known errors</h2>
                     <ul>
-                        <li><input type="checkbox"/>Introduction</li>
-                        <li><input type="checkbox"/>DNS discovery proof-of-IP</li>
-                        <li><input type="checkbox"/>BitTorrent DHT discovery</li>
-                        <li><input type="checkbox"/>Hyperswarm mDNS discovery</li>
-                        <li><input type="checkbox"/>Hyperswarm DHT discovery and hole-punch</li>
-                        <li><input type="checkbox"/>Better explain privacy limitations</li>
+                        <li>DNS discovery proof-of-IP</li>
+                        <li>BitTorrent DHT discovery</li>
+                        <li>Hyperswarm mDNS discovery</li>
+                        <li>Hyperswarm DHT discovery and hole-punch</li>
+                        <li>Better explain privacy limitations</li>
                     </li>
                 </div>
             </div>
+
+            <p id="introduction"><strong>Dat is a protocol for sharing data between computers</strong>. Dat’s strengths are that data is hosted and distributed by many computers on the network, that it can work offline or with poor connectivity, that the original uploader can add or modify data while keeping a full history and that it can efficiently handle large amounts of data.</p>
+            <p>Dat is compelling because the people working on it have a dedication to user experience and ease-of-use. The software around Dat brings publishing within reach for people with a wide range of skills, not just technical. Although first designed with scientific data in mind, the Dat community is testing the waters and has begun to use it for websites, art, music releases, peer-to-peer chat programs and many other small experiments.</p>
+            <p>This guide is an in-depth tour through the bits and bytes of the Dat protocol, starting from a blank slate and ending with being able to download and share files with other peers running Dat. There will be enough detail for readers who are considering writing their own implementation of Dat, but if you are just curious how it works or want to learn from Dat’s design then I hope you will find this guide useful too!</p>
 
             <h1 id="urls">URLs</h1>
             <p>To fetch a file in Dat you need to know its URL. Here is an example:</p>
