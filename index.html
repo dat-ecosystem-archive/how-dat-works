@@ -172,6 +172,10 @@ ul, ol {
     padding-left: 40px;
 }
 
+aside ul, aside ol {
+    padding-left: 30px;
+}
+
 ul > img {
     margin: 16px 0;
 }
@@ -192,6 +196,11 @@ h2 {
 
 h3 {
     font-size: 16px;
+}
+
+aside h1, aside h2, aside h3 {
+    font-size: 16px;
+    margin: 0 0 8px;
 }
 
 table {
@@ -304,7 +313,7 @@ th, td {
 
 aside.basealign {
     position: relative;
-    top: 4px;
+    top: 3px;
 }
 
         </style>
@@ -374,6 +383,16 @@ aside.basealign {
             <p id="introduction"><strong>Dat is a protocol for sharing data between computers</strong>. Dat’s strengths are that data is hosted and distributed by many computers on the network, that it can work offline or with poor connectivity, that the original uploader can add or modify data while keeping a full history and that it can efficiently handle large amounts of data.</p>
             <p>Dat is compelling because the people working on it have a dedication to user experience and ease-of-use. The software around Dat brings publishing within reach for people with a wide range of skills, not just technical. Although first designed with scientific data in mind, the Dat community is testing the waters and has begun to use it for websites, art, music releases, peer-to-peer chat programs and many other small experiments.</p>
             <p>This guide is an in-depth tour through the bits and bytes of the Dat protocol, starting from a blank slate and ending with being able to download and share files with other peers running Dat. There will be enough detail for readers who are considering writing their own implementation of Dat, but if you are just curious how it works or want to learn from Dat’s design then I hope you will find this guide useful too!</p>
+            <aside class="basealign">
+                <h2>More documentation about Dat</h2>
+                <ul>
+                    <li><a href="https://datprotocol.github.io/book/">Dat Protocol Book</a></li>
+                    <li><a href="https://www.datprotocol.com/">Protocol specifications</a></li>
+                    <li><a href="https://github.com/datprotocol/whitepaper/raw/master/dat-paper.pdf">Original whitepaper (PDF)</a></li>
+                    <li><a href="https://docs.datproject.org/">User guide, cookbook and technology</a></li>
+                    <li><a href="https://beakerbrowser.com/docs/">Beaker browser documentation</a></li>
+                </ul>
+            </aside>
 
             <h1 id="urls">URLs</h1>
             <p>To fetch a file in Dat you need to know its URL. Here is an example:</p>
