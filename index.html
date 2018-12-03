@@ -414,7 +414,8 @@ aside.basealign {
 
             <h2 id="discovery-keys">Discovery keys</h2>
             <p>Discovery keys are used for finding other peers who are interested in the same Dat as you.</p>
-            <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dats by observing network traffic. However eavesdroppers can confirm that clients are talking about a specific Dat if they know its public key already.</p>
+            <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dat URLs, and therefore being able to read their contents, by observing network traffic.</p>
+            <p>However eavesdroppers can confirm that peers are talking about a specific Dat and read all communications between those peers if they know its public key already. Eavesdroppers who do not know the public key can still get an idea of how many Dats are popular on the network, their approximate sizes, which IP addresses are interested in them and potentially the IP address of the creator by observing handshakes, traffic timing and volumes. Dat makes no attempt to hide IP addresses.</p>
             <p>Calculate a Dat’s discovery key using the <strong>BLAKE2b</strong> hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
             <aside class="basealign">Dat uses the BLAKE2b variant that accepts both a key and input to be hashed, returning 256 bits (32 bytes) of output.</aside>
             <img class="pagewidth extramargin" src="png/blake2b.png" width="1072" height="400"/>
@@ -428,8 +429,9 @@ aside.basealign {
             <ul>
                 <li><strong>Strengths.</strong> Fast, finds physically nearby peers, doesn’t need special infrastructure, works offline.</li>
                 <li><strong>Weaknesses.</strong> Limited reach.</li>
+                <li><strong>Deployment status.</strong> Currently in use, will be replaced by Hyperswarm in the future.</li>
             </ul>
-            <p>Local network discovery uses multicast DNS, which is like a regular DNS query except instead of sending your query to a nameserver you broadcast it to your local network and hope someone else on your network sees it and responds.</p>
+            <p>Local network discovery uses multicast DNS, which is like a regular DNS query except instead of sending queries to a nameserver they are broadcast to the local network with the hope that someone else on the network sees it and responds.</p>
             <p>Here is an example of the bytes a client would broadcast to ask for peers:</p>
             <img class="pagewidth extramargin" src="png/mdns_request.png" width="1072" height="420"/>
             <p>Multicast DNS packets are sent to the special broadcast MAC and IP addresses shown above. Both the source and destination ports are 5353.</p>
@@ -453,14 +455,16 @@ aside.basealign {
             <ul>
                 <li><strong>Strengths.</strong> Fast, simple, global reach.</li>
                 <li><strong>Weaknesses.</strong> Must be online, centralized point of failure, one server sees everyone’s metadata.</li>
+                <li><strong>Deployment status.</strong> Currently in use, will be replaced by Hyperswarm in the future.</li>
             </ul>
             <p>Currently the server running this is <strong>discovery1.datprotocol.com</strong>. If that goes offline then <strong>discovery2.datprotocol.com</strong> can be used as a fallback.</p>
             <p>In this example the requester is asking for a list of peers for a particular discovery key. They are also asking the server to add them to the list of peers for this discovery key:</p>
             <img class="pagewidth extramargin" src="png/centralized_dns_request.png" width="1072" height="1000"/>
             <p>Attached onto the request as an additional record are these TXT records:</p>
             <ul>
-                <li>The <strong>token</strong> record is a random value that will be echoed back by the server. Unlike with local network discovery, the client will pay attention to responses bearing this token rather than ignore them.</li>
-                <li>The <strong>subscribe</strong> and <strong>announce</strong> records indicate that the requester would like to be added to the server’s list of peers interested in this discovery key. The server will use the IP address that the DNS request was received from and the port number contained in the announce record. When future peers query the server it may return this new peer in its response.</li>
+                <li>The <strong>token</strong> record is used to prevent IP address spoofing. The requester first queries the discovery server which sends back a token that is specific to the requester’s IP address. Later when the requester wants to get added to the list of peers interested in a Dat they must present the token back to the server. The server only honours the request if it includes this token and the request comes from the IP address associated with the token. This prevents requesters subscribing IP addresses other than their own.</li>
+                <li>The <strong>subscribe</strong> record indicates that the requester wants to be notified as soon as the discovery server learns of a new peer for this Dat. When this happens the discovery server will send a SRV record back to the original requester on the UDP port they sent their subscription message from. If they want to stay subscribed, peers must re-subscribe every 60 seconds. Peers can also unsubscribe immediately by setting this field to “false”.</li>
+                <li>The <strong>announce</strong> record indicates that the requester would like to be added to the server’s list of peers interested in this discovery key. The server will use the IP address that the DNS request was received from and the port number contained in the announce record. When future peers query the server it may return this new peer in its response.</li>
             </ul>
             <p>Here is the response sent back by the server:</p>
             <img class="pagewidth extramargin" src="png/centralized_dns_response.png" width="1072" height="1000"/>
