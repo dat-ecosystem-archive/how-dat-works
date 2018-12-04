@@ -160,12 +160,16 @@ svg text {
     font-size: 13px;
 }
 
-h1, h2, h3, p, pre, ul, ol, main > svg, main > img, main > div > table {
+h1, h2, h3, p, pre, ul, ol, main > div > table, .smallmargin, figcaption {
     margin: 0 0 16px;
 }
 
-.extramargin {
+figure, main > img, main > svg {
     margin: 20px 0 36px;
+}
+
+figcaption {
+    font-weight: bold;
 }
 
 ul, ol {
@@ -395,7 +399,7 @@ aside.basealign {
 
             <h1 id="urls">URLs</h1>
             <p>To fetch a file in Dat you need to know its URL. Here is an example:</p>
-            <svg width="1052" height="64" style="background-color: #eee; padding: 10px">
+            <svg class="smallmargin pagewidth" width="1052" height="64" style="background-color: #eee; padding: 10px">
                 <text class="code" x="0" y="18"><tspan>dat://</tspan><tspan fill="#007fff">778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</tspan><tspan>/dat_intro.gif</tspan></text>
                 <path stroke="#93a0b6" strokewidth="1" fill="none" d="M0.5,24 v4.5 h60 v-4.5 m0,4.5 h640 v-4.5 m0,4.5 h140 v-4.5"/>
                 <text y="44" text-anchor="middle"><tspan x="30">protocol</tspan><tspan x="30" dy="1.2em">identifier</tspan></text>
@@ -417,7 +421,7 @@ aside.basealign {
             <p>However eavesdroppers can confirm that peers are talking about a specific Dat and read all communications between those peers if they know its public key already. Eavesdroppers who do not know the public key can still get an idea of how many Dats are popular on the network, their approximate sizes, which IP addresses are interested in them and potentially the IP address of the creator by observing handshakes, traffic timing and volumes. Dat makes no attempt to hide IP addresses.</p>
             <p>Calculate a Dat’s discovery key using the <strong>BLAKE2b</strong> hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
             <aside class="basealign">Dat uses the BLAKE2b variant that accepts both a key and input to be hashed, returning 256 bits (32 bytes) of output.</aside>
-            <img class="pagewidth extramargin" src="png/blake2b.png" width="1072" height="400"/>
+            <img class="pagewidth" src="png/blake2b.png" width="1072" height="400"/>
             <p>In you want to test this out yourself, here is the public key in hexadecimal:</p>
             <pre><code>778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</code></pre>
             <p>and here is the discovery key it hashes to in hexadecimal:</p>
@@ -431,18 +435,22 @@ aside.basealign {
                 <li><strong>Deployment status.</strong> Currently in use, will be replaced by Hyperswarm in the future.</li>
             </ul>
             <p>Local network discovery uses multicast DNS, which is like a regular DNS query except instead of sending queries to a nameserver they are broadcast to the local network with the hope that someone else on the network sees it and responds.</p>
-            <p>Here is an example of the bytes a client would broadcast to ask for peers:</p>
-            <img class="pagewidth extramargin" src="png/mdns_request.png" width="1072" height="420"/>
+            <figure class="pagewidth">
+                <figcaption>Client asking for peers</figcaption>
+                <img src="png/mdns_request.png" width="1072" height="420"/>
+            </figure>
             <p>Multicast DNS packets are sent to the special broadcast MAC and IP addresses shown above. Both the source and destination ports are 5353.</p>
             <p>Essentially the computer is asking “Does anybody have any TXT records for the domain name <em>25a78aa81615847eba00995df29dd41d7ee30f3b.dat.local</em>?” Other Dat clients on the network will recognize requests following this pattern and know that the client who sent it is looking for peers.</p>
-            <p>Here is an example response from a peer reporting that they are also interested in this Dat:</p>
-            <img class="pagewidth extramargin" src="png/mdns_response.png" width="1072" height="920"/>
+            <figure class="pagewidth">
+                <figcaption>Peer reporting that they are also interested in this Dat</figcaption>
+                <img src="png/mdns_response.png" width="1072" height="920"/>
+            </figure>
             <p>Responses contain two TXT records:</p>
             <ul>
                 <li>The <strong>token</strong> record is a random value that makes it easier for clients to avoid connecting to themselves. If a client sees a response with the same token as a response they just sent out, they will know it came from them and ignore it.</li>
                 <li>The <strong>peers</strong> record is a base64-encoded list of IP addresses and ports of peers interested in this Dat:</li>
             </ul>
-            <img class="extramargin" src="png/mdns_peers_record.png" width="704" height="290"/>
+            <img src="png/mdns_peers_record.png" width="704" height="290"/>
             <aside>
                 <p>Base64 encoding in Dat uses the variant with plus <code>+</code> and slash <code>/</code> characters. Padding equals <code>=</code> characters are required.</p>
                 <p>Only IPv4 addresses are supported by this discovery mechanism.</p>    
@@ -458,15 +466,24 @@ aside.basealign {
             </ul>
             <p>Currently the server running this is <strong>discovery1.datprotocol.com</strong>. If that goes offline then <strong>discovery2.datprotocol.com</strong> can be used as a fallback.</p>
             <p>Here is a typical message flow between a Dat peer and the DNS discovery server:</p>
-            <img class="pagewidth extramargin" src="png/centralized_dns_conversation.png" width="1072" height="1170"/>
+            <img class="pagewidth" src="png/centralized_dns_conversation.png" width="1072" height="1170"/>
             <p>To stay subscribed, peers should re-announce themselves every 60 seconds. The discovery server will also cycle its tokens periodically so peers should remember the token they last received and update it when the receive a new one.</p>
             <p>The <em>peers</em> record returned by the discovery server uses the same structure as in mDNS:</p>
-            <img class="extramargin" src="png/mdns_peers_record_multi.png" width="704" height="520"/>
+            <img src="png/mdns_peers_record_multi.png" width="704" height="520"/>
             <aside>In this case the server sent back a list of five peers. DNS TXT records are limited to 255 characters so the server is limited to sending back 31 peers at a time. If the server knows more than this it will have to choose which to send, for example the most recent, longest lived or by picking at random.</aside>
-            <p>Here is how the peer’s announce message looks like as bytes on the wire:</p>
-            <img class="pagewidth extramargin" src="png/centralized_dns_request.png" width="1072" height="1000"/>
-            <p>Here is the response sent back by the server:</p>
-            <img class="pagewidth extramargin" src="png/centralized_dns_response.png" width="1072" height="1000"/>
+            <p>Following are three examples showing how these DNS requests appear as bytes sent over the network:</p>
+            <figure>
+                <figcaption>Peer announce request to discovery server</figcaption>
+                <img src="png/centralized_dns_request.png" width="1072" height="1000"/>
+            </figure>
+            <figure>
+                <figcaption>Discovery server response to announce</figcaption>
+                <img src="png/centralized_dns_response.png" width="1072" height="1000"/>
+            </figure>
+            <figure>
+                <figcaption>Discovery server SRV push notification</figcaption>
+                <img src="png/centralized_dns_srv.png" width="1072" height="620"/>
+            </figure>
 
             <h1 id="wire-protocol">Wire protocol</h1>
 
@@ -559,11 +576,11 @@ aside.basealign {
             <p>The advantage of varints is that they only require a few bytes to represent small numbers, while still being able to represent large numbers by using more bytes. The disadvantage of varints is that they take more work to encode and decode compared to regular integers.</p>
             <aside class="basealign">In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</aside>
             <p>Here’s how to decode a varint:</p>
-            <img class="pagewidth extramargin" src="png/varint.png" width="1072" height="610"/>
+            <img class="pagewidth" src="png/varint.png" width="1072" height="610"/>
 
             <h2 id="message-structure">Message structure</h2>
             <p>Within each message body is a series of field tags and values:</p>
-            <img class="pagewidth extramargin" src="png/wire_protocol_field_value_structure.png" width="1072" height="255"/>
+            <img class="pagewidth" src="png/wire_protocol_field_value_structure.png" width="1072" height="255"/>
             <p>The field tag is a varint. The most significant bits indicate which field within the message this is, for example: 1 = <em>discovery key</em>, 2 = <em>nonce</em>. This is needed because messages can have missing or repeated fields. The 3 least significant bits are the type of field.</p>
             <img src="png/field_type_field.png" width="704" height="265"/>
             <p>The two types of field are:</p>
@@ -608,9 +625,9 @@ aside.basealign {
                 </table>
             </div>
             <p>Putting everything together, this is how each side of the TCP connection begins:</p>
-            <img class="pagewidth extramargin" src="png/feed_message.png" width="1072" height="460"/>
+            <img class="pagewidth" src="png/feed_message.png" width="1072" height="460"/>
             <p>Or, as the bytes actually sent over the wire:</p>
-            <img class="pagewidth extramargin" src="png/feed_message_bytes.png" width="1072" height="460"/>
+            <img class="pagewidth" src="png/feed_message_bytes.png" width="1072" height="460"/>
 
             <h2 id="encryption">Encryption</h2>
             <div>
@@ -618,11 +635,11 @@ aside.basealign {
                 <p><strong>XSalsa20</strong> is the encryption cipher used. Given a 32-byte key and a 24-byte nonce, XSalsa20 produces a never-ending stream of pseudorandom bytes called the keystream.</p>
             </div>
             <aside class="basealign">The encryption scheme is not authenticated, meaning a man-in-the-middle can flip bits to disrupt the connection. This is acceptable because the integrity of data in a Dat is verified using a separate mechanism. If there is an attacker who is in a position to modify bytes on the network they have lots of other options for disrupting connections, for example by simply dropping packets.</aside>
-            <img class="pagewidth extramargin" src="png/encryption.png" width="1072" height="250"/>
+            <img class="pagewidth" src="png/encryption.png" width="1072" height="250"/>
             <p>The <strong>sender</strong> generates a random 24-byte value for the nonce and includes it in their first message (which is always a <em>feed</em> message). The Dat’s 32-byte public key is used as the XSalsa20 key. From the second message onwards all bytes they send are XORed with the keystream.</p>
-            <img class="pagewidth extramargin" src="png/encryption_send.png" width="1072" height="460"/>
+            <img class="pagewidth" src="png/encryption_send.png" width="1072" height="460"/>
             <p>The <strong>receiver</strong> reads the nonce from the sender’s first message and uses this with their knowledge of the Dat’s public key to set up an identical XSalsa20 keystream. Then they XOR the keystream with the bytes received to decrypt the stream.</p>
-            <img class="pagewidth extramargin" src="png/encryption_receive.png" width="1072" height="460"/>
+            <img class="pagewidth" src="png/encryption_receive.png" width="1072" height="460"/>
 
             <h2 id="handshake-message">Handshake message</h2>
             <p>After the initial <em>feed</em> message, the second message sent on each side of the TCP connection is always a <em>handshake</em> message.</p>
