@@ -371,7 +371,6 @@ aside.basealign {
                 <div class="todo">
                     <h2>To do’s and known errors</h2>
                     <ul>
-                        <li>DNS discovery proof-of-IP</li>
                         <li>BitTorrent DHT discovery</li>
                         <li>Hyperswarm mDNS discovery</li>
                         <li>Hyperswarm DHT discovery and hole-punch</li>
@@ -453,23 +452,21 @@ aside.basealign {
             <h2 id="centralized-dns-discovery">Centralized DNS discovery</h2>
             <p>Peers ask a server on the internet for other peers using a DNS-based protocol.</p>
             <ul>
-                <li><strong>Strengths.</strong> Fast, simple, global reach.</li>
+                <li><strong>Strengths.</strong> Fast, global reach.</li>
                 <li><strong>Weaknesses.</strong> Must be online, centralized point of failure, one server sees everyone’s metadata.</li>
                 <li><strong>Deployment status.</strong> Currently in use, will be replaced by Hyperswarm in the future.</li>
             </ul>
             <p>Currently the server running this is <strong>discovery1.datprotocol.com</strong>. If that goes offline then <strong>discovery2.datprotocol.com</strong> can be used as a fallback.</p>
-            <p>In this example the requester is asking for a list of peers for a particular discovery key. They are also asking the server to add them to the list of peers for this discovery key:</p>
+            <p>Here is a typical message flow between a Dat peer and the DNS discovery server:</p>
+            <img class="pagewidth extramargin" src="png/centralized_dns_conversation.png" width="1072" height="1170"/>
+            <p>To stay subscribed, peers should re-announce themselves every 60 seconds. The discovery server will also cycle its tokens periodically so peers should remember the token they last received and update it when the receive a new one.</p>
+            <p>The <em>peers</em> record returned by the discovery server uses the same structure as in mDNS:</p>
+            <img class="extramargin" src="png/mdns_peers_record_multi.png" width="704" height="520"/>
+            <aside>In this case the server sent back a list of five peers. DNS TXT records are limited to 255 characters so the server is limited to sending back 31 peers at a time. If the server knows more than this it will have to choose which to send, for example the most recent, longest lived or by picking at random.</aside>
+            <p>Here is how the peer’s announce message looks like as bytes on the wire:</p>
             <img class="pagewidth extramargin" src="png/centralized_dns_request.png" width="1072" height="1000"/>
-            <p>Attached onto the request as an additional record are these TXT records:</p>
-            <ul>
-                <li>The <strong>token</strong> record is used to prevent IP address spoofing. The requester first queries the discovery server which sends back a token that is specific to the requester’s IP address. Later when the requester wants to get added to the list of peers interested in a Dat they must present the token back to the server. The server only honours the request if it includes this token and the request comes from the IP address associated with the token. This prevents requesters subscribing IP addresses other than their own.</li>
-                <li>The <strong>subscribe</strong> record indicates that the requester wants to be notified as soon as the discovery server learns of a new peer for this Dat. When this happens the discovery server will send a SRV record back to the original requester on the UDP port they sent their subscription message from. If they want to stay subscribed, peers must re-subscribe every 60 seconds. Peers can also unsubscribe immediately by setting this field to “false”.</li>
-                <li>The <strong>announce</strong> record indicates that the requester would like to be added to the server’s list of peers interested in this discovery key. The server will use the IP address that the DNS request was received from and the port number contained in the announce record. When future peers query the server it may return this new peer in its response.</li>
-            </ul>
             <p>Here is the response sent back by the server:</p>
             <img class="pagewidth extramargin" src="png/centralized_dns_response.png" width="1072" height="1000"/>
-            <p>In this case the server sent back a list of five peers. DNS TXT records are limited to 255 characters so the server is limited to sending back 31 peers at a time. If the server knows more than this it will have to choose which to send, for example the most recent, longest lived or by picking at random.</p>
-            <img src="png/mdns_peers_record_multi.png" width="704" height="520"/>
 
             <h1 id="wire-protocol">Wire protocol</h1>
 
