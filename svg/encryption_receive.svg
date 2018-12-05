@@ -9,8 +9,8 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="1072"
-   height="460"
-   viewBox="0 0 1072 460"
+   height="450"
+   viewBox="0 0 1072 450"
    version="1.1"
    id="svg6"
    inkscape:version="0.92.2 2405546, 2018-03-11"
@@ -72,27 +72,6 @@
        y1="-19"
        x2="1025"
        y2="-19" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient26446"
-       id="linearGradient26448"
-       x1="975"
-       y1="65"
-       x2="1072"
-       y2="65"
-       gradientUnits="userSpaceOnUse" />
-    <linearGradient
-       inkscape:collect="always"
-       id="linearGradient26446">
-      <stop
-         style="stop-color:#93a0b6;stop-opacity:1;"
-         offset="0"
-         id="stop26442" />
-      <stop
-         style="stop-color:#93a0b6;stop-opacity:0;"
-         offset="1"
-         id="stop26444" />
-    </linearGradient>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -109,7 +88,7 @@
      inkscape:snap-global="true"
      width="1072px"
      inkscape:snap-smooth-nodes="true"
-     height="460px">
+     height="450px">
     <inkscape:grid
        type="xygrid"
        id="grid10"
@@ -123,7 +102,7 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="display:inline"
-     transform="translate(0,-40)">
+     transform="translate(0,-50)">
     <g
        style="display:inline;enable-background:new"
        id="g25230"
@@ -430,13 +409,6 @@
        height="40"
        x="200"
        y="-20" />
-    <rect
-       y="460"
-       x="4.0189934e-06"
-       height="40"
-       width="534"
-       id="rect14478"
-       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#d2d8e1;fill-opacity:1;stroke:none;stroke-width:0.99999994;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:new" />
     <text
        id="text21338"
        y="135"
@@ -943,23 +915,23 @@
        sodipodi:nodetypes="cccc" />
     <text
        xml:space="preserve"
-       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
-       x="680"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+       x="535"
        y="340"
        id="text24967"><tspan
          sodipodi:role="line"
-         x="680"
+         x="535"
          y="340"
          id="tspan24965">identical keystream to what the sender used</tspan></text>
     <text
        id="text24971"
        y="450"
-       x="680"
-       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+       x="535"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
        xml:space="preserve"><tspan
          id="tspan24969"
          y="450"
-         x="680"
+         x="535"
          sodipodi:role="line">decrypted second message onwards</tspan></text>
     <text
        xml:space="preserve"
@@ -978,18 +950,6 @@
        height="40"
        x="535"
        y="460" />
-    <path
-       id="path24999"
-       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#93a0b6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:new"
-       d="m 54.5,110 v 340"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#93a0b6;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:new"
-       d="m 54.5,460 4.49999,-10 h -8.99998 z"
-       id="path25001"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccc" />
     <path
        style="color:#000000;overflow:visible;opacity:1;vector-effect:none;fill:#293648;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke"
        d="m 804,416 c -4.40643,0 -8,3.59357 -8,8 0,4.40643 3.59357,8 8,8 4.40643,0 8,-3.59357 8,-8 0,-4.40643 -3.59357,-8 -8,-8 z m 0,2 c 3.32555,0 6,2.67445 6,6 0,3.32555 -2.67445,6 -6,6 -3.32555,0 -6,-2.67445 -6,-6 0,-3.32555 2.67445,-6 6,-6 z m -1,0 v 5 h -5 v 2 h 5 v 5 h 2 v -5 h 5 v -2 h -5 v -5 z"
@@ -1019,32 +979,28 @@
        y="70" />
     <text
        xml:space="preserve"
-       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
-       x="267.1626"
-       y="50"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+       x="0"
+       y="60"
        id="text2631"><tspan
          sodipodi:role="line"
-         x="267.1626"
-         y="50"
+         x="0"
+         y="60"
          id="tspan2629"
-         style="font-weight:bold">First message</tspan></text>
+         style="font-weight:bold;text-align:start;text-anchor:start">First message <tspan
+   style="font-weight:normal;text-align:start;text-anchor:start"
+   id="tspan9845">(unencrypted)</tspan></tspan></text>
     <text
        id="text21319"
-       y="50"
-       x="803.51025"
-       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+       y="60"
+       x="535"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
        xml:space="preserve"><tspan
          id="tspan21317"
-         y="50"
-         x="803.51025"
+         y="60"
+         x="535"
          sodipodi:role="line"
-         style="font-weight:bold">Second message onwards</tspan></text>
-    <path
-       id="path25023"
-       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:url(#linearGradient26448);stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:new"
-       d="m 534.5,59.5 h 537.5 m -1071.5,4.5 v -4.5 h 534 v 4.5"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cccccc" />
+         style="font-weight:bold;text-align:start;text-anchor:start">Second message onwards</tspan></text>
     <rect
        style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#d2d8e1;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:new"
        id="rect26497"
@@ -1091,7 +1047,7 @@
        id="path26509" />
     <path
        id="path26511"
-       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#93a0b6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2,2;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:new"
+       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#93a0b6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 2;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:new"
        d="m 209.5,145 v 45"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -1116,15 +1072,5 @@
          y="181"
          style="text-align:start;text-anchor:start"
          id="tspan26529">corresponding public key</tspan></text>
-    <text
-       xml:space="preserve"
-       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
-       x="267.33597"
-       y="450"
-       id="text25019"><tspan
-         sodipodi:role="line"
-         x="267.33597"
-         y="450"
-         id="tspan25017">first message received unencrypted</tspan></text>
   </g>
 </svg>
