@@ -718,7 +718,10 @@ aside.basealign {
             <h1 id="exchanging-data">Exchanging data</h1>
             <p>Peers exchange chunks in multi-step process where the downloader and uploader negotiate what chunks they want and have:</p>
             <img src="png/chunk_conversation.png" width="704" height="730"/>
-            <aside>In this example one peer is a downloader and the other is an uploader. In other cases both peers will be uploading and downloading at the same time as they each have some of the chunks but not all of them.</aside>
+            <aside>
+                <p>In this example one peer is a downloader and the other is an uploader. In other cases both peers will be uploading and downloading at the same time as they each have some of the chunks but not all of them.</p>
+                <p>Each request message can only request a single chunk per message. Downloaders may want to queue up several request messages at a time. When the uploader finishes sending a chunk this lets them immediately start sending the next one without waiting for a round-trip.</p>
+            </aside>
 
             <h2 id="want-message">Want message</h2>
             <div class="pagewidth msgfields">
@@ -736,13 +739,13 @@ aside.basealign {
                             <td>1</td>
                             <td><strong>Start</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>Number of the first chunk you want. Chunk numbering starts at 0.</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td><strong>Length</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>How many chunks after the <em>start</em> field you want. Omit this field to say you want all following chunks to the end of the Dat.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -764,13 +767,13 @@ aside.basealign {
                             <td>1</td>
                             <td><strong>Start</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>Number of the first chunk you don’t want anymore.</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td><strong>Length</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>How many chunks after the <em>start</em> field you don’t want. Omit this field to say you don’t want any of the following chunks to the end of the Dat.</td>
                         </tr>
                     </tbody>
                 </table>
