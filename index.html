@@ -315,6 +315,16 @@ th, td {
 .msgfields th:nth-child(2) { width: 112px }
 .msgfields th:nth-child(3) { width: 120px }
 
+.msgfields table table {
+    font-size: 13px;
+    margin: 16px 0;
+}
+
+.msgfields table table thead tr {
+    background-color: #fff;
+    color: inherit;
+}
+
 aside.basealign {
     position: relative;
     top: 3px;
@@ -357,8 +367,6 @@ aside.basealign {
                                 <div><a href="#centralized-dns-discovery">Centralized DNS discovery</a></div>
                             </div>
                         </div>
-                    </div>
-                    <div class="col">
                         <div class="section">
                             <div><a class="s1" href="#wire-protocol">Wire protocol</a></div>
                             <div class="s2">
@@ -369,7 +377,21 @@ aside.basealign {
                                 <div><a href="#handshake-message">Handshake message</a></div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col">
                         <div><a class="s1" href="#data-model">Data model</a></div>
+                        <div class="section">
+                            <div><a class="s1" href="#exchanging-data">Exchanging data</a></div>
+                            <div class="s2">
+                                <div><a href="#want-message">Want message</a></div>
+                                <div><a href="#unwant-message">Unwant message</a></div>
+                                <div><a href="#have-message">Have message</a></div>
+                                <div><a href="#unhave-message">Unhave message</a></div>
+                                <div><a href="#request-message">Request message</a></div>
+                                <div><a href="#cancel-message">Cancel message</a></div>
+                                <div><a href="#data-message">Data message</a></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="todo">
@@ -619,7 +641,7 @@ aside.basealign {
                             <td>2</td>
                             <td><strong>Nonce</strong></td>
                             <td>Length-prefixed</td>
-                            <td>24-byte random nonce generated for this TCP connection. Only present for the first <em>Feed</em> message.</td>
+                            <td>24-byte random nonce generated for this TCP connection. Only present for the first <em>feed</em> message.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -689,6 +711,279 @@ aside.basealign {
             </div>
 
             <h1 id="data-model">Data model</h1>
+            <p>After completing the handshake peers begin requesting data from each other. Dats contain a list of variable-sized chunks of bytes. New chunks can be added to the end by the Dat’s author, but existing chunks can’t be deleted or modified.</p>
+            <aside>Boundaries between chunks are preserved. This can be useful for dividing up the Dat into a series of messages, for example one message per chunk.</aside>
+            <img src="png/chunk_structure.png" width="704" height="65"/>
+            
+            <h1 id="exchanging-data">Exchanging data</h1>
+            <p>Peers exchange chunks in multi-step process where the downloader and uploader negotiate what chunks they want and have:</p>
+            <img src="png/chunk_conversation.png" width="704" height="730"/>
+            <aside>In this example one peer is a downloader and the other is an uploader. In other cases both peers will be uploading and downloading at the same time as they each have some of the chunks but not all of them.</aside>
+
+            <h2 id="want-message">Want message</h2>
+            <div class="pagewidth msgfields">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Start</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Length</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="unwant-message">Unwant message</h2>
+            <div class="pagewidth msgfields">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Start</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Length</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="have-message">Have message</h2>
+            <div class="pagewidth msgfields">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Start</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Length</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Bitfield</strong></td>
+                            <td>Length-prefixed</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="unhave-message">Unhave message</h2>
+            <div class="pagewidth msgfields">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Start</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Length</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="request-message">Request message</h2>
+            <div class="pagewidth msgfields">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Index</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Bytes</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Hash</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>Nodes</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="cancel-message">Cancel message</h2>
+            <div class="pagewidth msgfields">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Index</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Bytes</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Hash</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2 id="data-message">Data message</h2>
+            <div class="pagewidth msgfields">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Start</strong></td>
+                            <td>Varint</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Value</strong></td>
+                            <td>Length-prefixed</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Nodes</strong></td>
+                            <td>Length-prefixed</td>
+                            <td>
+                            
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><strong>Index</strong></td>
+                                            <td>Varint</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td><strong>Hash</strong></td>
+                                            <td>Length-prefixed</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td><strong>Size</strong></td>
+                                            <td>Varint</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td><strong>Signature</strong></td>
+                            <td>Length-prefixed</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
         </main>
     </body>
 </html>
