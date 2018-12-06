@@ -320,11 +320,6 @@ th, td {
     margin: 16px 0;
 }
 
-.msgfields table table thead tr {
-    background-color: #fff;
-    color: inherit;
-}
-
 aside.basealign {
     position: relative;
     top: 3px;
@@ -383,13 +378,8 @@ aside.basealign {
                         <div class="section">
                             <div><a class="s1" href="#exchanging-data">Exchanging data</a></div>
                             <div class="s2">
-                                <div><a href="#want-message">Want message</a></div>
-                                <div><a href="#unwant-message">Unwant message</a></div>
-                                <div><a href="#have-message">Have message</a></div>
-                                <div><a href="#unhave-message">Unhave message</a></div>
-                                <div><a href="#request-message">Request message</a></div>
-                                <div><a href="#cancel-message">Cancel message</a></div>
-                                <div><a href="#data-message">Data message</a></div>
+                                <div><a href="#want-and-have">Want and have</a></div>
+                                <div><a href="#want-and-have">Have bitfield</a></div>
                             </div>
                         </div>
                     </div>
@@ -722,8 +712,14 @@ aside.basealign {
                 <p>In this example one peer is a downloader and the other is an uploader. In other cases both peers will be uploading and downloading at the same time as they each have some of the chunks but not all of them.</p>
                 <p>Each request message can only request a single chunk per message. Downloaders may want to queue up several request messages at a time. When the uploader finishes sending a chunk this lets them immediately start sending the next one without waiting for a round-trip.</p>
             </aside>
-
-            <h2 id="want-message">Want message</h2>
+            
+            <h2 id="want-and-have">Want and have</h2>
+            <p>Each peer remembers which chunks the other peer wants and has.</p>
+            <ul>
+                <li><strong>Wanting</strong> a chunk means “I want to download this chunk, please tell me if you have it”.</li>
+                <li><strong>Having</strong> a chunk means “I know you want this chunk and I will send it if you ask for it”. If a peer tells you they are only interested in a small range of chunks then you only have to tell them about chunks within that range.</li>
+            </ul>
+            <p>As peers download (or even delete) data, the list of chunks they want and have will change. This state is communicated with four message types: <em>want</em>, <em>unwant</em>, <em>have</em> and <em>unhave</em>. Each of these four messages has the same structure which indicates a contiguous range of chunks:</p>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -739,107 +735,21 @@ aside.basealign {
                             <td>1</td>
                             <td><strong>Start</strong></td>
                             <td>Varint</td>
-                            <td>Number of the first chunk you want. Chunk numbering starts at 0.</td>
+                            <td>Number of the first chunk you want/unwant/have/unhave. Chunk numbering starts at 0.</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td><strong>Length</strong></td>
                             <td>Varint</td>
-                            <td>How many chunks after the <em>start</em> field you want. Omit this field to say you want all following chunks to the end of the Dat.</td>
+                            <td>1 = just the <em>start</em> chunk, 2 = the <em>start</em> chunk and the next one, and so on. Omit this field to select all following chunks to the end of the Dat, including new chunks as they are added.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+            <p>Here is an example showing typical use of <em>have</em> and <em>want</em> messages between two peers:</p>
+            <img class="pagewidth" src="png/want_have.png" width="1072" height="2070"/>
 
-            <h2 id="unwant-message">Unwant message</h2>
-            <div class="pagewidth msgfields">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><strong>Start</strong></td>
-                            <td>Varint</td>
-                            <td>Number of the first chunk you don’t want anymore.</td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><strong>Length</strong></td>
-                            <td>Varint</td>
-                            <td>How many chunks after the <em>start</em> field you don’t want. Omit this field to say you don’t want any of the following chunks to the end of the Dat.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h2 id="have-message">Have message</h2>
-            <div class="pagewidth msgfields">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><strong>Start</strong></td>
-                            <td>Varint</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><strong>Length</strong></td>
-                            <td>Varint</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>3</td>
-                            <td><strong>Bitfield</strong></td>
-                            <td>Length-prefixed</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <h2 id="unhave-message">Unhave message</h2>
-            <div class="pagewidth msgfields">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>No.</th>
-                            <th>Name</th>
-                            <th>Type</th>
-                            <th>Description</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td><strong>Start</strong></td>
-                            <td>Varint</td>
-                            <td></td>
-                        </tr>
-                        <tr>
-                            <td>2</td>
-                            <td><strong>Length</strong></td>
-                            <td>Varint</td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <h2 id="have-bitfield">Have bitfield</h2>
 
             <h2 id="request-message">Request message</h2>
             <div class="pagewidth msgfields">
