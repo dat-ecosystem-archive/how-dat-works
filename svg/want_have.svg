@@ -3558,7 +3558,7 @@
          y="-1074.828"
          x="400"
          sodipodi:role="line"
-         id="tspan7546">Because they are not a contiguous range, three <tspan
+         id="tspan7546">Because the chunks do not form a contiguous range, three <tspan
    style="font-style:italic"
    id="tspan1475">want</tspan> messages are sent.</tspan></text>
     <text
@@ -3645,7 +3645,7 @@
          y="314.29547"
          style="font-weight:normal;text-align:start;text-anchor:start">Peer B sees the <tspan
    style="font-style:italic"
-   id="tspan7371">have</tspan> messages and requests Peer A send them.</tspan><tspan
+   id="tspan7371">have</tspan> messages and requests the remaining chunks from Peer A.</tspan><tspan
          sodipodi:role="line"
          x="220"
          y="330.29547"
