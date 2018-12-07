@@ -379,7 +379,7 @@ aside.basealign {
                             <div><a class="s1" href="#exchanging-data">Exchanging data</a></div>
                             <div class="s2">
                                 <div><a href="#want-and-have">Want and have</a></div>
-                                <div><a href="#want-and-have">Have bitfield</a></div>
+                                <div><a href="#have-bitfield">Have bitfield</a></div>
                             </div>
                         </div>
                     </div>
@@ -391,7 +391,8 @@ aside.basealign {
                         <li>Hyperswarm mDNS discovery</li>
                         <li>Hyperswarm DHT discovery and hole-punch</li>
                         <li>Better explain privacy limitations</li>
-                    </li>
+                        <li>Want and have simultaneously</li>
+                    </ul>
                 </div>
             </div>
 
@@ -604,7 +605,7 @@ aside.basealign {
             </ul>
             <aside class="basealign">
                 <p>If you are familiar with the <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a> data serialization format you might recognize that this message structure adheres to it. Dat only uses a small subset of the features available with Protocol Buffers, however if you are writing an implementation you may be interested in the <a href="https://github.com/mafintosh/hypercore-protocol/blob/master/schema.proto">.proto file</a> that describes the wire protocol.</p>
-                <p>Over time new fields could be added to messages in the wire protocol. Field tags enable this to happen in a backwards-compatable way. If your implementation sees a field number that it doesn’t know about it can use the field type to find out how long the unknown field is and skip over it.</p>
+                <p>Over time new fields could be added to messages in the wire protocol. Field tags enable this to happen in a backwards-compatible way. If your implementation sees a field number that it doesn’t know about it can use the field type to find out how long the unknown field is and skip over it.</p>
             </aside>
 
             <h2 id="feed-message">Feed message</h2>
@@ -646,7 +647,7 @@ aside.basealign {
                 <p>Each side of the TCP connection is encrypted starting from the second message and continuing until the end of the connection. This prevents network eavesdroppers from finding out what data a Dat contains unless they already know its public key.</p>
                 <p><strong>XSalsa20</strong> is the encryption cipher used. Given a 32-byte key and a 24-byte nonce, XSalsa20 produces a never-ending stream of pseudorandom bytes called the keystream.</p>
             </div>
-            <aside class="basealign">The encryption scheme is not authenticated, meaning a man-in-the-middle can flip bits to disrupt the connection. This is mitigated because the integrity of data in a Dat is verified using a separate mechanism. If there is an attacker who is in a position to modify bytes on the network they have lots of other options for disrupting connections, for example by simply dropping packets.</aside>
+            <aside class="basealign">The encryption scheme is not authenticated, meaning a man-in-the-middle can flip bits to disrupt the connection. This is mitigated because data integrity in a Dat is verified using a separate mechanism. If there is an attacker who is in a position to modify bits on the network they have lots of other options for disrupting connections, for example by simply dropping packets.</aside>
             <img class="pagewidth" src="png/encryption.png" width="1072" height="250"/>
             <p>The <strong>sender</strong> generates a random 24-byte value for the nonce and includes it in their first message (which is always a <em>feed</em> message). The Dat’s 32-byte public key is used as the XSalsa20 key. From the second message onwards all bytes they send are XORed with the keystream.</p>
             <img class="pagewidth" src="png/encryption_send.png" width="1072" height="410"/>
@@ -747,9 +748,48 @@ aside.basealign {
                 </table>
             </div>
             <p>Here is an example showing typical use of <em>have</em> and <em>want</em> messages between two peers:</p>
-            <img class="pagewidth" src="png/want_have.png" width="1072" height="2070"/>
+            <img class="pagewidth" src="png/want_have.png" width="1072" height="2080"/>
 
             <h2 id="have-bitfield">Have bitfield</h2>
+            <p>If you have lots of little, non-contiguous ranges of data it can take a lot of <em>have</em> messages to tell your peer exactly what you have. There is an alternate form of the <em>have</em> message for this purpose. It is efficient at representing both contiguous and non-contiguous ranges of data.</p>
+            <p>This form of the <em>have</em> message only has one field:</p>
+            <div class="pagewidth msgfields">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Bitfield</strong></td>
+                            <td>Length-prefixed</td>
+                            <td>A sequence of contiguous and non-contiguous chunk ranges.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>For example, let’s look at the chunks this peer has. Normally this would take 11 messages to represent:</p>
+            <img class="pagewidth" src="png/run_length_encoding_bitfield.png" width="1072" height="60"/>
+            <p>Instead, divide the chunks into ranges where each range is either contiguous (all chunks present or none present), or non-contiguous (some chunks present). The ranges must be multiples of 8 chunks long.</p>
+            <aside>In this case the ranges alternate between contiguous and non-contiguous, but this does not always happen. It is possible for contiguous ranges to be next to each other if one has all chunks present and the other has no chunks present.</aside>
+            <img class="pagewidth" src="png/run_length_encoding_bitfield_segment.png" width="1072" height="110"/>
+            <p>Ranges are encoded as:</p>
+            <ul>
+                <li><strong>Contiguous.</strong> A single varint that contains sub-fields saying how many 8-chunk spans there are and whether all the chunks are present or absent.</li>
+                <img src="png/run_length_encoding_contiguous_range.png" width="260" height="260"/>
+                <li><strong>Non-contiguous.</strong> A varint saying how many 8-chunk spans the following bitfield represents (which is also its length in bytes), followed by the bitfield.</li>
+                <img src="png/run_length_encoding_non_contiguous_range.png" width="445" height="220"/>
+            </ul>
+            <aside style="position: relative; top: 446px;">The first byte in the bitfield represents the first 8-chunk span. The most significant bit of each byte represents the first chunk of each 8-chunk span.</aside>
+            <p>Putting everything together, here are the bits used to encode the chunks this peer has:</p>
+            <img class="pagewidth" src="png/run_length_encoding_bitfield_bits.png" width="1072" height="595"/>
+            <p>And here is how the final <em>have</em> message would appear on the wire:</p>
+            <img class="pagewidth" src="png/have_message_bytes.png" width="1072" height="195"/>
 
             <h2 id="request-message">Request message</h2>
             <div class="pagewidth msgfields">
