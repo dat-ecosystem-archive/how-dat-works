@@ -392,6 +392,8 @@ aside.basealign {
                         <li>Hyperswarm DHT discovery and hole-punch</li>
                         <li>Better explain privacy limitations</li>
                         <li>Want and have simultaneously</li>
+                        <li>Keepalive</li>
+                        <li>Race conditions</li>
                     </ul>
                 </div>
             </div>
@@ -705,6 +707,16 @@ aside.basealign {
             <p>After completing the handshake peers begin requesting data from each other. Dats contain a list of variable-sized chunks of bytes. New chunks can be added to the end by the Dat’s author, but existing chunks can’t be deleted or modified.</p>
             <aside>Boundaries between chunks are preserved. This can be useful for dividing up the Dat into a series of messages, for example one message per chunk.</aside>
             <img src="png/chunk_structure.png" width="704" height="65"/>
+            <p>Hashes are used to verify the integrity of data within a Dat. Each chunk of data has a corresponding hash. There are also hashes of pairs of other hashes which form a tree:</p>
+            <img src="png/chunk_structure_hashes.png" width="704" height="195"/>
+            <aside>
+                <p>Hashes of chunks are even-numbered. Hashes of other hashes are odd-numbered.</p>
+                <p>Hash trees allow downloaders to download and verify a specific chunk without needing to also download hashes of every other chunk.</p>
+                </aside>
+            <p>Each time the author adds new chunks they sign the root hash at the top of the tree with the Dat’s secret key. Downloaders can use the Dat’s public key to verify the signature and therefore also the integrity of all the hashes and chunks below.</p>
+            <img src="png/chunk_structure_signature.png" width="704" height="230"/>
+            <p>Depending on the number of chunks there can be more than one root hash, in which case the signature will cover all of them. Here is how the hash tree looks with different numbers of chunks:</p>
+            <img class="pagewidth" src="png/hash_tree.png" width="1072" height="2825"/>
             
             <h1 id="exchanging-data">Exchanging data</h1>
             <p>Peers exchange chunks in multi-step process where the downloader and uploader negotiate what chunks they want and have:</p>
@@ -807,25 +819,25 @@ aside.basealign {
                             <td>1</td>
                             <td><strong>Index</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>Number of the chunk or hash to send back. This field must be present even when using the <em>bytes</em> field below.</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td><strong>Bytes</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>If this field is present, ignore the <em>index</em> field and send back the chunk containing this byte. Useful if you don’t know how big each chunk is but you want to seek to a specific byte.</td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td><strong>Hash</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>0 = this request is for data contained in a chunk (<em>index</em> is the chunk number). 1 = this request is for a hash in the hash tree (<em>index</em> is the hash number).</td>
                         </tr>
                         <tr>
                             <td>4</td>
                             <td><strong>Nodes</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>Used to request additional hashes needed to verify the integrity of this chunk. 0 = send back all hashes needed to verify this chunk, 1 = just send the data, no hashes. See below for how to use this field to request specific hashes from the hash tree.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -847,19 +859,19 @@ aside.basealign {
                             <td>1</td>
                             <td><strong>Index</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>Number of the chunk or hash to cancel. This field must be present even when using the <em>bytes</em> field below.</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td><strong>Bytes</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>If this field is present, ignore the <em>index</em> field and cancel the request for the chunk containing this byte.</td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td><strong>Hash</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>0 = cancel the request for chunk data. 1 = cancel the request for a hash.</td>
                         </tr>
                     </tbody>
                 </table>
