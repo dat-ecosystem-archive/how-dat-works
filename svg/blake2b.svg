@@ -24,7 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -207,7 +207,7 @@
          sodipodi:role="line"
          id="tspan1130"
          x="250"
-         y="-123.25"></tspan></text>
+         y="-123.25" /></text>
     <rect
        y="270"
        x="520"
@@ -291,7 +291,7 @@
          sodipodi:role="line"
          x="674"
          y="319"
-         id="tspan2693">checksum</tspan></text>
+         id="tspan2693">hash</tspan></text>
     <path
        style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#93a0b6;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke"
        d="m 655.49999,270 -4.49999,-10 h 8.99998 z"

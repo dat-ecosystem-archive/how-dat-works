@@ -374,7 +374,13 @@ aside.basealign {
                         </div>
                     </div>
                     <div class="col">
-                        <div><a class="s1" href="#data-model">Data model</a></div>
+                        <div class="section">
+                            <div><a class="s1" href="#data-model">Data model</a></div>
+                            <div class="s2">
+                                <div><a href="#hashes">Hashes</a></div>
+                                <div><a href="#signatures">Signatures</a></div>
+                            </div>
+                        </div>
                         <div class="section">
                             <div><a class="s1" href="#exchanging-data">Exchanging data</a></div>
                             <div class="s2">
@@ -387,13 +393,11 @@ aside.basealign {
                 <div class="todo">
                     <h2>To do’s and known errors</h2>
                     <ul>
-                        <li>BitTorrent DHT discovery</li>
-                        <li>Hyperswarm mDNS discovery</li>
-                        <li>Hyperswarm DHT discovery and hole-punch</li>
                         <li>Better explain privacy limitations</li>
                         <li>Want and have simultaneously</li>
                         <li>Keepalive</li>
                         <li>Race conditions</li>
+                        <li>Files and folders</li>
                     </ul>
                 </div>
             </div>
@@ -717,6 +721,22 @@ aside.basealign {
             <img src="png/chunk_structure_signature.png" width="704" height="230"/>
             <p>Depending on the number of chunks there can be more than one root hash, in which case the signature will cover all of them. Here is how the hash tree looks with different numbers of chunks:</p>
             <img class="pagewidth" src="png/hash_tree.png" width="1072" height="2825"/>
+
+            <h2 id="hashes">Hashes</h2>
+            <figure class="pagewidth">
+                <figcaption>Chunk hashes</figcaption>
+                <img src="png/hash_chunk.png" width="1072" height="370"/>
+            </figure>
+            <figure class="pagewidth">
+                <figcaption>Parent hashes</figcaption>
+                <img src="png/hash_parent.png" width="1072" height="370"/>
+            </figure>
+            <figure class="pagewidth">
+                <figcaption>Root hash</figcaption>
+                <img src="png/hash_root.png" width="1072" height="550"/>
+            </figure>
+
+            <h2 id="signatures">Signatures</h2>
             
             <h1 id="exchanging-data">Exchanging data</h1>
             <p>Peers exchange chunks in multi-step process where the downloader and uploader negotiate what chunks they want and have:</p>
