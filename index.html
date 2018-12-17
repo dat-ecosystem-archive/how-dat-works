@@ -387,6 +387,11 @@ aside.basealign {
                                 <div><a href="#have-bitfield">Have bitfield</a></div>
                             </div>
                         </div>
+                        <div class="section">
+                            <div><a class="s1" href="#files-and-folders">Files and folders</a></div>
+                            <div class="s2">
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="todo">
@@ -396,7 +401,6 @@ aside.basealign {
                         <li>Want and have simultaneously</li>
                         <li>Keepalive</li>
                         <li>Race conditions</li>
-                        <li>Files and folders</li>
                     </ul>
                 </div>
             </div>
@@ -820,7 +824,7 @@ aside.basealign {
             <p>And here is how the final <em>have</em> message would appear on the wire:</p>
             <img class="pagewidth" src="png/have_message_bytes.png" width="1072" height="195"/>
 
-            <h2 id="request-message">Request message</h2>
+            <h2>Request message</h2>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -860,7 +864,7 @@ aside.basealign {
                 </table>
             </div>
 
-            <h2 id="cancel-message">Cancel message</h2>
+            <h2>Cancel message</h2>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -894,7 +898,7 @@ aside.basealign {
                 </table>
             </div>
 
-            <h2 id="data-message">Data message</h2>
+            <h2>Data message</h2>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -923,7 +927,6 @@ aside.basealign {
                             <td><strong>Nodes</strong></td>
                             <td>Length-prefixed</td>
                             <td>
-                            
                                 <table>
                                     <thead>
                                         <tr>
@@ -959,6 +962,137 @@ aside.basealign {
                         <tr>
                             <td>4</td>
                             <td><strong>Signature</strong></td>
+                            <td>Length-prefixed</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h1 id="files-and-folders">Files and folders</h1>
+
+            <h2>Index</h2>
+            <div class="pagewidth msgfields">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Type</strong></td>
+                            <td>Length-prefixed</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Content</strong></td>
+                            <td>Length-prefixed</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h2>Node</h2>
+            <div class="pagewidth msgfields">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>No.</th>
+                            <th>Name</th>
+                            <th>Type</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><strong>Name</strong></td>
+                            <td>Length-prefixed</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td><strong>Value</strong></td>
+                            <td>Length-prefixed</td>
+                            <td>
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>Name</th>
+                                            <th>Type</th>
+                                            <th>Description</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><strong>Mode</strong></td>
+                                            <td>Varint</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>2</td>
+                                            <td><strong>UID</strong></td>
+                                            <td>Varint</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>3</td>
+                                            <td><strong>GID</strong></td>
+                                            <td>Varint</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td><strong>Size</strong></td>
+                                            <td>Varint</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>5</td>
+                                            <td><strong>Blocks</strong></td>
+                                            <td>Varint</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>6</td>
+                                            <td><strong>Offset</strong></td>
+                                            <td>Varint</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>7</td>
+                                            <td><strong>Byte offset</strong></td>
+                                            <td>Varint</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>8</td>
+                                            <td><strong>Mtime</strong></td>
+                                            <td>Varint</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>9</td>
+                                            <td><strong>Ctime</strong></td>
+                                            <td>Varint</td>
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td><strong>Paths</strong></td>
                             <td>Length-prefixed</td>
                             <td></td>
                         </tr>
