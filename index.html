@@ -180,7 +180,7 @@ aside ul, aside ol {
     padding-left: 30px;
 }
 
-ul > img {
+ul > img, td > img {
     margin: 16px 0;
 }
 
@@ -618,8 +618,8 @@ aside.basealign {
             </aside>
 
             <h2 id="feed-message">Feed message</h2>
-            <p>After opening the TCP connection the first message is always a <em>feed</em> message.</p>
-            <p><em>Feed</em> messages have two fields:</p>
+            <p>After opening the TCP connection the first message is always a <strong>feed</strong> message.</p>
+            <p>Feed messages have two fields:</p>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -641,7 +641,7 @@ aside.basealign {
                             <td>2</td>
                             <td><strong>Nonce</strong></td>
                             <td>Length-prefixed</td>
-                            <td>24-byte random nonce generated for this TCP connection. Only present for the first <em>feed</em> message.</td>
+                            <td>24-byte random nonce generated for this TCP connection. Only present for the first feed message.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -658,13 +658,13 @@ aside.basealign {
             </div>
             <aside class="basealign">The encryption scheme is not authenticated, meaning a man-in-the-middle can flip bits to disrupt the connection. This is mitigated because data integrity in a Dat is verified using a separate mechanism. If there is an attacker who is in a position to modify bits on the network they have lots of other options for disrupting connections, for example by simply dropping packets.</aside>
             <img class="pagewidth" src="png/encryption.png" width="1072" height="250"/>
-            <p>The <strong>sender</strong> generates a random 24-byte value for the nonce and includes it in their first message (which is always a <em>feed</em> message). The Dat’s 32-byte public key is used as the XSalsa20 key. From the second message onwards all bytes they send are XORed with the keystream.</p>
+            <p>The <strong>sender</strong> generates a random 24-byte value for the nonce and includes it in their first message (which is always a feed message). The Dat’s 32-byte public key is used as the XSalsa20 key. From the second message onwards all bytes they send are XORed with the keystream.</p>
             <img class="pagewidth" src="png/encryption_send.png" width="1072" height="410"/>
             <p>The <strong>receiver</strong> reads the nonce from the sender’s first message and uses this with their knowledge of the Dat’s public key to set up an identical XSalsa20 keystream. Then they XOR the keystream with the bytes received to decrypt the stream.</p>
             <img class="pagewidth" src="png/encryption_receive.png" width="1072" height="460"/>
 
             <h2 id="handshake-message">Handshake message</h2>
-            <p>After the initial <em>feed</em> message, the second message sent on each side of the TCP connection is always a <em>handshake</em> message.</p>
+            <p>After the initial feed message, the second message sent on each side of the TCP connection is always a <strong>handshake</strong> message.</p>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -698,7 +698,7 @@ aside.basealign {
                             <td>4</td>
                             <td><strong>Extensions</strong></td>
                             <td>Length-prefixed</td>
-                            <td>Names of any extensions the peer wants to use, for example: “<em>session-data</em>”. This field can appear multiple times, one for each extension. Both peers need to request an extension in their handshake messages for it to become active.</td>
+                            <td>Names of any extensions the peer wants to use, for example: “session-data”. This field can appear multiple times, one for each extension. Both peers need to request an extension in their handshake messages for it to become active.</td>
                         </tr>
                         <tr>
                             <td>5</td>
@@ -753,7 +753,7 @@ aside.basealign {
                 <li><strong>Wanting</strong> a chunk means “I want to download this chunk, please tell me if you have it”.</li>
                 <li><strong>Having</strong> a chunk means “I know you want this chunk and I will send it if you ask for it”. If a peer tells you they are only interested in a small range of chunks then you only have to tell them about chunks within that range.</li>
             </ul>
-            <p>As peers download (or even delete) data, the list of chunks they want and have will change. This state is communicated with four message types: <em>want</em>, <em>unwant</em>, <em>have</em> and <em>unhave</em>. Each of these four messages has the same structure which indicates a contiguous range of chunks:</p>
+            <p>As peers download (or even delete) data, the list of chunks they want and have will change. This state is communicated with four message types: <strong>want</strong>, <strong>unwant</strong>, <strong>have</strong> and <strong>unhave</strong>. Each of these four messages has the same structure which indicates a contiguous range of chunks:</p>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -780,12 +780,12 @@ aside.basealign {
                     </tbody>
                 </table>
             </div>
-            <p>Here is an example showing typical use of <em>have</em> and <em>want</em> messages between two peers:</p>
+            <p>Here is an example showing typical use of have and want messages between two peers:</p>
             <img class="pagewidth" src="png/want_have.png" width="1072" height="2080"/>
 
             <h2 id="have-bitfield">Have bitfield</h2>
-            <p>If you have lots of little, non-contiguous ranges of data it can take a lot of <em>have</em> messages to tell your peer exactly what you have. There is an alternate form of the <em>have</em> message for this purpose. It is efficient at representing both contiguous and non-contiguous ranges of data.</p>
-            <p>This form of the <em>have</em> message only has one field:</p>
+            <p>If you have lots of little, non-contiguous ranges of data it can take a lot of have messages to tell your peer exactly what you have. There is an alternate form of the have message for this purpose. It is efficient at representing both contiguous and non-contiguous ranges of data.</p>
+            <p>This form of the have message only has one field:</p>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -821,7 +821,7 @@ aside.basealign {
             <aside style="position: relative; top: 446px;">The first byte in the bitfield represents the first 8-chunk span. The most significant bit of each byte represents the first chunk of each 8-chunk span.</aside>
             <p>Putting everything together, here are the bits used to encode the chunks this peer has:</p>
             <img class="pagewidth" src="png/run_length_encoding_bitfield_bits.png" width="1072" height="595"/>
-            <p>And here is how the final <em>have</em> message would appear on the wire:</p>
+            <p>And here is how the final have message would appear on the wire:</p>
             <img class="pagewidth" src="png/have_message_bytes.png" width="1072" height="195"/>
 
             <h2>Request message</h2>
@@ -970,9 +970,10 @@ aside.basealign {
             </div>
 
             <h1 id="files-and-folders">Files and folders</h1>
-            <img class="pagewidth" src="png/files_folders_feeds.png" width="1072" height="385"/>
-
-            <h2>Index</h2>
+            <p>Dat uses two coupled feeds to represent files and folders. The <strong>metadata</strong> feed contains the names, sizes and other metadata for each file, and its typically quite small even when the Dat contains a lot of data. The <strong>content</strong> feed contains the actual file contents. The metadata feed points to where in the content feed each file is located, so you only need to fetch the contents of files you are interested in.</p>
+            <aside>Folders aren’t created explicitly. Instead, files have slash-separated names and all but the last path segment represents the folders that file is inside. Dat can’t represent an empty folder or remember UIDs, permission modes or modification dates on folders.</aside>
+            <img class="pagewidth" src="png/files_folders_overview.png" width="1072" height="200"/>
+            <p>The first chunk of the metadata feed is always an <strong>index</strong> chunk. Check that the <em>type</em> field contains the word “hyperdrive”. If so, the <em>content</em> field is the public key of the content feed.</p>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -988,19 +989,18 @@ aside.basealign {
                             <td>1</td>
                             <td><strong>Type</strong></td>
                             <td>Length-prefixed</td>
-                            <td></td>
+                            <td>What sort of data is contained in this Dat. For Dats using the concept of files and folders this is “hyperdrive”.</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td><strong>Content</strong></td>
                             <td>Length-prefixed</td>
-                            <td></td>
+                            <td>32-byte public key of the content feed.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
-            <h2>Node</h2>
+            <p>After the index all following chunks in the metadata feed are <strong>nodes</strong>, which have these fields:</p>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -1016,13 +1016,14 @@ aside.basealign {
                             <td>1</td>
                             <td><strong>Name</strong></td>
                             <td>Length-prefixed</td>
-                            <td></td>
+                            <td>Slash-separated path and filename. Always begins with a slash. For example: “/src/main.c”</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td><strong>Value</strong></td>
                             <td>Length-prefixed</td>
                             <td>
+                                <p>If this field is present the file is being created or updated. These sub-fields give the details of the new or updated file:</p>
                                 <table>
                                     <thead>
                                         <tr>
@@ -1037,58 +1038,63 @@ aside.basealign {
                                             <td>1</td>
                                             <td><strong>Mode</strong></td>
                                             <td>Varint</td>
-                                            <td></td>
+                                            <td>
+                                                <p>Unix permissions. In practice one of these two common values depending on whether the file is executable or not:</p>
+                                                <img src="png/files_folders_mode_flags.png" width="390" height="90"/>
+                                                <p style="margin-bottom: 0">Security-sensitive bits such as setuid and setgid might also be set. When extracting files from a Dat to the filesystem you might consider not honoring these bits.</p>
+                                            </td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td><strong>UID</strong></td>
                                             <td>Varint</td>
-                                            <td></td>
+                                            <td>Unix user ID. Alternatively, set to 0 to not expose the user’s ID.</td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
                                             <td><strong>GID</strong></td>
                                             <td>Varint</td>
-                                            <td></td>
+                                            <td>Unix group ID. Alternatively, set to 0 to not expose the user’s group ID.</td>
                                         </tr>
                                         <tr>
                                             <td>4</td>
                                             <td><strong>Size</strong></td>
                                             <td>Varint</td>
-                                            <td></td>
+                                            <td>Size of the file in bytes.</td>
                                         </tr>
                                         <tr>
                                             <td>5</td>
                                             <td><strong>Blocks</strong></td>
                                             <td>Varint</td>
-                                            <td></td>
+                                            <td>Number of chunks the file occupies in the content feed.</td>
                                         </tr>
                                         <tr>
                                             <td>6</td>
                                             <td><strong>Offset</strong></td>
                                             <td>Varint</td>
-                                            <td></td>
+                                            <td>Chunk number of the first chunk in the content feed.</td>
                                         </tr>
                                         <tr>
                                             <td>7</td>
                                             <td><strong>Byte offset</strong></td>
                                             <td>Varint</td>
-                                            <td></td>
+                                            <td>Size in bytes of all chunks in the content feed before this file. 0 for the first file.</td>
                                         </tr>
                                         <tr>
                                             <td>8</td>
                                             <td><strong>Mtime</strong></td>
                                             <td>Varint</td>
-                                            <td></td>
+                                            <td>Time the file was last modified. Number of milliseconds since 1 January 1970 00:00:00 UTC.</td>
                                         </tr>
                                         <tr>
                                             <td>9</td>
                                             <td><strong>Ctime</strong></td>
                                             <td>Varint</td>
-                                            <td></td>
+                                            <td>Time the file was created. Number of milliseconds since 1 January 1970 00:00:00 UTC.</td>
                                         </tr>
                                     </tbody>
                                 </table>
+                                <p>If the <em>value</em> field is absent (and therefore none of the sub-fields above are set) the file previously existing with this <em>name</em> is now deleted.</p>
                             </td>
                         </tr>
                         <tr>
@@ -1100,6 +1106,9 @@ aside.basealign {
                     </tbody>
                 </table>
             </div>
+            <p>To find the latest version of a file, start from the end of the metadata feed and work backwards until you find a node with that file’s name. Even though files can be modified and deleted, they can still be retrieved by searching back in the metadata feed for earlier versions.</p>
+            <p>Here is an example showing how the <em>offset</em> and <em>blocks</em> fields refer to chunks in the content feed:</p>
+            <img class="pagewidth" src="png/files_folders_feeds.png" width="1072" height="385"/>
 
         </main>
     </body>
