@@ -714,16 +714,16 @@ aside.basealign {
             <p>After completing the handshake peers begin requesting data from each other. Dats contain a list of variable-sized chunks of bytes. New chunks can be added to the end by the Dat’s author, but existing chunks can’t be deleted or modified.</p>
             <aside>Boundaries between chunks are preserved. This can be useful for dividing up the Dat into a series of messages, for example one message per chunk.</aside>
             <img src="png/chunk_structure.png" width="704" height="65"/>
-            <p>Hashes are used to verify the integrity of data within a Dat. Each chunk of data has a corresponding hash. There are also hashes of pairs of other hashes which form a tree:</p>
+            <p>Hashes are used to verify the integrity of data within a Dat. Each chunk of data has a corresponding hash. There are also parent hashes which verify the integrity of two other hashes. Parent hashes form a tree structure. In this example the integrity of all the data can be verified if you know hash number 3:</p>
             <img src="png/chunk_structure_hashes.png" width="704" height="195"/>
             <aside>
-                <p>Hashes of chunks are even-numbered. Hashes of other hashes are odd-numbered.</p>
+                <p>Chunk hashes are even-numbered. Parent hashes are odd-numbered.</p>
                 <p>Hash trees allow downloaders to download and verify a specific chunk without needing to also download hashes of every other chunk.</p>
                 </aside>
-            <p>Each time the author adds new chunks they sign the root hash at the top of the tree with the Dat’s secret key. Downloaders can use the Dat’s public key to verify the signature and therefore also the integrity of all the hashes and chunks below.</p>
-            <img src="png/chunk_structure_signature.png" width="704" height="230"/>
-            <p>Depending on the number of chunks there can be more than one root hash, in which case the signature will cover all of them. Here is how the hash tree looks with different numbers of chunks:</p>
-            <img class="pagewidth" src="png/hash_tree.png" width="1072" height="2825"/>
+            <p>Each time the author adds new chunks they calculate a root hash and sign it with the Dat’s secret key. Downloaders can use the Dat’s public key to verify the signature, which in turn verifies the integrity of all the other hashes and chunks.</p>
+            <img src="png/chunk_structure_signature.png" width="704" height="300"/>
+            <p>Depending on the number of chunks, the root hash can have more than one input. The root hash combines as many parent hashes as necessary to cover all the other parent nodes and chunks. Here is how the hash tree looks with different numbers of chunks:</p>
+            <img class="pagewidth" src="png/hash_tree.png" width="1072" height="3295"/>
 
             <h2 id="hashes-and-signatures">Hashes and signatures</h2>
             <figure class="pagewidth">
