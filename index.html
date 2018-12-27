@@ -310,7 +310,7 @@ th, td {
     vertical-align: -2px;
 }
 
-.msgfields table { width: 100% }
+.msgfields table, .hashtypes table { width: 100% }
 .msgfields th:nth-child(1) { width: 30px }
 .msgfields th:nth-child(2) { width: 112px }
 .msgfields th:nth-child(3) { width: 120px }
@@ -319,6 +319,13 @@ th, td {
     font-size: 13px;
     margin: 16px 0;
 }
+
+.hashtypes table { background-color: inherit }
+.hashtypes tbody tr { border-bottom-color: #93a0b6 }
+.hashtypes th:nth-child(1) { width: 240px }
+.hashtypes td:nth-child(1) { background-color: #eee }
+.hashtypes h3 { margin: 8px 0 16px; height: 20px; }
+.hashtypes td:nth-child(2) img { margin-left: 10px }
 
 aside.basealign {
     position: relative;
@@ -722,22 +729,50 @@ aside.basealign {
                 </aside>
             <p>Each time the author adds new chunks they calculate a root hash and sign it with the Dat’s secret key. Downloaders can use the Dat’s public key to verify the signature, which in turn verifies the integrity of all the other hashes and chunks.</p>
             <img src="png/chunk_structure_signature.png" width="704" height="300"/>
-            <p>Depending on the number of chunks, the root hash can have more than one input. The root hash combines as many parent hashes as necessary to cover all the other parent nodes and chunks. Here is how the hash tree looks with different numbers of chunks:</p>
+            <p>Depending on the number of chunks, the root hash can have more than one input. The root hash combines as many parent or chunk hashes as necessary to cover all the chunks. Here is how the hash tree looks with different numbers of chunks:</p>
             <img class="pagewidth" src="png/hash_tree.png" width="1072" height="3295"/>
 
             <h2 id="hashes-and-signatures">Hashes and signatures</h2>
-            <figure class="pagewidth">
-                <figcaption>Chunk hashes</figcaption>
-                <img src="png/hash_chunk.png" width="1072" height="360"/>
-            </figure>
-            <figure class="pagewidth">
-                <figcaption>Parent hashes</figcaption>
-                <img src="png/hash_parent.png" width="1072" height="360"/>
-            </figure>
-            <figure class="pagewidth">
-                <figcaption>Root hash</figcaption>
-                <img src="png/hash_root.png" width="1072" height="600"/>
-            </figure>
+            <p>The three types of hash seen in the hash tree are:</p>
+            <ul>
+                <li><strong>Chunk hashes</strong>, which hash the contents of a single chunk.</li>
+                <li><strong>Parent hashes</strong>, which hash two other hashes forming a tree structure.</li>
+                <li><strong>Root hashes</strong>, which sit at the root of the tree and are signed by the Dat’s author.</li>
+            </ul>
+            <p>Each type of hash has a specific way to construct it:</p>
+            <div class="hashtypes pagewidth">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type of hash</th>
+                            <th>Steps to construct</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <h3>Chunk hash</h3>
+                                <img src="png/hash_overview_chunk.png" width="220" height="85"/>
+                            </td>
+                            <td><img src="png/hash_chunk.png" width="760" height="360" style="position: relative; top: 4px;"/></h2>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>Parent hash</h3>
+                                <img src="png/hash_overview_parent.png" width="220" height="90" style="position: relative; top: 10px;"/>
+                            </td>
+                            <td><img src="png/hash_parent.png" width="760" height="365"/></h2>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h3>Root hash</h3>
+                                <img src="png/hash_overview_root.png" width="220" height="210" style="position: relative; top: 21px;"/>
+                            </td>
+                            <td><img src="png/hash_root.png" width="760" height="820"/></h2>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
 
             <h1 id="exchanging-data">Exchanging data</h1>
             <p>Peers exchange chunks in multi-step process where the downloader and uploader negotiate what chunks they want and have:</p>

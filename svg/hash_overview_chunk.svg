@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="220"
+   height="85"
+   viewBox="0 0 220 85"
+   version="1.1"
+   id="svg2380"
+   inkscape:version="0.92.2 2405546, 2018-03-11"
+   sodipodi:docname="hash_overview_chunk.svg">
+  <metadata
+     id="metadata2382">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2376" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     borderlayer="true"
+     inkscape:pageopacity="0"
+     inkscape:showpageshadow="false"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2384" />
+  </sodipodi:namedview>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-415)">
+    <text
+       id="text21338"
+       y="440"
+       x="111"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:end;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:end;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+       xml:space="preserve"><tspan
+         id="tspan21336"
+         y="440"
+         x="111"
+         sodipodi:role="line">chunk</tspan></text>
+    <text
+       xml:space="preserve"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:end;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:end;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+       x="111"
+       y="485"
+       id="text6207"><tspan
+         sodipodi:role="line"
+         x="111"
+         y="485"
+         id="tspan6205">chunk hash</tspan></text>
+    <rect
+       y="415"
+       x="126"
+       height="39"
+       width="39"
+       id="rect7516-42"
+       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#293648;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:new" />
+    <text
+       id="text7520-96"
+       y="440"
+       x="146"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+       xml:space="preserve"><tspan
+         id="tspan7518-40"
+         y="440"
+         x="146"
+         sodipodi:role="line">0</tspan></text>
+    <rect
+       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#d2d8e1;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:new"
+       id="rect7566-0"
+       width="39"
+       height="39"
+       x="126"
+       y="460" />
+    <text
+       xml:space="preserve"
+       style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
+       x="146"
+       y="485"
+       id="text7590-5"><tspan
+         sodipodi:role="line"
+         x="146"
+         y="485"
+         id="tspan7588-5">0</tspan></text>
+  </g>
+</svg>
