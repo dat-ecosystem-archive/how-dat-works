@@ -164,8 +164,12 @@ h1, h2, h3, p, pre, ul, ol, main > div > table, .smallmargin, figcaption {
     margin: 0 0 16px;
 }
 
-figure, main > img, main > svg {
+figure, main img, main svg {
     margin: 20px 0 36px;
+}
+
+aside img {
+    margin: 8px 0;
 }
 
 figcaption {
@@ -203,7 +207,7 @@ h3 {
 }
 
 aside h1, aside h2, aside h3 {
-    font-size: 16px;
+    font-size: 13px;
     margin: 0 0 8px;
 }
 
@@ -450,11 +454,12 @@ aside.basealign {
             <p>However eavesdroppers can confirm that peers are talking about a specific Dat and read all communications between those peers if they know its public key already. Eavesdroppers who do not know the public key can still get an idea of how many Dats are popular on the network, their approximate sizes, which IP addresses are interested in them and potentially the IP address of the creator by observing handshakes, traffic timing and volumes. Dat makes no attempt to hide IP addresses.</p>
             <p>Calculate a Dat’s discovery key using the <strong>BLAKE2b</strong> hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
             <aside class="basealign">Dat uses the BLAKE2b variant that accepts both a key and input to be hashed, returning 256 bits (32 bytes) of output.</aside>
-            <img class="pagewidth" src="png/blake2b.png" width="1072" height="400"/>
-            <p>In you want to test this out yourself, here is the public key in hexadecimal:</p>
-            <pre><code>778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</code></pre>
-            <p>and here is the discovery key it hashes to in hexadecimal:</p>
-            <pre><code>25a78aa81615847eba00995df29dd41d7ee30f3b01f892209f79b75a57d989e1</code></pre>
+            <img src="png/blake2b.png" width="704" height="465"/>
+            <aside style="position: relative; top: 8px;">
+                <h3>Byte notation</h3>
+                <img src="png/notation_byte.png" width="336" height="40"/>
+                <p>Throughout this guide bytes are shown as a number inside a square. The number is always in decimal (base‑10) and can range from 0 to 255.</p>
+            </aside>
 
             <h2 id="local-network-discovery">Local network discovery</h2>
             <p>Peers broadcast which Dats they are interested in via their local network.</p>
@@ -479,12 +484,19 @@ aside.basealign {
                 <li>The <strong>token</strong> record is a random value that makes it easier for clients to avoid connecting to themselves. If a client sees a response with the same token as a response they just sent out, they will know it came from them and ignore it.</li>
                 <li>The <strong>peers</strong> record is a base64-encoded list of IP addresses and ports of peers interested in this Dat:</li>
             </ul>
-            <img src="png/mdns_peers_record.png" width="704" height="290"/>
+            <div>
+                <img src="png/mdns_peers_record.png" width="704" height="290"/>
+                <p>The special IP address 0.0.0.0 means “use the address this mDNS response came from”. When discovering peers on the local network all mDNS responses will contain only one peer and will use the 0.0.0.0 address.</p>
+            </div>
             <aside>
                 <p>Base64 encoding in Dat uses the variant with plus <code>+</code> and slash <code>/</code> characters. Padding equals <code>=</code> characters are required.</p>
                 <p>Only IPv4 addresses are supported by this discovery mechanism.</p>    
+                <h3>Multi-byte numbers</h3>
+                <p>Port numbers go from 0 to 65,535 which is larger than can fit inside a single byte, so in this case two bytes are used.</p>
+                <p>The first byte is how many 256’s there are and the second byte is how many ones there are:</p>
+                <img src="png/notation_multi_byte_number.png" width="336" height="60"/>
+                <p>In the Dat protocol multi-byte numbers are big-endian meaning the most significant byte comes first.</p>
             </aside>
-            <p>The special IP address 0.0.0.0 means “use the address this mDNS response came from”. When discovering peers on the local network all mDNS responses will contain only one peer and will use the 0.0.0.0 address.</p>
 
             <h2 id="centralized-dns-discovery">Centralized DNS discovery</h2>
             <p>Peers ask a server on the internet for other peers using a DNS-based protocol.</p>
@@ -599,6 +611,13 @@ aside.basealign {
                 </ul>
                 <li><strong>Body.</strong> Contents of the message.</li>
             </ul>
+            <aside style="position: relative; top: 53px;">
+                <h3>Bit notation</h3>
+                <p>In several parts of the Dat protocol multiple fields are packed into a single number. It helps to look at the number as a sequence of bits because this makes the fields visible.</p>
+                <img src="png/notation_bits.png" width="336" height="110"/>
+                <p>Throughout this guide bit sequences are shown as 1’s and 0’s in a box, grouped into fields. The most significant bit is always on the left.</p>
+                <p>Eight bits make up a byte, however this number and many others are varints which can be up to 64 bits long. The fields on the right are always a fixed number of bits but the leftmost field can take up as many of the remaining 64 bits as it needs.</p>
+            </aside>
 
             <h2 id="varints">Varints</h2>
             <p>The first two fields are encoded as variable-length integers and therefore do not have a fixed size. You must read each field starting from the beginning to determine how long the field is and where the next field starts.</p>
