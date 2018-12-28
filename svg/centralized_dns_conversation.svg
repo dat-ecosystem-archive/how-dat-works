@@ -156,7 +156,7 @@
          sodipodi:role="line"
          x="35"
          y="-145"
-         id="tspan7842">peers=WM6rYgzSNkaHAQzSrBMAAgzSrGhpmwzSNBsz0wzS</tspan></text>
+         id="tspan7842">peers=nk1O8QzS4zNgIgzSFthrCAzSbmw05AzSISSh/AzS</tspan></text>
     <text
        xml:space="preserve"
        style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:9px;line-height:1;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
@@ -385,11 +385,11 @@
          sodipodi:role="line"
          x="605"
          y="-180"
-         id="tspan6626">server repeats itself (or responds with a different set of peers)</tspan><tspan
+         id="tspan6630">server responds with more peers and also</tspan><tspan
          sodipodi:role="line"
          x="605"
          y="-164"
-         id="tspan6630">but also stores the new peer into the its for this Dat</tspan></text>
+         id="tspan21388">stores the new peer into the list for this Dat</tspan></text>
     <text
        xml:space="preserve"
        style="color:#000000;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro Bold';text-indent:0;text-align:end;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:end;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
@@ -411,7 +411,7 @@
          id="tspan7550"
          y="135"
          x="560.22925"
-         sodipodi:role="line">Time passes, peer leaves the swarm and no longer wants new peers</tspan></text>
+         sodipodi:role="line">Time passes, the original requester decides to leave the swarm and asks the server to stop sending peers</tspan></text>
     <text
        id="text7622"
        y="440"
@@ -421,11 +421,11 @@
          id="tspan7620"
          y="440"
          x="605"
-         sodipodi:role="line">server repeats itself again and</tspan><tspan
+         sodipodi:role="line">server responds with new peers and</tspan><tspan
          y="456"
          x="605"
          sodipodi:role="line"
-         id="tspan7628">removes this peer from its list</tspan></text>
+         id="tspan7628">also removes the requester from its list</tspan></text>
     <rect
        style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#007fff;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke"
        id="rect7676"
@@ -471,7 +471,7 @@
          id="tspan2441"
          y="-490"
          x="35"
-         sodipodi:role="line">peers=WM6rYgzSNkaHAQzSrBMAAgzSrGhpmwzSNBsz0wzS</tspan></text>
+         sodipodi:role="line">peers=t0b7pwzSaeDTCAzS0y2b3wzSLcb0XQzSPjszYQzS</tspan></text>
     <rect
        style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#006cda;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:new"
        id="rect7666-7"
@@ -779,7 +779,7 @@
          id="tspan7994"
          sodipodi:role="line"
          x="395"
-         y="-323">notify of new peers immediately by pushing a SRV record</tspan></text>
+         y="-323">notify me of new peers immediately by pushing a SRV record</tspan></text>
     <text
        id="text8000"
        y="-293"
