@@ -37,7 +37,7 @@
      inkscape:pageopacity="0"
      inkscape:showpageshadow="false"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g20012"
      showgrid="true"
      height="210px">
     <inkscape:grid
@@ -55,13 +55,13 @@
        transform="translate(100,-655)">
       <path
          style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#93a0b6;stroke-width:0.99999982;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:accumulate"
-         d="m 60,1029 v 67"
+         d="m 60.5,1029 v 67"
          id="path13586"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cc" />
       <path
          style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#93a0b6;stroke-width:0.99999982;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke;enable-background:accumulate"
-         d="m 20,1072.906 40,23.094 40,-23.094 v -88.906"
+         d="m 20.5,1072.906 40,23.094 40,-23.094 v -88.906"
          id="path6535-34-4"
          inkscape:connector-curvature="0"
          sodipodi:nodetypes="cccc" />
