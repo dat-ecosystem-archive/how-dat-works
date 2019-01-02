@@ -400,6 +400,7 @@ aside.basealign {
                         <div class="section">
                             <div><a class="s1" href="#files-and-folders">Files and folders</a></div>
                             <div class="s2">
+                                <div><a href="#paths-index">Paths index</a></div>
                             </div>
                         </div>
                     </div>
@@ -1155,7 +1156,7 @@ aside.basealign {
                             <td>3</td>
                             <td><strong>Paths</strong></td>
                             <td>Length-prefixed</td>
-                            <td></td>
+                            <td>Index that helps to traverse folders more efficiently. <a href="#paths-index">See below</a>.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1163,6 +1164,25 @@ aside.basealign {
             <p>To find the latest version of a file, start from the end of the metadata feed and work backwards until you find a node with that file’s name. Even though files can be modified and deleted, they can still be retrieved by searching back in the metadata feed for earlier versions.</p>
             <p>Here is an example showing how the <em>offset</em> and <em>blocks</em> fields refer to chunks in the content feed:</p>
             <img class="pagewidth" src="png/files_folders_feeds.png" width="1072" height="385"/>
+
+            <h2 id="paths-index">Paths index</h2>
+            <p>Scanning through the list of all files added, modified or deleted would be slow for Dats that contain lots of files or a long history. To make this faster, every node in the metadata feed contains extra information in the <strong>paths</strong> field to help traverse folders.</p>
+            <img class="pagewidth" src="png/paths_index_storage.png" width="1072" height="210"/>
+            <p>To calculate a <em>paths</em> field, start by constructing a file hierarchy from the metadata feed:</p>
+            <img src="png/paths_index_tree.png" width="704" height="340"/>
+            <aside style="position: relative; top: 46px;">
+                <p>The first node is called node 0, which is stored in chunk 1 of the metadata feed.</p>
+                <p>Node number = chunk number - 1</p>
+            </aside>
+            <p>For each file in the hierarchy, find the most recent entry for it in the metadata feed and remember the node number. For each folder, remember the highest node number among its children:</p>
+            <img src="png/paths_index_versions.png" width="704" height="340"/>
+            <p>Locate the file that was just added. Select that file and all its parent folders up to the root folder. Also select files and folders within those folders, but not their descendants. Ignore everything else.</p>
+            <img src="png/paths_index_select.png" width="704" height="340"/>
+            <aside style="position: relative; top: 46px;">In this example we are calculating the <em>paths</em> field for <strong>node 8</strong>, however the same calculation will have already been done for all the previous nodes as they were added.</aside>
+
+            <p>Next, follow these steps to process the node numbers into bytes:</p>
+            <img class="pagewidth" src="png/paths_index_encode.png" width="1072" height="260"/>
+            <p>So node 8 would appear in the metadata feed as:</p>
 
         </main>
     </body>
