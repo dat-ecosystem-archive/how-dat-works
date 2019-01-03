@@ -331,20 +331,21 @@ th, td {
 .hashtypes h3 { margin: 8px 0 16px; height: 20px; }
 .hashtypes td:nth-child(2) img { margin-left: 10px }
 
-aside.basealign, aside.impl {
+aside.basealign, .impl {
     position: relative;
     top: 4px;
 }
 
-aside.impl {
+.impl {
     display: grid;
     align-self: start;
     grid-template-columns: 28px 1fr;
     grid-column-gap: 12px;
     align-items: first baseline;
+    margin-bottom: 16px;
 }
 
-aside.impl .icon {
+.impl .icon {
     grid-column: 1;
     width: 20px;
     height: 16px;
@@ -352,26 +353,26 @@ aside.impl .icon {
     justify-self: end;
 }
 
-aside.impl h3 {
+.impl h3 {
     grid-column: 2;
     color: #2aca4b;
 }
 
-aside.impl .lang {
+.impl .lang {
     grid-column: 1;
     font-weight: bold;
     text-align: right;
 }
 
-aside.impl .src {
+.impl .src {
     grid-column: 2;
 }
 
-aside.impl .src a {
+.impl .src a {
     color: inherit;
 }
 
-aside.impl .src a:hover, aside.impl .src a:focus {
+.impl .src a:hover, .impl .src a:focus {
     color: #25b443ff;
 }
 
@@ -495,14 +496,16 @@ aside.impl .src a:hover, aside.impl .src a:focus {
             <p>Dat clients use several different methods for discovering peers who they can download data from. Each discovery method has strengths and weaknesses, but combined they form a reasonably robust way of finding peers.</p>
 
             <h2 id="discovery-keys">Discovery keys</h2>
-            <p>Discovery keys are used for finding other peers who are interested in the same Dat as you.</p>
+            <div>
+                <p>Discovery keys are used for finding other peers who are interested in the same Dat as you.</p>
+                <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dat URLs, and therefore being able to read their contents, by observing network traffic.</p>
+            </div>
             <aside class="impl">
                 <img class="icon" src="png/spanner_icon.png"/>
                 <h3>Implementations</h3>
                 <div class="lang">JS</div>
                 <div class="src"><a href="https://github.com/mafintosh/hypercore-crypto/blob/ffc8f339bac0060e1eadd273ba8bcbfab33d27c8/index.js#L84-L88">hypercore-crypto</a></div>
             </aside>
-            <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dat URLs, and therefore being able to read their contents, by observing network traffic.</p>
             <p>However eavesdroppers can confirm that peers are talking about a specific Dat and read all communications between those peers if they know its public key already. Eavesdroppers who do not know the public key can still get an idea of how many Dats are popular on the network, their approximate sizes, which IP addresses are interested in them and potentially the IP address of the creator by observing handshakes, traffic timing and volumes. Dat makes no attempt to hide IP addresses.</p>
             <p>Calculate a Dat’s discovery key using the <strong>BLAKE2b</strong> hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
             <aside class="basealign">Dat uses the BLAKE2b variant that accepts both a key and input to be hashed, returning 256 bits (32 bytes) of output.</aside>
@@ -514,12 +517,20 @@ aside.impl .src a:hover, aside.impl .src a:focus {
             </aside>
 
             <h2 id="local-network-discovery">Local network discovery</h2>
-            <p>Peers broadcast which Dats they are interested in via their local network.</p>
-            <ul>
-                <li><strong>Strengths.</strong> Fast, finds physically nearby peers, doesn’t need special infrastructure, works offline.</li>
-                <li><strong>Weaknesses.</strong> Limited reach.</li>
-                <li><strong>Deployment status.</strong> Currently in use, will be replaced by <a href="https://pfrazee.hashbase.io/blog/hyperswarm">Hyperswarm</a> in the future.</li>
-            </ul>
+            <div>
+                <p>Peers broadcast which Dats they are interested in via their local network.</p>
+                <ul>
+                    <li><strong>Strengths.</strong> Fast, finds physically nearby peers, doesn’t need special infrastructure, works offline.</li>
+                    <li><strong>Weaknesses.</strong> Limited reach.</li>
+                    <li><strong>Deployment status.</strong> Currently in use, will be replaced by <a href="https://pfrazee.hashbase.io/blog/hyperswarm">Hyperswarm</a> in the future.</li>
+                </ul>
+            </div>
+            <aside class="impl">
+                <img class="icon" src="png/spanner_icon.png"/>
+                <h3>Implementations</h3>
+                <div class="lang">JS</div>
+                <div class="src"><a href="https://github.com/mafintosh/dns-discovery/blob/4710835fcf83b3e8ab00ae311dcffc63fab5faf1/index.js">dns-discovery</a></div>
+            </aside>
             <p>Local network discovery uses multicast DNS, which is like a regular DNS query except instead of sending queries to a nameserver they are broadcast to the local network with the hope that someone else on the network sees it and responds.</p>
             <figure class="pagewidth">
                 <figcaption>Client asking for peers</figcaption>
@@ -536,6 +547,12 @@ aside.impl .src a:hover, aside.impl .src a:focus {
                 <li>The <strong>token</strong> record is a random value that makes it easier for clients to avoid connecting to themselves. If a client sees a response with the same token as a response they just sent out, they will know it came from them and ignore it.</li>
                 <li>The <strong>peers</strong> record is a base64-encoded list of IP addresses and ports of peers interested in this Dat:</li>
             </ul>
+            <aside class="impl">
+                <img class="icon" src="png/spanner_icon.png"/>
+                <h3>Implementations</h3>
+                <div class="lang">JS</div>
+                <div class="src"><a href="https://github.com/mafintosh/dns-discovery/blob/4710835fcf83b3e8ab00ae311dcffc63fab5faf1/index.js#L690-L707">dns-discovery</a></div>
+            </aside>
             <div>
                 <img src="png/mdns_peers_record.png" width="704" height="290"/>
                 <p>The special IP address 0.0.0.0 means “use the address this mDNS response came from”. When discovering peers on the local network all mDNS responses will contain only one peer and will use the 0.0.0.0 address.</p>
@@ -579,8 +596,13 @@ aside.impl .src a:hover, aside.impl .src a:focus {
             </figure>
 
             <h1 id="wire-protocol">Wire protocol</h1>
-
             <p>Once a peer has discovered another peer’s IP address and port number it will open a TCP connection to the other peer. Each half of the conversation has this structure which repeats until the end of the connection:</p>
+            <aside class="impl">
+                <img class="icon" src="png/spanner_icon.png"/>
+                <h3>Implementations</h3>
+                <div class="lang">JS</div>
+                <div class="src"><a href="https://github.com/mafintosh/hypercore-protocol/blob/3af49e5657612877467dd79822445b811a0a1496/index.js#L321-L345">hypercore-protocol</a></div>
+            </aside>
             <img class="pagewidth" src="png/wire_protocol_structure.png" width="1072" height="110"/>
             <ul>
                 <li><strong>Length.</strong> Number of bytes until the start of the next length field.</li>
@@ -672,9 +694,22 @@ aside.impl .src a:hover, aside.impl .src a:focus {
             </aside>
 
             <h2 id="varints">Varints</h2>
-            <p>The first two fields are encoded as variable-length integers and therefore do not have a fixed size. You must read each field starting from the beginning to determine how long the field is and where the next field starts.</p>
-            <p>The advantage of varints is that they only require a few bytes to represent small numbers, while still being able to represent large numbers by using more bytes. The disadvantage of varints is that they take more work to encode and decode compared to regular integers.</p>
-            <aside class="basealign">In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</aside>
+            <div>
+                <p>The first two fields are encoded as variable-length integers and therefore do not have a fixed size. You must read each field starting from the beginning to determine how long the field is and where the next field starts.</p>
+                <p>The advantage of varints is that they only require a few bytes to represent small numbers, while still being able to represent large numbers by using more bytes. The disadvantage of varints is that they take more work to encode and decode compared to regular integers.</p>
+            </div>
+            <aside>
+                <div class="impl">
+                    <img class="icon" src="png/spanner_icon.png"/>
+                    <h3>Implementations</h3>
+                    <div class="lang">JS</div>
+                    <div class="src"><a href="https://github.com/chrisdickinson/varint/blob/5759d8a705b3f2aacbe6e752efad1032af58d309/encode.js">varint/encode.js</a></div>
+                    <div class="src"><a href="https://github.com/chrisdickinson/varint/blob/5759d8a705b3f2aacbe6e752efad1032af58d309/decode.js">varint/decode.js</a></div>
+                    <div class="lang">Rust</div>
+                    <div class="src"><a href="https://github.com/datrs/varinteger/blob/eed3415360f7fac7f72cd64c15cb960ce2d70718/src/lib.rs">varinteger</a></div>
+                </div>
+                <p>In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</p>
+            </aside>
             <p>Here’s how to decode a varint:</p>
             <img class="pagewidth" src="png/varint.png" width="1072" height="610"/>
 
@@ -693,6 +728,12 @@ aside.impl .src a:hover, aside.impl .src a:focus {
             <aside class="basealign">
                 <p>If you are familiar with the <a href="https://developers.google.com/protocol-buffers/">Protocol Buffers</a> data serialization format you might recognize that this message structure adheres to it. Dat only uses a small subset of the features available with Protocol Buffers, however if you are writing an implementation you may be interested in the <a href="https://github.com/mafintosh/hypercore-protocol/blob/master/schema.proto">.proto file</a> that describes the wire protocol.</p>
                 <p>Over time new fields could be added to messages in the wire protocol. Field tags enable this to happen in a backwards-compatible way. If your implementation sees a field number that it doesn’t know about it can use the field type to find out how long the unknown field is and skip over it.</p>
+                <div class="impl">
+                    <img class="icon" src="png/spanner_icon.png"/>
+                    <h3>Implementations</h3>
+                    <div class="lang">JS</div>
+                    <div class="src"><a href="https://github.com/mafintosh/protocol-buffers-encodings/blob/2e80c8ffd03cbfb0db7c00acaf1492139553f305/index.js">protocol-buffers-encodings</a></div>
+                </div>
             </aside>
 
             <h2 id="feed-message">Feed message</h2>
@@ -737,6 +778,12 @@ aside.impl .src a:hover, aside.impl .src a:focus {
             <aside class="basealign">The encryption scheme is not authenticated, meaning a man-in-the-middle can flip bits to disrupt the connection. This is mitigated because data integrity in a Dat is verified using a separate mechanism. If there is an attacker who is in a position to modify bits on the network they have lots of other options for disrupting connections, for example by simply dropping packets.</aside>
             <img class="pagewidth" src="png/encryption.png" width="1072" height="250"/>
             <p>The <strong>sender</strong> generates a random 24-byte value for the nonce and includes it in their first message (which is always a feed message). The Dat’s 32-byte public key is used as the XSalsa20 key. From the second message onwards all bytes they send are XORed with the keystream.</p>
+            <aside class="impl">
+                <img class="icon" src="png/spanner_icon.png"/>
+                <h3>Implementations</h3>
+                <div class="lang">JS</div>
+                <div class="src"><a href="https://github.com/mafintosh/hypercore-protocol/blob/7c79430ac108c758b50586fdda42bf8bfe533406/index.js#L139-L145">hypercore-protocol</a></div>
+            </aside>
             <img class="pagewidth" src="png/encryption_send.png" width="1072" height="410"/>
             <p>The <strong>receiver</strong> reads the nonce from the sender’s first message and uses this with their knowledge of the Dat’s public key to set up an identical XSalsa20 keystream. Then they XOR the keystream with the bytes received to decrypt the stream.</p>
             <img class="pagewidth" src="png/encryption_receive.png" width="1072" height="460"/>
@@ -804,12 +851,22 @@ aside.impl .src a:hover, aside.impl .src a:focus {
             <img class="pagewidth" src="png/hash_tree.png" width="1072" height="3295"/>
 
             <h2 id="hashes-and-signatures">Hashes and signatures</h2>
-            <p>The three types of hash seen in the hash tree are:</p>
-            <ul>
-                <li><strong>Chunk hashes</strong>, which hash the contents of a single chunk.</li>
-                <li><strong>Parent hashes</strong>, which hash two other hashes forming a tree structure.</li>
-                <li><strong>Root hashes</strong>, which sit at the root of the tree and are signed by the Dat’s author.</li>
-            </ul>
+            <div>
+                <p>The three types of hash seen in the hash tree are:</p>
+                <ul>
+                    <li><strong>Chunk hashes</strong>, which hash the contents of a single chunk.</li>
+                    <li><strong>Parent hashes</strong>, which hash two other hashes forming a tree structure.</li>
+                    <li><strong>Root hashes</strong>, which sit at the root of the tree and are signed by the Dat’s author.</li>
+                </ul>
+            </div>
+            <aside class="impl">
+                <img class="icon" src="png/spanner_icon.png"/>
+                <h3>Implementations</h3>
+                <div class="lang">JS</div>
+                <div class="src"><a href="https://github.com/mafintosh/hypercore-crypto/blob/ffc8f339bac0060e1eadd273ba8bcbfab33d27c8/index.js#L35-L76">hypercore-crypto</a></div>
+                <div class="lang">Rust</div>
+                <div class="src"><a href="https://github.com/datrs/hypercore/blob/79fd7a8141096606b4124c7d59dede2a4021b3fb/src/crypto/hash.rs#L25-L87">datrs/hypercore/hash.rs</a></div>
+            </aside>
             <p>Each type of hash has a specific way to construct it:</p>
             <div class="hashtypes pagewidth">
                 <table>
@@ -890,8 +947,18 @@ aside.impl .src a:hover, aside.impl .src a:focus {
             <img class="pagewidth" src="png/want_have.png" width="1072" height="2080"/>
 
             <h2 id="have-bitfield">Have bitfield</h2>
-            <p>If you have lots of little, non-contiguous ranges of data it can take a lot of have messages to tell your peer exactly what you have. There is an alternate form of the have message for this purpose. It is efficient at representing both contiguous and non-contiguous ranges of data.</p>
-            <p>This form of the have message only has one field:</p>
+            <div>
+                <p>If you have lots of little, non-contiguous ranges of data it can take a lot of have messages to tell your peer exactly what you have. There is an alternate form of the have message for this purpose. It is efficient at representing both contiguous and non-contiguous ranges of data.</p>
+                <p>This form of the have message only has one field:</p>
+            </div>
+            <aside class="impl">
+                <img class="icon" src="png/spanner_icon.png"/>
+                <h3>Implementations</h3>
+                <div class="lang">JS</div>
+                <div class="src"><a href="https://github.com/mafintosh/bitfield-rle/blob/31a000123bc7ead667585831bc8dd21e614fe03f/index.js">bitfield-rle</a></div>
+                <div class="lang">Rust</div>
+                <div class="src"><a href="https://github.com/datrs/bitfield-rle/blob/b7e7261bc27842fc82cfa8c3a3b1d29ad89f62eb/src/lib.rs#L64-L98">bitfield-rle</a></div>
+            </aside>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -1218,6 +1285,12 @@ aside.impl .src a:hover, aside.impl .src a:focus {
 
             <h2 id="paths-index">Paths index</h2>
             <p>Scanning through the list of all files added, modified or deleted would be slow for Dats that contain lots of files or a long history. To make this faster, every node in the metadata feed contains extra information in the <strong>paths</strong> field to help traverse folders.</p>
+            <aside class="impl">
+                <img class="icon" src="png/spanner_icon.png"/>
+                <h3>Implementations</h3>
+                <div class="lang">JS</div>
+                <div class="src"><a href="https://github.com/mafintosh/append-tree/blob/39b803c2a740d89d7b5f567d6ac50f6bfa0a4c4f/index.js">append-tree</a></div>
+            </aside>
             <img class="pagewidth" src="png/paths_index_storage.png" width="1072" height="210"/>
             <p>To calculate a <em>paths</em> field, start by constructing a file hierarchy from the metadata feed:</p>
             <img src="png/paths_index_tree.png" width="704" height="340"/>
