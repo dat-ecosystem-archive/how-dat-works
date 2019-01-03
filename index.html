@@ -331,9 +331,48 @@ th, td {
 .hashtypes h3 { margin: 8px 0 16px; height: 20px; }
 .hashtypes td:nth-child(2) img { margin-left: 10px }
 
-aside.basealign {
+aside.basealign, aside.impl {
     position: relative;
-    top: 3px;
+    top: 4px;
+}
+
+aside.impl {
+    display: grid;
+    align-self: start;
+    grid-template-columns: 28px 1fr;
+    grid-column-gap: 12px;
+    align-items: first baseline;
+}
+
+aside.impl .icon {
+    grid-column: 1;
+    width: 20px;
+    height: 16px;
+    margin: 0;
+    justify-self: end;
+}
+
+aside.impl h3 {
+    grid-column: 2;
+    color: #2aca4b;
+}
+
+aside.impl .lang {
+    grid-column: 1;
+    font-weight: bold;
+    text-align: right;
+}
+
+aside.impl .src {
+    grid-column: 2;
+}
+
+aside.impl .src a {
+    color: inherit;
+}
+
+aside.impl .src a:hover, aside.impl .src a:focus {
+    color: #25b443ff;
 }
 
         </style>
@@ -445,12 +484,24 @@ aside.basealign {
                 <li><strong>Public key.</strong> An ed25519 public key unique to this Dat, used by the author to create and update data within it. The public key enables you to discover other peers who have the data and is also verify that the data was not corrupted or tampered with as it passed through the network.</li>
                 <li><strong>Suffix.</strong> Identifies specific data within this Dat. For most Dats which contain a directory of files the suffix is a slash-separated file path. Dats can also contain data in structures that don’t use the concept of files or directories, in which case the suffix would use some other format as understood by the applications that handle that sort of data.</li>
             </ul>
+            <aside class="impl">
+                <img class="icon" src="png/spanner_icon.png"/>
+                <h3>Implementations</h3>
+                <div class="lang">JS</div>
+                <div class="src"><a href="https://github.com/pfrazee/parse-dat-url/blob/faca2c9d129fce87f3c9460579cadbc1aa2f1599/index.js">parse-dat-url</a></div>
+            </aside>
 
             <h1 id="discovery">Discovery</h1>
             <p>Dat clients use several different methods for discovering peers who they can download data from. Each discovery method has strengths and weaknesses, but combined they form a reasonably robust way of finding peers.</p>
 
             <h2 id="discovery-keys">Discovery keys</h2>
             <p>Discovery keys are used for finding other peers who are interested in the same Dat as you.</p>
+            <aside class="impl">
+                <img class="icon" src="png/spanner_icon.png"/>
+                <h3>Implementations</h3>
+                <div class="lang">JS</div>
+                <div class="src"><a href="https://github.com/mafintosh/hypercore-crypto/blob/ffc8f339bac0060e1eadd273ba8bcbfab33d27c8/index.js#L84-L88">hypercore-crypto</a></div>
+            </aside>
             <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dat URLs, and therefore being able to read their contents, by observing network traffic.</p>
             <p>However eavesdroppers can confirm that peers are talking about a specific Dat and read all communications between those peers if they know its public key already. Eavesdroppers who do not know the public key can still get an idea of how many Dats are popular on the network, their approximate sizes, which IP addresses are interested in them and potentially the IP address of the creator by observing handshakes, traffic timing and volumes. Dat makes no attempt to hide IP addresses.</p>
             <p>Calculate a Dat’s discovery key using the <strong>BLAKE2b</strong> hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
