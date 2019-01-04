@@ -1303,11 +1303,12 @@ aside.basealign, .impl {
             <p>Locate the file that was just added. Select that file and all its parent folders up to the root folder. Also select files and folders within those folders, but not their descendants. Ignore everything else.</p>
             <img src="png/paths_index_select.png" width="704" height="340"/>
             <aside style="position: relative; top: 46px;">In this example we are calculating the <em>paths</em> field for <strong>node 8</strong>, however the same calculation will have already been done for all the previous nodes as they were added.</aside>
-
             <p>Next, follow these steps to process the node numbers into bytes:</p>
             <img class="pagewidth" src="png/paths_index_encode.png" width="1072" height="260"/>
             <p>So node 8 would appear in the metadata feed as:</p>
             <img src="png/paths_index_result.png" width="704" height="165"/>
+            <p>The process for calculating the <em>paths</em> field after deleting a file is mostly the same as when adding a file:</p>
+            <img class="pagewidth" src="png/paths_index_delete.png" width="1072" height="850"/>
 
         </main>
     </body>

@@ -1550,13 +1550,13 @@
          sodipodi:role="line"
          x="0"
          y="285"
-         id="tspan6202"
-         style="font-weight:normal;text-align:start;text-anchor:start">Extract node numbers</tspan><tspan
+         style="font-weight:normal;text-align:start;text-anchor:start"
+         id="tspan13029">Read node</tspan><tspan
          sodipodi:role="line"
          x="0"
          y="301"
          style="font-weight:normal;text-align:start;text-anchor:start"
-         id="tspan13029">from tree</tspan></text>
+         id="tspan10559">numbers off tree</tspan></text>
     <text
        id="text13035"
        y="285"
@@ -1731,7 +1731,7 @@
          id="tspan11109"
          sodipodi:role="line"
          x="885"
-         y="290">= deleted last from each group</tspan></text>
+         y="290">= deleted last numbers</tspan></text>
     <rect
        style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:#293648;fill-opacity:1;stroke:none;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke"
        id="rect14286"
