@@ -244,19 +244,17 @@ th, td {
 .title {
     font-size: 55px;
     font-weight: normal;
-    margin: 20px 0 10px;
+    margin: 10px 0 40px;
     grid-column: page;
 }
 
 .wip {
-    grid-column: page;
-    margin: 0 0 60px;
-}
-
-.wip span {
+    font-size: 16px;
+    font-weight: bold;
+    vertical-align: 8px;
     color: #fff;
     background-color: #2aca4b;
-    font-weight: bold;
+    margin: 0 16px;
     padding: 4px 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -266,12 +264,12 @@ th, td {
 .toc {
     grid-column: text;
     display: grid;
-    grid-template-columns: repeat(8, 60px);
+    grid-template-columns: repeat(12, 60px);
     grid-column-gap: 32px;
 }
 
 .toc .col {
-    grid-column: span 4;
+    grid-column: span 3;
 }
 
 .toc .section, .toc .col > .s1 {
@@ -288,30 +286,6 @@ th, td {
 
 .toc a {
     color: inherit;
-}
-
-.todo {
-    grid-column: gutter;
-    align-self: start;
-    color: #fff;
-    background-color: #2aca4b;
-    padding: 10px 12px;
-}
-
-.todo h2 {
-    margin: 0 0 4px;
-    font-size: 16px;
-}
-
-.todo ul {
-    padding-left: 16px;
-    margin-bottom: 0;
-    list-style: square;
-}
-
-.todo input {
-    margin-right: 8px;
-    vertical-align: -2px;
 }
 
 .msgfields table, .hashtypes table { width: 100% }
@@ -398,8 +372,7 @@ aside.basealign, .impl {
         </header>
         <main>
             <div class="front-matter">
-                <h1 class="title">How Dat Works</h1>
-                <div class="wip"><span>Work in progress</span></div>
+                <h1 class="title">How Dat Works <span class="wip">Work in progress</span></h1>
                 <div class="toc">
                     <div class="col">
                         <div><a class="s1" href="#introduction">Introduction</a></div>
@@ -412,6 +385,8 @@ aside.basealign, .impl {
                                 <div><a href="#centralized-dns-discovery">Centralized DNS discovery</a></div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col">
                         <div class="section">
                             <div><a class="s1" href="#wire-protocol">Wire protocol</a></div>
                             <div class="s2">
@@ -437,6 +412,8 @@ aside.basealign, .impl {
                                 <div><a href="#have-bitfield">Have bitfield</a></div>
                             </div>
                         </div>
+                    </div>
+                    <div class="col">
                         <div class="section">
                             <div><a class="s1" href="#files-and-folders">Files and folders</a></div>
                             <div class="s2">
@@ -444,16 +421,6 @@ aside.basealign, .impl {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="todo">
-                    <h2>To do’s and known errors</h2>
-                    <ul>
-                        <li>Better explain privacy limitations</li>
-                        <li>Want and have simultaneously</li>
-                        <li>Keepalive</li>
-                        <li>Race conditions</li>
-                        <li>Versioned URLs</li>
-                    </ul>
                 </div>
             </div>
 
