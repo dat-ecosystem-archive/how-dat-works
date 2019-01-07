@@ -193,7 +193,7 @@ h1, h2, h3 {
 }
 
 h1 {
-    font-size: 40px;
+    font-size: 32px;
     margin: 45px 0 16px;
 }
 
@@ -204,6 +204,20 @@ h2 {
 
 h3 {
     font-size: 16px;
+}
+
+h1.section {
+    grid-column: screen-start/page-end;   
+    padding: 34px 32px 14px;
+    margin: 60px 0 32px;
+    height: 52px;
+    background: top left / 1104px 100px no-repeat url(png/front_matter_bg.png) #293648;
+}
+
+h1.section span {
+    background: #fff;
+    padding: 4px 18px;
+    border-bottom: 6px solid #2aca4b;
 }
 
 aside h1, aside h2, aside h3 {
@@ -236,9 +250,9 @@ th, td {
 
 .front-matter {
     grid-column: screen;
-    background-color: #eee;
     padding: 50px 0;
     margin: 0 0 60px;
+    background: top left / 1136px 375px no-repeat url(png/front_matter_bg.png), #eee;
 }
 
 .title {
@@ -438,7 +452,7 @@ aside.basealign, .impl {
                 </ul>
             </aside>
 
-            <h1 id="urls">URLs</h1>
+            <h1 id="urls" class="section" style="background-image: url(png/header_1.png)"><span>URLs</span></h1>
             <p>To fetch a file in Dat you need to know its URL. Here is an example:</p>
             <svg class="smallmargin pagewidth" width="1052" height="64" style="background-color: #eee; padding: 10px">
                 <text class="code" x="0" y="18"><tspan>dat://</tspan><tspan fill="#007fff">778f8d955175c92e4ced5e4f5563f69bfec0c86cc6f670352c457943666fe639</tspan><tspan>/dat_intro.gif</tspan></text>
@@ -459,7 +473,7 @@ aside.basealign, .impl {
                 <div class="src"><a href="https://github.com/pfrazee/parse-dat-url/blob/faca2c9d129fce87f3c9460579cadbc1aa2f1599/index.js">parse-dat-url</a></div>
             </aside>
 
-            <h1 id="discovery">Discovery</h1>
+            <h1 id="discovery" class="section" style="background-image: url(png/header_2.png)"><span>Discovery</span></h1>
             <p>Dat clients use several different methods for discovering peers who they can download data from. Each discovery method has strengths and weaknesses, but combined they form a reasonably robust way of finding peers.</p>
 
             <h2 id="discovery-keys">Discovery keys</h2>
@@ -562,7 +576,7 @@ aside.basealign, .impl {
                 <img src="png/centralized_dns_srv.png" width="1072" height="620"/>
             </figure>
 
-            <h1 id="wire-protocol">Wire protocol</h1>
+            <h1 id="wire-protocol" class="section" style="background-image: url(png/header_3.png)"><span>Wire protocol</span></h1>
             <p>Once a peer has discovered another peer’s IP address and port number it will open a TCP connection to the other peer. Each half of the conversation has this structure which repeats until the end of the connection:</p>
             <aside class="impl">
                 <img class="icon" src="png/spanner_icon.png"/>
@@ -802,7 +816,7 @@ aside.basealign, .impl {
                 </table>
             </div>
 
-            <h1 id="data-model">Data model</h1>
+            <h1 id="data-model" class="section" style="background-image: url(png/header_4.png)"><span>Data model</span></h1>
             <p>After completing the handshake peers begin requesting data from each other. Dats contain a list of variable-sized chunks of bytes. New chunks can be added to the end by the Dat’s author, but existing chunks can’t be deleted or modified.</p>
             <aside>Boundaries between chunks are preserved. This can be useful for dividing up the Dat into a series of messages, for example one message per chunk.</aside>
             <img src="png/chunk_structure.png" width="704" height="65"/>
@@ -869,7 +883,7 @@ aside.basealign, .impl {
                 </table>
             </div>
 
-            <h1 id="exchanging-data">Exchanging data</h1>
+            <h1 id="exchanging-data" class="section" style="background-image: url(png/header_5.png)"><span>Exchanging data</span></h1>
             <p>Peers exchange chunks in multi-step process where the downloader and uploader negotiate what chunks they want and have:</p>
             <img src="png/chunk_conversation.png" width="704" height="730"/>
             <aside>
@@ -1109,7 +1123,7 @@ aside.basealign, .impl {
                 </table>
             </div>
 
-            <h1 id="files-and-folders">Files and folders</h1>
+            <h1 id="files-and-folders" class="section" style="background-image: url(png/header_6.png)"><span>Files and folders</span></h1>
             <p>Dat uses two coupled feeds to represent files and folders. The <strong>metadata</strong> feed contains the names, sizes and other metadata for each file, and its typically quite small even when the Dat contains a lot of data. The <strong>content</strong> feed contains the actual file contents. The metadata feed points to where in the content feed each file is located, so you only need to fetch the contents of files you are interested in.</p>
             <aside>Folders aren’t created explicitly. Instead, files have slash-separated names and all but the last path segment represents the folders that file is inside. Dat can’t represent an empty folder or remember UIDs, permission modes or modification dates on folders.</aside>
             <img class="pagewidth" src="png/files_folders_overview.png" width="1072" height="200"/>
