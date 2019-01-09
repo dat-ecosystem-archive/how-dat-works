@@ -833,10 +833,10 @@ aside.basealign, .impl {
             <img class="pagewidth" src="png/varint.png" width="1072" height="610"/>
 
             <h2 id="keepalive">Keepalive</h2>
-            <p>Keepalive messages are empty messages containing no channel number, type or body. They are discarded upon being received. Sending keepalives is necessary when there is a network middlebox that kills TCP connections which haven’t sent any data in a while. In these cases each peer periodically sends keepalive messages to each other when no other data is being sent.</p>
+            <p>Keepalive messages are empty messages containing no channel number, type or body. They are discarded upon being received. Sending keepalives is necessary when there is a network middlebox that kills TCP connections which haven’t sent any data in a while. In these cases each peer periodically sends keepalive messages when no other data is being sent.</p>
             <aside>How frequently to send keepalive messages is essentially a guess based on what types of middleboxes are commonly used on the internet today. Other TCP-based protocols typically send keepalives every 30 to 120 seconds.</aside>
             <p>Here’s an example of several keepalive messages interleaved with messages containing actual data. Each keepalive message is a single byte of zero:</p>
-            <img class="pagewidth" src="png/wire_protocol_keepalive.png" width="1072" height="115"/>
+            <img class="pagewidth" src="png/wire_protocol_keepalive.png" width="1072" height="140"/>
 
             <h2 id="message-structure">Message structure</h2>
             <p>Within each message body is a series of field tags and values:</p>
