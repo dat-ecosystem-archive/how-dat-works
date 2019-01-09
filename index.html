@@ -382,7 +382,7 @@ hr {
 .hashtypes th:nth-child(1) { width: 240px }
 .hashtypes td:nth-child(1) { background-color: #eee }
 .hashtypes h3 { margin: 8px 0 16px; height: 20px; }
-.hashtypes td:nth-child(2) img { margin-left: 10px }
+.hashtypes td:nth-child(2) { padding-left: 20px }
 
 aside.basealign, .impl {
     position: relative;
@@ -1007,21 +1007,25 @@ aside.basealign, .impl {
                                 <h3>Chunk hash</h3>
                                 <img src="png/hash_overview_chunk.png" width="220" height="85"/>
                             </td>
-                            <td><img src="png/hash_chunk.png" width="760" height="360" style="position: relative; top: 4px;"/></h2>
+                            <td><img src="png/hash_chunk.png" width="760" height="360" style="position: relative; top: 4px;"/></td>
                         </tr>
                         <tr>
                             <td>
                                 <h3>Parent hash</h3>
                                 <img src="png/hash_overview_parent.png" width="220" height="90" style="position: relative; top: 10px;"/>
                             </td>
-                            <td><img src="png/hash_parent.png" width="760" height="365"/></h2>
+                            <td><img src="png/hash_parent.png" width="760" height="365"/></td>
                         </tr>
                         <tr>
                             <td>
                                 <h3>Root hash</h3>
                                 <img src="png/hash_overview_root.png" width="220" height="210" style="position: relative; top: 21px;"/>
                             </td>
-                            <td><img src="png/hash_root.png" width="760" height="820"/></h2>
+                            <td>
+                                <img src="png/hash_root.png" width="760" height="820" style="margin-bottom: 32px"/>
+                                <p style="margin-bottom: 24px">Only the author of the Dat knows its secret key and can sign the root hash as shown above. All the other readers only know its public key, which they can use to verify the signature:</p>
+                                <img src="png/hash_root_verify.png" width="760" height="340"/>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
