@@ -251,7 +251,7 @@ th, td {
 .front-matter {
     grid-column: screen;
     padding: 50px 0;
-    margin: 0 0 60px;
+    margin: 0;
     background: top left / 1136px 375px no-repeat url(png/front_matter_bg.png), #eee;
 }
 
@@ -300,6 +300,14 @@ th, td {
 
 #toc a {
     color: inherit;
+}
+
+#relversion {
+    margin: 4px 0 20px;
+    font-size: 13px;
+    color: #5f728c;
+    justify-self: end;
+    grid-column: page;
 }
 
 #visualindexheader {
@@ -492,6 +500,7 @@ aside.basealign, .impl {
                     </div>
                 </div>
             </div>
+            <div id="relversion">Prerelease • January 2019</div>
 
             <h2 id="visualindexheader">Visual index</h2>
             <div id="visualindex">
