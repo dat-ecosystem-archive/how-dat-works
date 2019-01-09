@@ -1,12 +1,12 @@
 # How Dat Works
 
-![Overview screenshot of documentation](png/screenshot.png)
-
 [**Read online**](https://vtduncan.github.io/how-dat-works/)
+
+![Overview screenshot of documentation](png/screenshot.png)
 
 A walk through the bits and bytes of Dat’s network protocol. Lots of pictures, just enough words.
 
-Still heavily work-in-progress. Lots being written, changed, moved around. Not yet cohesive.
+**Work-in-progress.** Preparing for v1 release on 22 Jan 2019.
 
 ## Public Domain
 

@@ -326,6 +326,29 @@ th, td {
     margin: 0;
 }
 
+.feedback {
+    font-size: 13px;
+    background: top left / 100px 220px no-repeat url(png/feedback_side_1.png) #007fff;
+    margin: 24px 0 0;
+}
+
+.feedback > div {
+    background-color: #eee;
+    padding: 20px 24px;
+    margin-left: 75px;
+}
+
+.feedback h2 {
+    font-size: 16px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin: 0 0 16px;
+}
+
+.feedback p:last-child {
+    margin-bottom: 0;
+}
+
 hr {
     grid-column: screen-start/text-end;
     border: none;
@@ -413,7 +436,7 @@ aside.basealign, .impl {
             </div>
             <nav>
                 <a href="https://github.com/vtduncan/how-dat-works"><span>Repo</span></a>
-                <a href="mailto:duncan@fastmail.com"><span>Feedback</span></a>
+                <a href="https://goo.gl/forms/R22N7C3e0trxNn9h1"><span>Feedback</span></a>
             </nav>
         </header>
         <main>
@@ -532,10 +555,12 @@ aside.basealign, .impl {
             </div>
             <hr/>
 
-            <p id="introduction"><strong>Dat is a protocol for sharing data between computers</strong>. Dat’s strengths are that data is hosted and distributed by many computers on the network, that it can work offline or with poor connectivity, that the original uploader can add or modify data while keeping a full history and that it can efficiently handle large amounts of data.</p>
-            <p>Dat is compelling because the people working on it have a dedication to user experience and ease-of-use. The software around Dat brings publishing within reach for people with a wide range of skills, not just technical. Although first designed with scientific data in mind, the Dat community is testing the waters and has begun to use it for websites, art, music releases, peer-to-peer chat programs and many other small experiments.</p>
-            <p>This guide is an in-depth tour through the bits and bytes of the Dat protocol, starting from a blank slate and ending with being able to download and share files with other peers running Dat. There will be enough detail for readers who are considering writing their own implementation of Dat, but if you are just curious how it works or want to learn from Dat’s design then I hope you will find this guide useful too!</p>
-            <aside class="basealign">
+            <p id="introduction"><strong>Dat is a protocol for sharing data between computers.</strong> Dat’s strengths are that data is hosted and distributed by many computers on the network, that it can work offline or with poor connectivity, that the original uploader can add or modify data while keeping a full history and that it can efficiently handle large amounts of data.</p>
+            <div>
+                <p>Dat is compelling because the people working on it have a dedication to user experience and ease-of-use. The software around Dat brings publishing within reach for people with a wide range of skills, not just technical. Although first designed with scientific data in mind, the Dat community is testing the waters and has begun to use it for websites, art, music releases, peer-to-peer chat programs and many other small experiments.</p>
+                <p>This guide is an in-depth tour through the bits and bytes of the Dat protocol, starting from a blank slate and ending with being able to download and share files with other peers running Dat. There will be enough detail for readers who are considering writing their own implementation of Dat, but if you are just curious how it works or want to learn from Dat’s design then I hope you will find this guide useful too!</p>
+            </div>
+            <aside class="basealign" style="align-self: end">
                 <h2>More documentation about Dat</h2>
                 <ul>
                     <li><a href="https://datprotocol.github.io/book/">Dat Protocol Book</a></li>
@@ -545,6 +570,13 @@ aside.basealign, .impl {
                     <li><a href="https://beakerbrowser.com/docs/">Beaker browser documentation</a></li>
                 </ul>
             </aside>
+            <div class="feedback">
+                <div>
+                    <h2>Feedback</h2>
+                    <p>This guide will be published soon! There are probably lots of little improvements that will be obvious to you as you read through it but weren’t obvious to me as I wrote it. Please <strong><a href="https://goo.gl/forms/R22N7C3e0trxNn9h1">send feedback</a></strong> about what you liked, found confusing or would change.</p>
+                    <p><strong>New Zealanders:</strong> Would you be willing to read through this guide together, in person, with me the author? <a href="https://goo.gl/forms/VT1UcGgMPTziILxH2">More info.</a></p>
+                </div>
+            </div>
 
             <h1 id="urls" class="section" style="background-image: url(png/header_1.png)"><span>URLs</span></h1>
             <p>To fetch a file in Dat you need to know its URL. Here is an example:</p>
