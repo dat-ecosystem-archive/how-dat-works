@@ -51,7 +51,7 @@ body {
     margin: 0;
 }
 
-header, main, .front-matter {
+header, main, #frontmatter {
     display: grid;
     grid-template-columns:
         [screen-start] 0px
@@ -248,11 +248,13 @@ th, td {
     vertical-align: top;
 }
 
-.front-matter {
+#frontmatter {
     grid-column: screen;
-    padding: 50px 0;
+    padding: 40px 0;
     margin: 0;
     background: top left / 1136px 375px no-repeat url(png/front_matter_bg.png), #eee;
+    box-sizing: border-box;
+    height: 375px;
 }
 
 .title {
@@ -448,7 +450,7 @@ aside.basealign, .impl {
             </nav>
         </header>
         <main>
-            <div class="front-matter">
+            <div id="frontmatter">
                 <h1 class="title">How Dat Works <span class="wip">Work in progress</span></h1>
                 <div id="toc">
                     <div class="col">
@@ -468,6 +470,7 @@ aside.basealign, .impl {
                             <div><a class="s1" href="#wire-protocol">Wire protocol</a></div>
                             <div class="s2">
                                 <div><a href="#varints">Varints</a></div>
+                                <div><a href="#keepalive">Keepalive</a></div>
                                 <div><a href="#message-structure">Message structure</a></div>
                                 <div><a href="#feed-message">Feed message</a></div>
                                 <div><a href="#encryption">Encryption</a></div>
@@ -828,6 +831,12 @@ aside.basealign, .impl {
             </aside>
             <p>Here’s how to decode a varint:</p>
             <img class="pagewidth" src="png/varint.png" width="1072" height="610"/>
+
+            <h2 id="keepalive">Keepalive</h2>
+            <p>Keepalive messages are empty messages containing no channel number, type or body. They are discarded upon being received. Sending keepalives is necessary when there is a network middlebox that kills TCP connections which haven’t sent any data in a while. In these cases each peer periodically sends keepalive messages to each other when no other data is being sent.</p>
+            <aside>How frequently to send keepalive messages is essentially a guess based on what types of middleboxes are commonly used on the internet today. Other TCP-based protocols typically send keepalives every 30 to 120 seconds.</aside>
+            <p>Here’s an example of several keepalive messages interleaved with messages containing actual data. Each keepalive message is a single byte of zero:</p>
+            <img class="pagewidth" src="png/wire_protocol_keepalive.png" width="1072" height="115"/>
 
             <h2 id="message-structure">Message structure</h2>
             <p>Within each message body is a series of field tags and values:</p>
