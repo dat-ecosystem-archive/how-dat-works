@@ -51,7 +51,7 @@ body {
     margin: 0;
 }
 
-header, main, #frontmatter {
+header, footer, main, #frontmatter {
     display: grid;
     grid-template-columns:
         [screen-start] 0px
@@ -111,6 +111,29 @@ nav > a:hover, nav > a:focus {
     color: #fff;
     opacity: 0.5;
 }
+
+footer {
+    grid-column: screen;
+    color: #5f728c;
+    background-color: #eee;
+    padding: 34px 0 80px;
+    font-size: 13px;
+}
+
+footer p {
+    grid-column: text;
+    margin: 0;
+}
+
+footer .nav {
+    grid-column: gutter;
+    justify-self: end;
+}
+
+footer a {
+    color: inherit;
+}
+
 
 main > * {
     grid-column: text;
@@ -211,7 +234,7 @@ h1.section {
     padding: 34px 32px 14px;
     margin: 60px 0 32px;
     height: 52px;
-    background: top left / 1104px 100px no-repeat url(png/front_matter_bg.png) #293648;
+    background: top left / 1104px 100px no-repeat url(png/header_1.png) #293648;
 }
 
 h1.section span {
@@ -501,6 +524,8 @@ aside.basealign, .impl {
                             <div class="s2">
                                 <div><a href="#paths-index">Paths index</a></div>
                             </div>
+                            <div><a class="s1" href="#putting-everything-together">Putting everything together</a></div>
+                            <div><a class="s1" href="#future-of-dat">Future of Dat</a></div>
                         </div>
                     </div>
                 </div>
@@ -1447,6 +1472,21 @@ aside.basealign, .impl {
             <p>The process for calculating the <em>paths</em> field after deleting a file is mostly the same as when adding a file:</p>
             <img id="paths-index-delete" class="pagewidth" src="png/paths_index_delete.png" width="1072" height="850"/>
 
+            <h1 id="putting-everything-together" class="section" style="background-image: url(png/header_7.png)"><span>Putting everything together</span></h1>
+
+            <h1 id="future-of-dat" class="section" style="background-image: url(png/header_8.png)"><span>Future of Dat</span></h1>
+
         </main>
+        <footer>
+            <p>
+                <svg width="14" height="14" style="margin-right: 4px; vertical-align: -2px;">
+                    <path style="fill: #5f728c" d="m 7.0000007,0.9999991 c -3.313624,0 -6.0000007,2.6863728 -6.0000007,6.0000005 0,3.3132524 2.6863767,6.0000004 6.0000007,6.0000004 3.3136253,0 5.9999993,-2.686748 5.9999993,-6.0000004 0,-3.3136578 -2.686374,-6.0000005 -5.9999993,-6.0000005 z m 0,10.8749329 c -2.6882177,0 -4.8751244,-2.18709 -4.8751244,-4.8749324 0,-0.5627176 0.096968,-1.1030926 0.2733112,-1.6060652 l 1.906658,0.8490376 c -0.051345,0.25515 -0.079189,0.52131 -0.079189,0.796215 0,2.395312 1.7878763,3.070215 2.9127504,3.070215 0.6633435,0 1.2374386,-0.214125 1.6868437,-0.528247 0.085406,-0.0612 0.1627822,-0.122813 0.2338747,-0.185497 l -0.8746873,-1.062781 c -0.025657,0.02933 -0.05244,0.05715 -0.079905,0.08212 -0.3402195,0.32259 -0.7141576,0.32259 -0.7977196,0.32259 -0.9151868,0 -1.2982816,-0.965595 -1.3034056,-1.7390928 l 5.2549032,2.3395958 c 0.0063,7.49e-4 0.01135,7.49e-4 0.01647,0.0023 -0.829186,1.509646 -2.4344684,2.534647 -4.2747801,2.534647 z m 4.6978763,-3.62928 -5.4198752,-2.419125 c 0.1955626,-0.35412 0.5068126,-0.62028 0.9725619,-0.62028 0.27,0 0.4840935,0.089437 0.6527175,0.20238 0.070004,0.050625 0.130875,0.1011525 0.1821886,0.1521225 l 0.9769686,-1.0055625 c -0.6561876,-0.5641877 -1.4022187,-0.6650027 -1.8901252,-0.6650027 -1.1464989,0 -1.9577814,0.4956227 -2.4360002,1.2482551 l -1.8124374,-0.8083424 c 0.8723123,-1.3270652 2.3733137,-2.2054128 4.0761251,-2.2054128 2.6881879,0 4.8753133,2.1867528 4.8753133,4.8753154 0,0.4351574 -0.05829,0.8563424 -0.165719,1.2581554 -0.0044,-0.0045 -0.0073,-0.0081 -0.01173,-0.01252 z"/>
+                </svg>
+                <span><em>How Dat Works</em> is written by Duncan Keall and dedicated to the public domain.</span>
+            </p>
+            <div class="nav">
+                <a href="#top">Table of contents</a>
+            </div>
+        </footer>
     </body>
 </html>
