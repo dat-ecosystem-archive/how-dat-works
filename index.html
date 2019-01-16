@@ -524,7 +524,6 @@ aside.basealign, .impl {
                             <div class="s2">
                                 <div><a href="#paths-index">Paths index</a></div>
                             </div>
-                            <div><a class="s1" href="#putting-everything-together">Putting everything together</a></div>
                             <div><a class="s1" href="#future-of-dat">Future of Dat</a></div>
                         </div>
                     </div>
@@ -1472,39 +1471,41 @@ aside.basealign, .impl {
             <p>The process for calculating the <em>paths</em> field after deleting a file is mostly the same as when adding a file:</p>
             <img id="paths-index-delete" class="pagewidth" src="png/paths_index_delete.png" width="1072" height="850"/>
 
-            <h1 id="putting-everything-together" class="section" style="background-image: url(png/header_7.png)"><span>Putting everything together</span></h1>
-
             <h1 id="future-of-dat" class="section" style="background-image: url(png/header_8.png)"><span>Future of Dat</span></h1>
-            <p>Dat was first released in 2013, which in terms of intenet infrasturcture, is very recent. Parts of the protocol are still changing today to enable Dat to handle bigger datasets, more hostile network conditions and support new types of applications.</p>
+            <p>Dat was first released in 2013, which in terms of internet infrastructure is very recent. Parts of the protocol are still changing today to enable Dat to handle bigger datasets, more hostile network conditions and support new types of applications.</p>
             <p>This guide has described the Dat protocol as of January 2019. Here’s a brief summary of upcoming proposals to modify the Dat protocol in the near future:</p>
-            <ul>
+            <ul style="margin-bottom: 0">
                 <li>
-                    <p><strong>Hyperdrive</strong></p>
+                    <p><strong><a href="https://github.com/datproject/planning#protocol-performance-and-features">Hyperdrive</a></strong> is the technical name of the files and folders system. Hyperdrive is going to be completely overhauled to make it faster for datasets containing millions of files. The new version will use a data structure called a prefix tree. There will also be refactoring changes so that files/folders and key/value databases use the same underlying storage system.</p>
                 </li>
                 <li>
-                    <p><strong><a href="https://pfrazee.hashbase.io/blog/hyperswarm">Hyperswarm</a></strong> is a new set of discovery mechanisms for finding peers interested in the same Dat as you. It will replace the local network discovery and centralized DNS discovery mechanisms. It will also replace the BitTorrent distributed hash table mechanism that is in use today but not documented in this guide.</p>
+                    <p><strong><a href="https://pfrazee.hashbase.io/blog/hyperswarm">Hyperswarm</a></strong> is a new set of discovery mechanisms for finding other peers. It will replace the local network discovery and centralized DNS discovery mechanisms. It will also replace the BitTorrent distributed hash table mechanism that is in use today (but not documented in this guide).</p>
                     <p>Hyperswarm is able to hole-punch through NAT devices on networks. This helps users on residential or mobile internet connections directly connect to each other despite not having dedicated IP addresses or being able to accept incoming TCP connections.</p>
                 </li>
                 <li>
-                    <p><strong>Multi-writer</strong></p>
+                    <p><strong><a href="https://www.datprotocol.com/deps/0008-multiwriter/">Multi-writer</a></strong> will allow Dats to be modified by multiple devices and multiple authors at the same time. Each author will have their own secret key and publish a Dat with their data in it. Multi-writer fuses all of these separate Dats into one “meta-Dat” that is a view of everyone’s data combined.</p>
+                </li>
+                <li>
+                    <p><strong><a href="https://noiseprotocol.org/">NOISE protocol</a></strong> is a cryptographic framework for setting up secure connections between computers on the internet. This will replace how handshakes and encryption currently work in the wire protocol.</p>
+                    <p>NOISE will fix weaknesses such as connections being readable by any eavesdropper who knows the Dat’s public key. It will allow connections to be authenticated to prevent tampering and also support forward secrecy so that past connections cannot be decrypted if the key is later stolen.</p>
                 </li>
             </ul>
+
+            <hr/>
+
+            <p id="conclusion">This is the end of <em>How Dat Works</em>. We’ve seen all the steps necessary to download and share files using Dat. If you’d like to write an implementation then check out the <em><a href="https://datprotocol.github.io/book/">Dat Protocol Book</a></em> which offers guidance about implementation details.</p>
+            <p>The focus on this guide has been on storing files, but this is just one use of Dat. The protocol is flexible enough to store arbitrary data that does not use the concept of files or folders. One example is <a href="https://www.datprotocol.com/deps/0004-hyperdb/">Hyperdb</a> which is a key/value database, but Dat can be extended to support completely different use cases too. Take a look at the formal <a href="https://www.datprotocol.com/deps/">protocol specifications</a> for more information.</p>
 
             <div class="feedback" style="background-image: url(png/feedback_side_2.png)">
                 <div>
                     <h2>Feedback</h2>
-                    <p>Thank you for reading all the way through <em>How Dat Works</em>! Were there any parts that you found particularly useful or particularly frustrating? I rely on feedback from readers to learn where the sticking points are. Please <strong><a href="https://goo.gl/forms/R22N7C3e0trxNn9h1">send me feedback</a></strong> so that I can improve this guide for future readers.</p>
+                    <p>Thank you for reading all the way to the end! Were there any parts that you found particularly useful or particularly frustrating? I rely on feedback from readers to learn where the sticking points are. Please <strong><a href="https://goo.gl/forms/R22N7C3e0trxNn9h1">send me feedback</a></strong> so that I can improve this guide for future readers.</p>
                 </div>
             </div>
 
         </main>
         <footer>
-            <p>
-                <svg width="16" height="16" style="margin-right: 4px; vertical-align: -3px;">
-                    <path style="fill: #5f728c" d="m 8.5742188,1.0273438 c -3.654,0 -6.7832032,2.6666875 -6.7832032,6.9296874 0,4.2839998 3.1292032,7.0156248 6.7832032,7.0156248 3.6540002,0 6.7832032,-2.731625 6.7832032,-7.0156248 0,-4.2629999 -3.129203,-6.9296875 -6.7832032,-6.9296874 z m 0,0.8613281 c 3.1710002,0 5.7968752,2.4143594 5.7968752,6.0683593 0,0.6960295 -0.09533,1.348988 -0.269532,1.9492188 l -7.492187,-3.3359375 c 0.4095184,-0.8698018 1.2126514,-1.4257813 2.2597656,-1.4257813 0.735,0 1.2591714,0.3153282 1.8261714,0.8613282 l 0.734376,-0.8203125 c -0.672001,-0.672 -1.4490005,-1.1972656 -2.6250005,-1.1972657 -1.4223986,0 -2.7369245,0.7605469 -3.4101563,2.0410157 l -2.0039062,-0.890625 c 0.954473,-2.0217392 2.9272938,-3.25 5.1835938,-3.25 z m -5.5449219,4.1992187 2.0078125,0.8925782 c -0.070059,0.3082539 -0.1171875,0.6299239 -0.1171875,0.9765624 0,2.6039998 1.7012656,4.1582028 3.8222656,4.1582028 1.2599995,0 2.0589375,-0.523312 2.8359375,-1.195312 l -0.630859,-0.882813 c -0.609,0.525 -1.2605785,0.923829 -2.1425785,0.923829 -1.512,0 -2.4980469,-1.1559068 -2.4980469,-3.0039068 0,-0.1382966 0.016896,-0.2671573 0.03125,-0.3984374 l 7.3964844,3.2929682 c -0.963555,2.010862 -2.922961,3.238282 -5.1601562,3.238282 -3.171,0 -5.7949219,-2.457813 -5.7949219,-6.1328128 0,-0.6674413 0.087505,-1.2915444 0.25,-1.8691406 z"/>
-                </svg>
-                <span><em>How Dat Works</em> is written by Duncan Keall and dedicated to the public domain.</span>
-            </p>
+            <p><em>How Dat Works</em> is written by Duncan Keall and dedicated to the public domain.</p>
             <div class="nav">
                 <a href="#top">Table of contents</a>
             </div>
