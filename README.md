@@ -1,6 +1,6 @@
 # How Dat Works
 
-[**Read online**](https://vtduncan.github.io/how-dat-works/)
+[**Read online**](https://datprotocol.github.io/how-dat-works/)
 
 ![Overview screenshot of documentation](png/screenshot.png)
 
