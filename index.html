@@ -1100,7 +1100,7 @@ aside.basealign, .impl {
                             <td>2</td>
                             <td><strong>Length</strong></td>
                             <td>Varint</td>
-                            <td>1 = just the <em>start</em> chunk, 2 = the <em>start</em> chunk and the next one, and so on. Omit this field to select all following chunks to the end of the Dat, including new chunks as they are added.</td>
+                            <td>1 = Just the <em>start</em> chunk, 2 = The <em>start</em> chunk and the next one, and so on. Omit this field to select all following chunks to the end of the Dat, including new chunks as they are added.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1176,7 +1176,7 @@ aside.basealign, .impl {
                             <td>1</td>
                             <td><strong>Index</strong></td>
                             <td>Varint</td>
-                            <td>Number of the chunk or hash to send back. This field must be present even when using the <em>bytes</em> field below.</td>
+                            <td>Number of the chunk to send back. This field must be present even when using the <em>bytes</em> field below.</td>
                         </tr>
                         <tr>
                             <td>2</td>
@@ -1188,18 +1188,18 @@ aside.basealign, .impl {
                             <td>3</td>
                             <td><strong>Hash</strong></td>
                             <td>Varint</td>
-                            <td>0 = this request is for data contained in a chunk (<em>index</em> is the chunk number). 1 = this request is for a hash in the hash tree (<em>index</em> is the hash number).</td>
+                            <td>0 = Send back the data in this chunk as well as hashes needed to verify it, 1 = Don’t send back the data in this chunk, only send the hashes.</td>
                         </tr>
                         <tr>
                             <td>4</td>
                             <td><strong>Nodes</strong></td>
                             <td>Varint</td>
-                            <td>Used to request additional hashes needed to verify the integrity of this chunk. 0 = send back all hashes needed to verify this chunk, 1 = just send the data, no hashes. For other values that can be used to request specific hashes from the hash tree, see the <a href="https://github.com/pfrazee/DEPs/blob/dep-wire-protocol/proposals/0000-wire-protocol.md#block-tree-digest">Wire Protocol specification</a>.</td>
+                            <td>Used to request additional hashes needed to verify the integrity of this chunk. 0 = Send back all hashes needed to verify this chunk, 1 = Just send the data, no hashes. For other values that can be used to request specific hashes from the hash tree, see the <a href="https://github.com/pfrazee/DEPs/blob/dep-wire-protocol/proposals/0000-wire-protocol.md#block-tree-digest">Wire Protocol specification</a>.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <p>If you no longer want a chunk you requested, send a <strong>cancel</strong> message:</p>
+            <p id="cancel-message">If you no longer want a chunk you requested, send a <strong>cancel</strong> message:</p>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -1215,7 +1215,7 @@ aside.basealign, .impl {
                             <td>1</td>
                             <td><strong>Index</strong></td>
                             <td>Varint</td>
-                            <td>Number of the chunk or hash to cancel. This field must be present even when using the <em>bytes</em> field below.</td>
+                            <td>Number of the chunk to cancel. This field must be present even when using the <em>bytes</em> field below.</td>
                         </tr>
                         <tr>
                             <td>2</td>
@@ -1227,13 +1227,13 @@ aside.basealign, .impl {
                             <td>3</td>
                             <td><strong>Hash</strong></td>
                             <td>Varint</td>
-                            <td>0 = cancel the request for chunk data. 1 = cancel the request for a hash.</td>
+                            <td>Set to the same value as the <em>hash</em> field of the request you want to cancel.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <p>Cancel messages can be used if you preemptively requested a chunk from multiple peers at the same time. Upon receiving the chunk from the fastest peer, send cancel messages to the others.</p>
-            <p>When a peer has requested a chunk from you, send them the data with a <strong>data</strong> message:</p>
+            <p id="data-message">When a peer has requested a chunk from you, send it to them with a <strong>data</strong> message:</p>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -1247,21 +1247,22 @@ aside.basealign, .impl {
                     <tbody>
                         <tr>
                             <td>1</td>
-                            <td><strong>Start</strong></td>
+                            <td><strong>Index</strong></td>
                             <td>Varint</td>
-                            <td></td>
+                            <td>Chunk number.</td>
                         </tr>
                         <tr>
                             <td>2</td>
                             <td><strong>Value</strong></td>
                             <td>Length-prefixed</td>
-                            <td></td>
+                            <td>Contents of the chunk. Do not set this field if the request had <em>hash</em> = 1.</td>
                         </tr>
                         <tr>
                             <td>3</td>
                             <td><strong>Nodes</strong></td>
                             <td>Length-prefixed</td>
                             <td>
+                                <p>This field is repeated for each hash that the requester needs to verify the chunk’s integrity.</p>
                                 <table>
                                     <thead>
                                         <tr>
@@ -1276,19 +1277,19 @@ aside.basealign, .impl {
                                             <td>1</td>
                                             <td><strong>Index</strong></td>
                                             <td>Varint</td>
-                                            <td></td>
+                                            <td>Hash number.</td>
                                         </tr>
                                         <tr>
                                             <td>2</td>
                                             <td><strong>Hash</strong></td>
                                             <td>Length-prefixed</td>
-                                            <td></td>
+                                            <td>32-byte <a href="#chunk-hash">chunk hash</a> or <a href="#parent-hash">parent hash</a>.</td>
                                         </tr>
                                         <tr>
                                             <td>3</td>
                                             <td><strong>Size</strong></td>
                                             <td>Varint</td>
-                                            <td></td>
+                                            <td>Total length of data in chunks covered by this hash.</td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -1298,7 +1299,7 @@ aside.basealign, .impl {
                             <td>4</td>
                             <td><strong>Signature</strong></td>
                             <td>Length-prefixed</td>
-                            <td></td>
+                            <td>64-byte ed25519 signature of the root hash corresponding to this chunk.</td>
                         </tr>
                     </tbody>
                 </table>
