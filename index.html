@@ -515,6 +515,7 @@ aside.basealign, .impl {
                             <div class="s2">
                                 <div><a href="#want-and-have">Want and have</a></div>
                                 <div><a href="#have-bitfield">Have bitfield</a></div>
+                                <div><a href="#requesting-data">Requesting data</a></div>
                             </div>
                         </div>
                     </div>
@@ -1158,7 +1159,8 @@ aside.basealign, .impl {
             <p>And here is how the final have message would appear on the wire:</p>
             <img id="have-bitfield-bytes" class="pagewidth" src="png/have_message_bytes.png" width="1072" height="195"/>
 
-            <h2>Request message</h2>
+            <h2 id="requesting-data">Requesting data</h2>
+            <p>Once your peer has told you that they have a chunk you want, send a <strong>request</strong> message to ask them for it:
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -1192,13 +1194,12 @@ aside.basealign, .impl {
                             <td>4</td>
                             <td><strong>Nodes</strong></td>
                             <td>Varint</td>
-                            <td>Used to request additional hashes needed to verify the integrity of this chunk. 0 = send back all hashes needed to verify this chunk, 1 = just send the data, no hashes. See below for how to use this field to request specific hashes from the hash tree.</td>
+                            <td>Used to request additional hashes needed to verify the integrity of this chunk. 0 = send back all hashes needed to verify this chunk, 1 = just send the data, no hashes. For other values that can be used to request specific hashes from the hash tree, see the <a href="https://github.com/pfrazee/DEPs/blob/dep-wire-protocol/proposals/0000-wire-protocol.md#block-tree-digest">Wire Protocol specification</a>.</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
-            <h2>Cancel message</h2>
+            <p>If you no longer want a chunk you requested, send a <strong>cancel</strong> message:</p>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -1231,8 +1232,8 @@ aside.basealign, .impl {
                     </tbody>
                 </table>
             </div>
-
-            <h2>Data message</h2>
+            <p>Cancel messages can be used if you preemptively requested a chunk from multiple peers at the same time. Upon receiving the chunk from the fastest peer, send cancel messages to the others.</p>
+            <p>When a peer has requested a chunk from you, send them the data with a <strong>data</strong> message:</p>
             <div class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -1494,7 +1495,7 @@ aside.basealign, .impl {
             <hr/>
 
             <p id="conclusion">This is the end of <em>How Dat Works</em>. We’ve seen all the steps necessary to download and share files using Dat. If you’d like to write an implementation then check out the <em><a href="https://datprotocol.github.io/book/">Dat Protocol Book</a></em> which offers guidance about implementation details.</p>
-            <p>The focus on this guide has been on storing files, but this is just one use of Dat. The protocol is flexible enough to store arbitrary data that does not use the concept of files or folders. One example is <a href="https://www.datprotocol.com/deps/0004-hyperdb/">Hyperdb</a> which is a key/value database, but Dat can be extended to support completely different use cases too. Take a look at the formal <a href="https://www.datprotocol.com/deps/">protocol specifications</a> for more information.</p>
+            <p>The focus of this guide has been on storing files, but this is just one use of Dat. The protocol is flexible enough to store arbitrary data that does not use the concept of files or folders. One example is <a href="https://www.datprotocol.com/deps/0004-hyperdb/">Hyperdb</a> which is a key/value database, but Dat can be extended to support completely different use cases too. Take a look at the formal <a href="https://www.datprotocol.com/deps/">protocol specifications</a> for more information.</p>
 
             <div class="feedback" style="background-image: url(png/feedback_side_2.png)">
                 <div>
