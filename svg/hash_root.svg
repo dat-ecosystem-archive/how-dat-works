@@ -24,7 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -124,7 +124,9 @@
      width="300px"
      inkscape:snap-smooth-nodes="true"
      inkscape:snap-page="true"
-     height="800px">
+     height="800px"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-nodes="true">
     <inkscape:grid
        type="xygrid"
        id="grid10"
@@ -3004,19 +3006,25 @@
          id="tspan21028">12</tspan></text>
     <text
        id="text21257"
-       y="-129.99998"
-       x="410"
+       y="-129.99997"
+       x="425"
        style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:center;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:middle;display:inline;overflow:visible;visibility:visible;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"
        xml:space="preserve"><tspan
-         y="-129.99998"
-         x="410"
+         y="-129.99997"
+         x="425"
          sodipodi:role="line"
          style="text-align:start;text-anchor:start"
          id="tspan21293">structure repeats for each input hash,</tspan><tspan
-         y="-113.99998"
-         x="410"
+         y="-113.99997"
+         x="425"
          sodipodi:role="line"
          style="text-align:start;text-anchor:start"
          id="tspan21299">smallest hash number to largest</tspan></text>
+    <path
+       style="color:#000000;overflow:visible;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#93a0b6;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;marker-end:none;paint-order:fill markers stroke"
+       d="m 400,-254.5 h 0.5 c 2.76142,0 5,2.23858 5,5 v 120 c 0,2.76142 2.23858,5 5,5 m -10.5,129 h 0.5 c 2.76142,0 5,-2.2385762 5,-4.9999999 v -119.0000001 c 0,-2.76142 2.23858,-5 5,-5 h 0.5"
+       id="path279"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccccscc" />
   </g>
 </svg>

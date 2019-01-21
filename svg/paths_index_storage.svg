@@ -54,18 +54,6 @@
      id="defs2">
     <linearGradient
        inkscape:collect="always"
-       id="linearGradient30321">
-      <stop
-         style="stop-color:#93a0b6;stop-opacity:1;"
-         offset="0"
-         id="stop30317" />
-      <stop
-         style="stop-color:#93a0b6;stop-opacity:0;"
-         offset="1"
-         id="stop30319" />
-    </linearGradient>
-    <linearGradient
-       inkscape:collect="always"
        id="linearGradient28799">
       <stop
          style="stop-color:#eeeeee;stop-opacity:1;"
@@ -143,46 +131,6 @@
        x2="415"
        y2="299"
        gradientTransform="translate(-155,150)" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient30321"
-       id="linearGradient30323"
-       x1="505"
-       y1="500"
-       x2="505"
-       y2="510"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(0,-10)" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient30321"
-       id="linearGradient30325"
-       x1="505"
-       y1="500"
-       x2="505"
-       y2="510"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(0,-10)" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient30321"
-       id="linearGradient30327"
-       x1="505"
-       y1="500"
-       x2="505"
-       y2="510"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(0,-10)" />
-    <linearGradient
-       inkscape:collect="always"
-       xlink:href="#linearGradient30321"
-       id="linearGradient30329"
-       x1="505"
-       y1="500"
-       x2="505"
-       y2="510"
-       gradientUnits="userSpaceOnUse"
-       gradientTransform="translate(0,-10)" />
   </defs>
   <g
      style="display:inline"
@@ -1290,30 +1238,6 @@
          y="453"
          x="252.5022"
          sodipodi:role="line">…</tspan></text>
-    <path
-       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:url(#linearGradient30329);stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;paint-order:fill markers stroke;enable-background:new"
-       d="m 347.5,500 v -21"
-       id="path17090-4"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:url(#linearGradient30327);stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;paint-order:fill markers stroke;enable-background:new"
-       d="m 657.5,500 v -21"
-       id="path17164-4"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
-    <path
-       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:url(#linearGradient30325);stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;paint-order:fill markers stroke;enable-background:new"
-       d="m 967.5,500 v -21"
-       id="path17172-0"
-       inkscape:connector-curvature="0"
-       sodipodi:nodetypes="cc" />
-    <path
-       sodipodi:nodetypes="cc"
-       inkscape:connector-curvature="0"
-       id="path3019-3"
-       d="m 502.5,500 v -21"
-       style="color:#000000;display:inline;overflow:visible;opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:url(#linearGradient30323);stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:none;marker-mid:none;paint-order:fill markers stroke;enable-background:new" />
     <text
        xml:space="preserve"
        style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;baseline-shift:baseline;text-anchor:start;display:inline;overflow:visible;visibility:visible;fill:#5f728c;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker:none;enable-background:accumulate"

@@ -641,9 +641,9 @@ aside.basealign, .impl {
                 <text y="44" text-anchor="middle"><tspan x="770">optional suffix</tspan><tspan x="770" dy="1.2em">path to data within Dat</tspan></text>
             </svg>
             <ul>
-                <li><strong>Protocol identifier.</strong> Makes Dat URLs easily recognizable. Dat-capable applications can register with the operating system to handle <code>dat://</code> links, like Beaker does. In Dat-specific applications the protocol identifier can be left off.</li>
+                <li><strong>Protocol identifier.</strong> Makes Dat URLs easily recognizable. Dat-capable applications can register with the operating system to handle <code>dat://</code> links, like <a href="https://beakerbrowser.com/">Beaker</a> does. In Dat-specific applications the protocol identifier can be left off.</li>
                 <li><strong>Public key.</strong> An ed25519 public key unique to this Dat, used by the author to create and update data within it. The public key enables you to discover other peers who have the data and is also verify that the data was not corrupted or tampered with as it passed through the network.</li>
-                <li><strong>Suffix.</strong> Identifies specific data within this Dat. For most Dats which contain a directory of files the suffix is a slash-separated file path. Dats can also contain data in structures that don’t use the concept of files or directories, in which case the suffix would use some other format as understood by the applications that handle that sort of data.</li>
+                <li><strong>Suffix.</strong> Identifies specific data within this Dat. For most Dats which contain a directory of files, the suffix is a slash-separated file path. Dats can also contain data in structures that don’t use the concept of files or directories, in which case the suffix would use some other format as understood by the applications that handle that sort of data.</li>
             </ul>
             <aside class="impl">
                 <img class="icon" src="png/spanner_icon.png"/>
@@ -658,7 +658,7 @@ aside.basealign, .impl {
             <h2 id="discovery-keys">Discovery keys</h2>
             <div>
                 <p>Discovery keys are used for finding other peers who are interested in the same Dat as you.</p>
-                <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dat URLs, and therefore being able to read their contents, by observing network traffic.</p>
+                <p>If you know a Dat’s public key then you can calculate the discovery key easily, however if you only know a discovery key you cannot work backwards to find the corresponding public key. This prevents eavesdroppers learning of Dat URLs (and therefore being able to read their contents) by observing network traffic.</p>
             </div>
             <aside class="impl">
                 <img class="icon" src="png/spanner_icon.png"/>
@@ -995,7 +995,7 @@ aside.basealign, .impl {
                             <td>5</td>
                             <td><strong>Acknowledge</strong></td>
                             <td>Varint</td>
-                            <td>The behavior of this field is still being decided upon. The intention is 0 = No need to acknowledge each data block received, 1 = Must explicitly acknowledge each data block received.</td>
+                            <td>0 = No need to acknowledge each chunk of data received, 1 = Must acknowledge each chunk of data received.</td>
                         </tr>
                     </tbody>
                 </table>
@@ -1116,7 +1116,7 @@ aside.basealign, .impl {
             </div>
             <p>Here is an example showing typical use of have and want messages between two peers:</p>
             <img id="want-have-conversation-1" class="pagewidth" style="margin-bottom: 0" src="png/want_have_1.png" width="1072" height="1025"/>
-            <img id="want-have-conversation-2" class="pagewidth" src="png/want_have_2.png" width="1072" height="1055"/>
+            <img id="want-have-conversation-2" class="pagewidth" src="png/want_have_2.png" width="1072" height="1070"/>
 
             <h2 id="have-bitfield">Have bitfield</h2>
             <div>
@@ -1346,7 +1346,7 @@ aside.basealign, .impl {
                     </tbody>
                 </table>
             </div>
-            <p>After the index all following chunks in the metadata feed are <strong>nodes</strong>, which have these fields:</p>
+            <p>After the index all following chunks in the metadata feed are <strong>nodes</strong>, which store file metadata. Nodes have these fields:</p>
             <div id="node-fields" class="pagewidth msgfields">
                 <table>
                     <thead>
@@ -1452,7 +1452,7 @@ aside.basealign, .impl {
                     </tbody>
                 </table>
             </div>
-            <p>To find the latest version of a file, start from the end of the metadata feed and work backwards until you find a node with that file’s name. Even though files can be modified and deleted, they can still be retrieved by searching back in the metadata feed for earlier versions.</p>
+            <p>To find the latest version of a file, start from the end of the metadata feed and work backwards until you find a node with that file’s name. Even though files can be modified and deleted, previous versions can still be retrieved by searching back in the metadata feed.</p>
             <p>Here is an example showing how the <em>offset</em> and <em>blocks</em> fields refer to chunks in the content feed:</p>
             <img id="files-folders-feeds" class="pagewidth" src="png/files_folders_feeds.png" width="1072" height="385"/>
 

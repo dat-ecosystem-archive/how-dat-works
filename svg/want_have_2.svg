@@ -9,8 +9,8 @@
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="1072"
-   height="1055"
-   viewBox="0 0 1072 1055"
+   height="1070"
+   viewBox="0 0 1072 1070"
    version="1.1"
    id="svg6"
    inkscape:version="0.92.2 2405546, 2018-03-11"
@@ -252,7 +252,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,555)"
+     transform="translate(0,570)"
      style="display:inline">
     <text
        xml:space="preserve"
@@ -2067,20 +2067,32 @@
    id="tspan7506">Have</tspan>    start = 9    length = 3</tspan></text>
     <text
        id="text7584"
-       y="-544.20453"
+       y="-559.20453"
        x="220"
        style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;display:inline;overflow:visible;visibility:visible;opacity:1;vector-effect:none;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
        xml:space="preserve"><tspan
-         id="tspan7582"
          style="font-weight:normal;text-align:start;text-anchor:start"
-         y="-544.20453"
-         x="220"
-         sodipodi:role="line">Seeing that Peer B has chunks it wants, Peer A requests them and they are transferred.</tspan><tspan
-         style="font-weight:normal;text-align:start;text-anchor:start"
-         y="-528.20453"
+         y="-559.20453"
          x="220"
          sodipodi:role="line"
-         id="tspan7588">No need for Peer A to say they have the chunks they just received, this is implied.</tspan></text>
+         id="tspan7588">Seeing that Peer B has chunks it wants, Peer A requests them and they are transferred.</tspan><tspan
+         style="font-weight:normal;text-align:start;text-anchor:start"
+         y="-543.20453"
+         x="220"
+         sodipodi:role="line"
+         id="tspan484">If the Peer B’s handshake message had <tspan
+   style="font-style:italic"
+   id="tspan504">acknowledge</tspan> = 1, Peer A must reply with have messages for the chunks they just received.</tspan><tspan
+         style="font-weight:normal;text-align:start;text-anchor:start"
+         y="-527.20453"
+         x="220"
+         sodipodi:role="line"
+         id="tspan502">Otherwise, no need to send have messages for the chunks received.</tspan><tspan
+         style="font-weight:normal;text-align:start;text-anchor:start"
+         y="-511.20453"
+         x="220"
+         sodipodi:role="line"
+         id="tspan492" /></text>
     <text
        xml:space="preserve"
        style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;display:inline;overflow:visible;visibility:visible;opacity:1;vector-effect:none;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
@@ -2107,9 +2119,7 @@
          y="20.172001"
          x="220"
          sodipodi:role="line"
-         id="tspan1491">sends <tspan
-   style="font-style:italic"
-   id="tspan1493">have</tspan> messages to advertise their availability.</tspan></text>
+         id="tspan1491">sends have messages to advertise their availability.</tspan></text>
     <text
        xml:space="preserve"
        style="color:#000000;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13px;line-height:16px;font-family:'Source Sans Pro';-inkscape-font-specification:'Source Sans Pro';font-variant-ligatures:normal;font-variant-position:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-alternates:normal;font-feature-settings:normal;text-indent:0;text-align:start;text-decoration:none;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000000;letter-spacing:0px;word-spacing:0px;text-transform:none;writing-mode:lr-tb;direction:ltr;text-orientation:mixed;dominant-baseline:auto;baseline-shift:baseline;text-anchor:start;white-space:normal;shape-padding:0;display:inline;overflow:visible;visibility:visible;opacity:1;vector-effect:none;fill:#293648;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
@@ -2120,9 +2130,7 @@
          sodipodi:role="line"
          x="220"
          y="314.29547"
-         style="font-weight:normal;text-align:start;text-anchor:start">Peer B sees the <tspan
-   style="font-style:italic"
-   id="tspan7371">have</tspan> messages and requests the remaining chunks from Peer A.</tspan><tspan
+         style="font-weight:normal;text-align:start;text-anchor:start">Peer B sees the have messages and requests the remaining chunks from Peer A.</tspan><tspan
          sodipodi:role="line"
          x="220"
          y="330.29547"
