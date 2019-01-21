@@ -551,12 +551,14 @@ aside.basealign, .impl {
                     <a href="#centralized-dns-request"><img src="png/visual_index/vi_centralized_dns_request.png" width="160" height="172"/></a>
                     <a href="#centralized-dns-response"><img src="png/visual_index/vi_centralized_dns_response.png" width="160" height="172"/></a>
                     <a href="#centralized-dns-srv"><img src="png/visual_index/vi_centralized_dns_srv.png" width="160" height="122"/></a>
-                    <a href="#wire-protocol"><img src="png/visual_index/vi_wire_protocol.png" width="160" height="178"/></a>
+                    <a href="#wire-protocol"><img src="png/visual_index/vi_wire_protocol.png" width="160" height="111"/></a>
+                    <a href="#message-type"><img src="png/visual_index/vi_message_type.png" width="160" height="67"/></a>
                     <a href="#varints"><img src="png/visual_index/vi_varints.png" width="160" height="142"/></a>
                     <a href="#keepalive"><img src="png/visual_index/vi_keepalive.png" width="160" height="66"/></a>
                 </div>
                 <div class="col">
-                    <a href="#message-structure"><img src="png/visual_index/vi_message_structure.png" width="160" height="120"/></a>
+                    <a href="#message-structure"><img src="png/visual_index/vi_message_structure.png" width="160" height="59"/></a>
+                    <a href="#message-structure-field-tag"><img src="png/visual_index/vi_message_structure_field_tag.png" width="160" height="61"/></a>
                     <a href="#message-field-types"><img src="png/visual_index/vi_message_field_types.png" width="160" height="69"/></a>
                     <a href="#feed-message"><img src="png/visual_index/vi_feed_message.png" width="160" height="125"/></a>
                     <a href="#feed-message-bytes"><img src="png/visual_index/vi_feed_message_bytes.png" width="160" height="78"/></a>
@@ -574,12 +576,14 @@ aside.basealign, .impl {
                     <a href="#hashes-and-signatures"><img src="png/visual_index/vi_hashes_and_signatures.png" width="160" height="35"/></a>
                     <a href="#chunk-hash"><img src="png/visual_index/vi_chunk_hash.png" width="160" height="59"/></a>
                     <a href="#parent-hash"><img src="png/visual_index/vi_parent_hash.png" width="160" height="60"/></a>
-                    <a href="#root-hash"><img src="png/visual_index/vi_root_hash.png" width="160" height="209"/></a>
+                    <a href="#root-hash"><img src="png/visual_index/vi_root_hash.png" width="160" height="130"/></a>
+                    <a href="#signature-verification"><img src="png/visual_index/vi_signature_verification.png" width="160" height="78"/></a>
                 </div>
                 <div class="col">
                     <a href="#exchanging-data"><img src="png/visual_index/vi_exchanging_data.png" width="160" height="151"/></a>
                     <a href="#want-and-have"><img src="png/visual_index/vi_want_and_have.png" width="160" height="69"/></a>
-                    <a href="#want-have-conversation"><img src="png/visual_index/vi_want_have_conversation.png" width="160" height="320"/></a>
+                    <a href="#want-have-conversation-1"><img src="png/visual_index/vi_want_have_conversation_1.png" width="160" height="155"/></a>
+                    <a href="#want-have-conversation-2"><img src="png/visual_index/vi_want_have_conversation_2.png" width="160" height="167"/></a>
                     <a href="#have-bitfield"><img src="png/visual_index/vi_have_bitfield.png" width="160" height="95"/></a>
                     <a href="#have-bitfield-range-types"><img src="png/visual_index/vi_have_bitfield_range_types.png" width="160" height="114"/></a>
                     <a href="#have-bitfield-bits"><img src="png/visual_index/vi_have_bitfield_bits.png" width="160" height="103"/></a>
@@ -766,7 +770,7 @@ aside.basealign, .impl {
                 <img src="png/channel_type_field.png" width="275" height="225"/>
                 <ul>
                     <li><strong>Channel.</strong> Peers can talk about multiple Dats using the same TCP connection. The channel number is 0 for the first Dat talked about, 1 for the next Dat and so on.</li>
-                    <li><strong>Type.</strong> Number that says what the purpose of the message is.</li>
+                    <li id="message-type"><strong>Type.</strong> Number that says what the purpose of the message is.</li>
                     <table style="font-size: 13px; margin: 16px 0;">
                         <thead>
                             <tr>
@@ -878,7 +882,7 @@ aside.basealign, .impl {
             <h2 id="message-structure">Message structure</h2>
             <p>Within each message body is a series of field tags and values:</p>
             <img class="pagewidth" src="png/wire_protocol_field_value_structure.png" width="1072" height="255"/>
-            <p>The field tag is a varint. The most significant bits indicate which field within the message this is, for example: 1 = <em>discovery key</em>, 2 = <em>nonce</em>. This is needed because messages can have missing or repeated fields. The 3 least significant bits are the type of field.</p>
+            <p id="message-structure-field-tag">The field tag is a varint. The most significant bits indicate which field within the message this is, for example: 1 = <em>discovery key</em>, 2 = <em>nonce</em>. This is needed because messages can have missing or repeated fields. The 3 least significant bits are the type of field.</p>
             <img src="png/field_type_field.png" width="704" height="265"/>
             <p id="message-field-types">The two types of field are:</p>
             <ul>
@@ -1061,7 +1065,7 @@ aside.basealign, .impl {
                             </td>
                             <td>
                                 <img src="png/hash_root.png" width="760" height="820" style="margin-bottom: 32px"/>
-                                <p style="margin-bottom: 24px">Only the author of the Dat knows its secret key and can sign the root hash as shown above. All the other readers only know its public key, which they can use to verify the signature:</p>
+                                <p id="signature-verification" style="margin-bottom: 24px">Only the author of the Dat knows its secret key and can sign the root hash as shown above. All the other readers only know its public key, which they can use to verify the signature:</p>
                                 <img src="png/hash_root_verify.png" width="760" height="340"/>
                             </td>
                         </tr>
@@ -1111,7 +1115,8 @@ aside.basealign, .impl {
                 </table>
             </div>
             <p>Here is an example showing typical use of have and want messages between two peers:</p>
-            <img id="want-have-conversation" class="pagewidth" src="png/want_have.png" width="1072" height="2080"/>
+            <img id="want-have-conversation-1" class="pagewidth" style="margin-bottom: 0" src="png/want_have_1.png" width="1072" height="1025"/>
+            <img id="want-have-conversation-2" class="pagewidth" src="png/want_have_2.png" width="1072" height="1055"/>
 
             <h2 id="have-bitfield">Have bitfield</h2>
             <div>
