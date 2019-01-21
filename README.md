@@ -6,8 +6,6 @@
 
 A walk through the bits and bytes of Dat’s network protocol. Lots of pictures, just enough words.
 
-**Work-in-progress.** Preparing for v1 release on 22 Jan 2019.
-
 ## Contributing
 
 For feedback, minor corrections and amendments please either [mail me](mailto:duncan@fastmail.com), open an issue or make a pull request.
