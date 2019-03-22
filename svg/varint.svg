@@ -13,7 +13,7 @@
    viewBox="0 0 1072 610"
    version="1.1"
    id="svg6"
-   inkscape:version="0.92.2 2405546, 2018-03-11"
+   inkscape:version="0.92.4 5da689c313, 2019-01-14"
    sodipodi:docname="varint.svg"
    enable-background="new">
   <metadata
@@ -24,7 +24,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -1522,11 +1522,11 @@
          sodipodi:role="line"
          x="736"
          y="314"
-         id="tspan8308">Interpret remaining bits as powers of 2,</tspan><tspan
+         id="tspan8310">Reverse byte order and</tspan><tspan
          sodipodi:role="line"
          x="736"
          y="333.5"
-         id="tspan8310">with the bits in the last byte being most significant</tspan></text>
+         id="tspan322">interpret bits as powers of 2</tspan></text>
     <text
        id="text8314"
        y="490"
