@@ -523,7 +523,7 @@ aside.basealign, .impl {
             </svg>
             <ul>
                 <li><strong>Protocol identifier.</strong> Makes Dat URLs easily recognizable. Dat-capable applications can register with the operating system to handle <code>dat://</code> links, like <a href="https://beakerbrowser.com/">Beaker</a> does. In Dat-specific applications the protocol identifier can be left off.</li>
-                <li><strong>Public key.</strong> An ed25519 public key unique to this Dat, used by the author to create and update data within it. The public key enables you to discover other peers who have the data and is also verify that the data was not corrupted or tampered with as it passed through the network.</li>
+                <li><strong>Public key.</strong> An ed25519 public key unique to this Dat, used by the author to create and update data within it. The public key enables you to discover other peers who have the data and verify that the data was not corrupted or tampered with as it passed through the network.</li>
                 <li><strong>Suffix.</strong> Identifies specific data within this Dat. For most Dats which contain a directory of files, the suffix is a slash-separated file path. Dats can also contain data in structures that don’t use the concept of files or directories, in which case the suffix would use some other format as understood by the applications that handle that sort of data.</li>
             </ul>
             <aside class="impl">
