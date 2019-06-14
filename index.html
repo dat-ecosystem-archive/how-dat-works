@@ -230,7 +230,7 @@ h3 {
 }
 
 h1.section {
-    grid-column: screen-start/page-end;   
+    grid-column: screen-start/page-end;
     padding: 34px 32px 14px;
     margin: 60px 0 32px;
     height: 52px;
@@ -523,7 +523,7 @@ aside.basealign, .impl {
             </svg>
             <ul>
                 <li><strong>Protocol identifier.</strong> Makes Dat URLs easily recognizable. Dat-capable applications can register with the operating system to handle <code>dat://</code> links, like <a href="https://beakerbrowser.com/">Beaker</a> does. In Dat-specific applications the protocol identifier can be left off.</li>
-                <li><strong>Public key.</strong> An ed25519 public key unique to this Dat, used by the author to create and update data within it. The public key enables you to discover other peers who have the data and verify that the data was not corrupted or tampered with as it passed through the network.</li>
+                <li><strong>Public key.</strong> An <a href="https://ed25519.cr.yp.to/">ed25519 public key</a> unique to this Dat, used by the author to create and update data within it. The public key enables you to discover other peers who have the data and verify that the data was not corrupted or tampered with as it passed through the network.</li>
                 <li><strong>Suffix.</strong> Identifies specific data within this Dat. For most Dats which contain a directory of files, the suffix is a slash-separated file path. Dats can also contain data in structures that don’t use the concept of files or directories, in which case the suffix would use some other format as understood by the applications that handle that sort of data.</li>
             </ul>
             <aside class="impl">
@@ -548,7 +548,7 @@ aside.basealign, .impl {
                 <div class="src"><a href="https://github.com/mafintosh/hypercore-crypto/blob/ffc8f339bac0060e1eadd273ba8bcbfab33d27c8/index.js#L84-L88">hypercore-crypto</a></div>
             </aside>
             <p>However eavesdroppers can confirm that peers are talking about a specific Dat and read all communications between those peers if they know its public key already. Eavesdroppers who do not know the public key can still get an idea of how many Dats are popular on the network, their approximate sizes, which IP addresses are interested in them and potentially the IP address of the creator by observing handshakes, traffic timing and volumes. Dat makes no attempt to hide IP addresses.</p>
-            <p>Calculate a Dat’s discovery key using the <strong>BLAKE2b</strong> hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
+            <p>Calculate a Dat’s discovery key using the <a href="https://blake2.net/">BLAKE2b</a> hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
             <aside class="basealign">Dat uses the BLAKE2b variant that accepts both a key and input to be hashed, returning 256 bits (32 bytes) of output.</aside>
             <img id="blake2b" src="png/blake2b.png" width="704" height="465"/>
             <aside style="position: relative; top: 8px;">
@@ -600,7 +600,7 @@ aside.basealign, .impl {
             </div>
             <aside>
                 <p>Base64 encoding in Dat uses the variant with plus <code>+</code> and slash <code>/</code> characters. Padding equals <code>=</code> characters are required.</p>
-                <p>Only IPv4 addresses are supported by this discovery mechanism.</p>    
+                <p>Only IPv4 addresses are supported by this discovery mechanism.</p>
                 <h3>Multi-byte numbers</h3>
                 <p>Port numbers go from 0 to 65,535 which is larger than can fit inside a single byte, so in this case two bytes are used.</p>
                 <p>The first byte is how many 256’s there are and the second byte is how many ones there are:</p>
@@ -961,7 +961,7 @@ aside.basealign, .impl {
                 <p>In this example one peer is a downloader and the other is an uploader. In other cases both peers will be uploading and downloading at the same time as they each have some of the chunks but not all of them.</p>
                 <p>Each request message can only request a single chunk per message. Downloaders may want to queue up several request messages at a time. When the uploader finishes sending a chunk this lets them immediately start sending the next one without waiting for a round-trip.</p>
             </aside>
-            
+
             <h2 id="want-and-have">Want and have</h2>
             <p>Each peer remembers which chunks the other peer wants and has.</p>
             <ul>
