@@ -546,6 +546,8 @@ aside.basealign, .impl {
                 <h3>Implementations</h3>
                 <div class="lang">JS</div>
                 <div class="src"><a href="https://github.com/mafintosh/hypercore-crypto/blob/ffc8f339bac0060e1eadd273ba8bcbfab33d27c8/index.js#L84-L88">hypercore-crypto</a></div>
+                <div class="lang">Python</div>
+                <div class="src"><a href="https://github.com/datpy/hypercore-crypto/blob/39b3bdf8b743278aaa92ca476092d91443d8ca42/hypercore_crypto/crypto.py#L129-L134">hypercore-crypto</a></div>
             </aside>
             <p>However eavesdroppers can confirm that peers are talking about a specific Dat and read all communications between those peers if they know its public key already. Eavesdroppers who do not know the public key can still get an idea of how many Dats are popular on the network, their approximate sizes, which IP addresses are interested in them and potentially the IP address of the creator by observing handshakes, traffic timing and volumes. Dat makes no attempt to hide IP addresses.</p>
             <p>Calculate a Dat’s discovery key using the <a href="https://blake2.net/">BLAKE2b</a> hashing function, keyed with the public key (as 32 bytes, not 64 hexadecimal characters), to hash the word “hypercore”:</p>
@@ -748,6 +750,8 @@ aside.basealign, .impl {
                     <div class="src"><a href="https://github.com/chrisdickinson/varint/blob/5759d8a705b3f2aacbe6e752efad1032af58d309/decode.js">varint/decode.js</a></div>
                     <div class="lang">Rust</div>
                     <div class="src"><a href="https://github.com/datrs/varinteger/blob/eed3415360f7fac7f72cd64c15cb960ce2d70718/src/lib.rs">varinteger</a></div>
+                    <div class="lang">Python</div>
+                    <div class="src"><a href="https://github.com/fmoo/python-varint/blob/master/varint.py">python-varint</a></div>
                 </div>
                 <p>In Dat, varints are between 1 and 10 bytes long and represent integers from 0 to 2<sup>64</sup> - 1. Negative numbers aren’t used.</p>
             </aside>
@@ -914,6 +918,8 @@ aside.basealign, .impl {
                 <div class="src"><a href="https://github.com/mafintosh/hypercore-crypto/blob/ffc8f339bac0060e1eadd273ba8bcbfab33d27c8/index.js#L35-L76">hypercore-crypto</a></div>
                 <div class="lang">Rust</div>
                 <div class="src"><a href="https://github.com/datrs/hypercore/blob/79fd7a8141096606b4124c7d59dede2a4021b3fb/src/crypto/hash.rs#L25-L87">datrs/hypercore/hash.rs</a></div>
+                <div class="lang">Python</div>
+                <div class="src"><a href="https://github.com/datpy/hypercore-crypto/blob/39b3bdf8b743278aaa92ca476092d91443d8ca42/hypercore_crypto/crypto.py#L75-L118">hypercore-crypto</a></div>
             </aside>
             <p>Each type of hash has a specific way to construct it:</p>
             <div class="hashtypes pagewidth">
